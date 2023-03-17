@@ -1,0 +1,23 @@
+.error-message {
+  padding-left: 12px;
+  transition: 0.2s ease-out;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+
+  label {
+    font-style: var(--custom-font-style-normal);
+    font-weight: var(--custom-font-weight-regular);
+    font-size: var(--custom-font-size-7);
+    line-height: var(--custom-line-height);
+    color: var(--custom-text-color-danger);
+  }
+}
+
+.error-message.active {
+  opacity: 1;
+}
+
+label {
+  color: var(--custom-text-color-error);
+}

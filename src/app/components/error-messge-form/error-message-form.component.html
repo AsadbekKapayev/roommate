@@ -1,0 +1,8 @@
+<ng-content></ng-content>
+<div #error class="error-message">
+  <label>{{errorMessage}}</label>
+</div>
+<!-- The container below is used only to know the height of ion label -->
+<div #hidden style="position:absolute; opacity: 0;">
+  <label>{{errorMessage}}</label>
+</div>

@@ -1,0 +1,71 @@
+<form [formGroup]="form" autocomplete="off">
+  <div class="input-form" *ngIf="type === 'tel'">
+    <!--[innerHTML]="label | appSafeHtml"-->
+    <div *ngIf="label?.length" class="input-label"></div>
+    <app-error-message-form [setErrorMessage]="error">
+      <div class="tel-input" [class.border-danger]="error">
+        <div class="tel-prefix">+7</div>
+        <div class="tel-divider"></div>
+        <input (focusin)="focus = true"
+             (focusout)="checkFocus()"
+             (keyup.enter)="enterPressed.emit()"
+             (ngModelChange)="valueChanged($event)"
+             [(ngModel)]="value"
+             class="tel-input"
+             placeholder="Номер телефона"
+             id="phoneId{{id}}"
+             mask="000 000 00 00"
+             formControlName="{{controlName}}"
+             [showMaskTyped]="true"
+             type="tel"
+             #input>
+      </div>
+    </app-error-message-form>
+  </div>
+
+  <div class="input-form" *ngIf="type === 'sms-code'">
+    <div *ngIf="label?.length" class="input-label"></div>
+    <app-error-message-form [setErrorMessage]="error">
+      <input (focusin)="focus = true"
+             (focusout)="checkFocus()"
+             (keyup.enter)="enterPressed.emit()"
+             (ngModelChange)="valueChanged($event)"
+             [(ngModel)]="value"
+             [maxLength]="6"
+             [class.border-danger]="error"
+             [placeholder]="placeholder"
+             class="custom-input"
+             id="smsCodeId{{id}}"
+             formControlName="{{controlName}}"
+             type="tel"
+             #input>
+
+    </app-error-message-form>
+  </div>
+
+  <div class="input-form" *ngIf="type !== 'tel' && type !== 'sms-code'">
+    <div *ngIf="label?.length" class="input-label"></div>
+    <app-error-message-form [setErrorMessage]="error">
+      <input (focusin)="focus = true"
+             (focusout)="checkFocus()"
+             (keyup.enter)="enterPressed.emit()"
+             (ngModelChange)="valueChanged($event)"
+             [(ngModel)]="value"
+             [type]="type"
+             [placeholder]="placeholder"
+             formControlName="{{controlName}}"
+             class="custom-input"
+             [class.background-white]="whiteBackground"
+             [class.border-danger]="error"
+             [required]="form.controls[controlName]?.errors?.required"
+             id="inputId{{id}}"
+             #input>
+    </app-error-message-form>
+
+<!--    <div class="password-eye" *ngIf="isPasswordInput">-->
+<!--      <img src="{{hidePassword | passwordEye}}" (click)="changePasswordType()" alt="eye">-->
+<!--    </div>-->
+  </div>
+</form>
+
+
