@@ -1,0 +1,93 @@
+:root {
+  /*
+font size
+*/
+  --custom-font-size-1: 40px;
+  --custom-font-size-2: 32px;
+  --custom-font-size-3: 24px;
+  --custom-font-size-4: 18px;
+  --custom-font-size-5: 16px;
+  --custom-font-size-6: 14px;
+  --custom-font-size-7: 12px;
+  --custom-font-size-8: 10px;
+
+  /*
+  font weight
+  */
+  --custom-font-weight-black: 900;
+  --custom-font-weight-bold: 700;
+  --custom-font-weight-semibold: 600;
+  --custom-font-weight-medium: 500;
+  --custom-font-weight-regular: 400;
+  --custom-font-weight-light: 200;
+
+  /*
+  font style
+  */
+  --custom-font-style-normal: normal;
+  --custom-font-style-italic: italic;
+
+  /*
+  line-height
+  */
+  --custom-line-height: 140%;
+
+  /*
+  line-height
+  */
+  --custom-padding: 4vw;
+
+  /*
+  custom transition
+  */
+  --custom-transition: 1s ease-out;
+
+  ///*
+  //custom box-shadow
+  //*/
+  //--custom-box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.07);
+
+  /*
+  shadow
+  */
+  --custom-box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.07);
+
+  /*
+   border radius
+   */
+  --custom-border-radius: 8px;
+
+
+  --custom-b-text-color-primary: #FF5841;
+  --custom-b-text-color-secondary: #3dc2ff;
+  --custom-b-text-color-success: #33C390;
+
+  --custom-text-color-primary: #222222;
+  --custom-text-color-secondary: #94959B;
+  --custom-text-color-tertiary: #ADADAD;
+  --custom-text-color-gray: #959593;
+  --custom-text-color-quaternary: #0085FF;
+  --custom-text-color-quinary: #B7BEC5;
+  --custom-text-color-danger: #FF4F60;
+  --custom-text-color-white: #ffffff;
+
+  --custom-background-color-primary: #FF5841;
+  --custom-background-color-secondary: #E6EBF8;
+  --custom-background-color-tertiary: #F0F3F6;
+  --custom-background-color-quaternary: #FFE3E0;
+  --custom-background-color-disable: #99BFFF;
+  --custom-background-color-danger: #FF4F60;
+  --custom-background-color-white: #ffffff;
+  --custom-background-color-light-gray: #FAFAFB;
+  --custom-background-color-vip: #FFC042;
+  --custom-background-color-success: #33C390;
+  --custom-background-color-gray: #F6F6F6;
+  --custom-background-color-input: #F6F6F6;
+
+  --custom-input-color-primary: #F0F3F6;
+  --custom-input-color-secondary: #E7E7F1;
+  --custom-placeholder-color: #B7BEC5;
+  --custom-placeholder-dark-color: #445D6B;
+  --custom-border-color: #F1F1F5;
+
+}

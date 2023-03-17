@@ -1,0 +1,123 @@
+@mixin custom-button-font {
+  font-style: var(--custom-font-style-normal);
+  font-weight: var(--custom-font-weight-regular);
+  font-size: var(--custom-font-size-5);
+  line-height: var(--custom-line-height);
+}
+
+@mixin custom-button {
+  position: relative;
+  width: 100%;
+  height: 13vw;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  contain: layout style;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  z-index: 0;
+  transition: var(--custom-transition);
+  border-radius: var(--custom-border-radius);
+  outline-color: transparent;
+  letter-spacing: 0.05em;
+  transform: scale(1);
+
+  @include custom-button-font;
+}
+
+@mixin custom-button-disable {
+  &:disabled {
+    color: var(--custom-text-color-white);
+    border: 1px solid transparent;
+    box-shadow: none;
+    background: var(--custom-background-color-disable);
+  }
+}
+
+@mixin custom-button-active($color,$borderColor, $backgroundColor) {
+  &:active {
+    transform: scale(0.95);
+    //color: $color;
+    //border: 1px solid $color;
+    //background: $backgroundColor;
+  }
+}
+
+@mixin custom-button-outline($color,$borderColor, $backgroundColor) {
+  &[outline] {
+    color: $color;
+    border: 1px solid $borderColor;
+    background: $backgroundColor;
+  }
+}
+
+@mixin custom-input-font {
+  font-style: var(--custom-font-style-normal);
+  font-weight: var(--custom-font-weight-medium);
+  font-size: var(--custom-font-size-5);
+  line-height: var(--custom-line-height);
+}
+
+@mixin custom-input {
+  @include custom-input-font;
+  position: relative;
+  background: var(--custom-background-color-input);
+  border: 0;
+  box-sizing: border-box;
+  border-radius: var(--custom-border-radius);
+  color: var(--custom-text-color-primary);
+
+  &::placeholder {
+    color: var(--custom-text-color-tertiary);
+  }
+
+  &:focus {
+    border: 1px solid var(--custom-text-color-quaternary);
+    outline: none;
+  }
+
+  &:after {
+    border: 1px solid var(--custom-text-color-danger);
+  }
+
+  &:disabled {
+    background: var(--custom-background-color-disable);
+    border: 1px solid var(--custom-background-color-tertiary);
+  }
+
+  &[type=password] {
+    color: var(--custom-text-color-primary);
+  }
+}
+
+@mixin custom-textarea {
+  @include custom-input-font;
+  position: relative;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: var(--custom-border-radius);
+  background: var(--custom-background-color-input);
+  outline: none;
+  resize: none;
+  width: 100%;
+  height: 30vw;
+  padding: 10px;
+  &::placeholder {
+    color: var(--custom-text-color-tertiary);
+  }
+}
+
+.custom-button-primary {
+  background: var(--custom-background-color-primary);
+  color: var(--custom-text-color-white);
+  font-weight: var(--custom-font-weight-semibold) !important;
+  @include custom-button-outline(var(--custom-background-color-primary), var(--custom-b-text-color-primary), transparent);
+  @include custom-button-active(var(--custom-b-text-color-primary),
+    var(--custom-b-text-color-primary),
+    var(--custom-background-color-white));
+  @include custom-button;
+  @include custom-button-disable;
+}
