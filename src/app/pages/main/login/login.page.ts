@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  phoneNumber: any = '';
 
   constructor() {
     console.log('ogn8e294i6 ')
@@ -14,4 +15,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  goToSms() {
+
+  }
 }

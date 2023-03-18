@@ -13,9 +13,13 @@ export class ExploreContainerComponent {
   }
 
   @Input() name?: string;
+  phoneNumber: any = '';
 
   navigate() {
     this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
   }
 
+  goToSms() {
+
+  }
 }

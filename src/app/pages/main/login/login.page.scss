@@ -1,0 +1,22 @@
+ion-content {
+  --background: var(--custom-background-color-white);
+}
+
+:host {
+
+  .login {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+}
+
+.title {
+  font-style: var(--custom-font-style-normal);
+  font-weight: var(--custom-font-weight-bold);
+  font-size: var(--custom-font-size-2);
+  line-height: var(--custom-line-height);
+}

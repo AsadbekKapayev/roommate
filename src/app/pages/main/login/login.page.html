@@ -1,3 +1,20 @@
-<p>
-  login works!
-</p>
+<ion-content scrollY="false">
+  <div class="login page-padding-24px">
+    <div class="body">
+      <div class="title">
+        <div>Восстановление пароля</div>
+      </div>
+      <div>
+        <input matInput type="email"
+               placeholder="Введите номер телефона">
+      </div>
+    </div>
+    <div class="footer">
+      <!--              [disabled]="!phoneNumber || phoneNumber.length !== 10"-->
+      <button appThrottleClick (throttleClick)="goToSms()"
+              class="custom-button-primary">
+        Продолжить
+      </button>
+    </div>
+  </div>
+</ion-content>
