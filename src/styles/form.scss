@@ -64,19 +64,17 @@
 @mixin custom-input {
   @include custom-input-font;
   position: relative;
-  background: var(--custom-background-color-input);
-  border: 0;
+  background: var(--custom-background-color-white);
   box-sizing: border-box;
   border-radius: var(--custom-border-radius);
-  color: var(--custom-text-color-primary);
+  color: var(--custom-text-color-black);
+  border: 1px solid var(--custom-background-color-gray);
+  font-size: var(--custom-font-size-5);
+  font-weight: var(--custom-font-weight-medium);
+  padding: 16px 20px;
 
   &::placeholder {
     color: var(--custom-text-color-tertiary);
-  }
-
-  &:focus {
-    border: 1px solid var(--custom-text-color-quaternary);
-    outline: none;
   }
 
   &:after {
@@ -89,7 +87,7 @@
   }
 
   &[type=password] {
-    color: var(--custom-text-color-primary);
+    color: var(--custom-text-color-black);
   }
 }
 
@@ -120,4 +118,46 @@
     var(--custom-background-color-white));
   @include custom-button;
   @include custom-button-disable;
+}
+
+.custom-input {
+  width: 100%;
+  height: 48px;
+  padding-right: 20px;
+  padding-left: 20px;
+
+  &-filled,
+  &:focus {
+    border-color: var(--custom-b-text-color-primary);
+    padding-top: 24px;
+    padding-bottom: 8px;
+    outline: none;
+  }
+
+  &-filled + label,
+  &:focus + label {
+    top: 6px !important;
+    font-size: var(--custom-font-size-6) !important;
+    color: var(--custom-b-text-color-primary) !important;
+  }
+
+  & + label {
+    z-index: 1;
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    font-style: var(--custom-font-style-normal);
+    font-size: var(--custom-font-size-5);
+    color: var(--custom-text-color-gray);
+    line-height: 16px;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      top 0.2s,
+      bottom 0.2s,
+      right 0.2s,
+      left 0.2s;
+  }
+
+  @include custom-input;
 }

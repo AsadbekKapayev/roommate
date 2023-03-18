@@ -1,0 +1,51 @@
+.input-form {
+  position: relative;
+
+  .tel-input {
+
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    column-gap: 10px;
+    height: 50px;
+    background: var(--custom-background-color-input);
+    border-radius: var(--custom-border-radius);
+
+    .tel-prefix {
+      flex: 0 1 auto;
+      font-style: var(--custom-font-style-normal) !important;
+      font-weight: var(--custom-font-weight-medium) !important;
+      font-size: var(--custom-font-size-5) !important;
+      border: 1px solid var(--custom-background-color-gray);
+      padding: 16px 20px;
+    }
+
+    > input {
+      font-style: var(--custom-font-style-normal) !important;
+      font-weight: var(--custom-font-weight-medium) !important;
+      font-size: var(--custom-font-size-5) !important;
+      border: 1px solid var(--custom-background-color-gray) !important;
+      padding: 16px 20px;
+    }
+
+    .tel-divider {
+      height: 50px;
+      width: 1px;
+      background: #EAEAEA;
+    }
+  }
+
+  .password-eye {
+    position: absolute;
+    right: 13px;
+    top: 44px;
+
+    img {
+      width: 23px;
+      height: 23px;
+    }
+
+  }
+}

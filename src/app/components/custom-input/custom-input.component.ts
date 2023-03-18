@@ -10,8 +10,8 @@ import {makeId} from "../../shares/cores/util-method";
 export class CustomInputComponent implements OnInit {
 
   @Input() controlName: string = '';
-  @Input() error: string;
-  @Input() label: string = '';
+  @Input() error: string = 'asd';
+  @Input() label: string = 'asd';
   @Input() placeholder: string = '';
   @Input() type: 'tel' | 'password' | 'text' | 'number' | 'sms-code' | 'email' | 'textarea';
   @Input() value: any;
