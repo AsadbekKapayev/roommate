@@ -1,6 +1,10 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {ALL_URL} from "../../../shares/url-static";
 import {NavController} from "@ionic/angular";
+import {ToastService} from "../../../services/toast.service";
+import {AuthService} from "../../../services/auth.service";
+import {timer} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-sms',
@@ -9,18 +13,28 @@ import {NavController} from "@ionic/angular";
 })
 export class SmsPage implements OnInit {
 
-  phoneNumber = '+7 747 123 12 31';
+  phoneNumber = '';
 
   one: string;
   two: string;
   three: string;
   four: string;
 
+  remainingTime$ = this.createTimer();
+  time: Date = new Date();
+  limitSeconds = 5;
+  retryCodeAvailable: boolean = false;
+
   @ViewChildren('input') listInput: QueryList<any>;
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController,
+              private toastService: ToastService,
+              private authService: AuthService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.phoneNumber = this.authService.getPhoneNumber();
+  }
 
   changeNumber() {
     this.navCtrl.navigateBack(ALL_URL.LOGIN).then();
@@ -33,13 +47,56 @@ export class SmsPage implements OnInit {
       }
     } else if (event.target.value.length > 0) {
       if (index === 3) {
-        // this.smsConfirmation().then();
+        this.smsConfirmation().then();
       } else {
         this.listInput.get(index + 1).nativeElement.focus();
       }
     } else {
       return 0;
     }
+  }
+
+  async smsConfirmation() {
+    const smsCode = this.one + this.two + this.three + this.four;
+
+    if (!smsCode?.length || smsCode.length !== 4) {
+      await this.toastService.present('Неправильно заполнили поле SMS');
+      return;
+    }
+
+    if (smsCode !== '7777') {
+      await this.toastService.present('Неправильно заполнили поле SMS');
+    } else {
+
+    }
+  }
+
+  createTimer() {
+    this.retryCodeAvailable = false;
+    return timer(0, 1000).pipe(map(value => {
+      const t1: Date = new Date();
+      const dif = Math.floor((t1.getTime() - this.time.getTime()) / 1000);
+      const time = this.limitSeconds - dif;
+      if (time <= 0) {
+        this.retryCodeAvailable = true;
+        return 0;
+      }
+      return time;
+    }));
+  }
+
+  sendSmsCodeAgain() {
+    this.resetSmsCode();
+    this.toastService.present('Код отправлен повторно').then(() => {
+      this.time = new Date();
+    });
+  }
+
+  resetSmsCode() {
+    this.one = null;
+    this.two = null;
+    this.three = null;
+    this.four = null;
   }
 
 }

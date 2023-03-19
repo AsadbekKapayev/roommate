@@ -8,7 +8,7 @@
            class="custom-input tel-input"
            id="input{{id}}"
            [mask]="'(000) 000 00 00'"
-           (maskFilled)="maskFilled()"
+           (ngModelChange)="valueChanged()"
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>

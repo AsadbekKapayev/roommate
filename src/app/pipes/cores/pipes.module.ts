@@ -6,17 +6,27 @@ import {CustomDatePipe} from "../CustomDatePipe";
 import {FormatTimePipe} from "./format-time.pipe";
 import {PasswordEyePipe} from "../password-eye.pipe";
 import {CustomMessageDatePipe} from "../CustomMessageDatePipe";
+import {PhoneNumberPipe} from "../phone-number.pipe";
 
 @NgModule({
-    declarations: [SafeHtmlPipe, CustomDatePipe, PriceCurrencyPipe, FormatTimePipe, PasswordEyePipe, CustomMessageDatePipe],
-    exports: [
-        SafeHtmlPipe,
-        PriceCurrencyPipe,
-        CustomDatePipe,
-        FormatTimePipe,
-        PasswordEyePipe,
-        CustomMessageDatePipe
-    ],
+  declarations: [
+    SafeHtmlPipe,
+    CustomDatePipe,
+    PriceCurrencyPipe,
+    FormatTimePipe,
+    PasswordEyePipe,
+    CustomMessageDatePipe,
+    PhoneNumberPipe
+  ],
+  exports: [
+    SafeHtmlPipe,
+    PriceCurrencyPipe,
+    CustomDatePipe,
+    FormatTimePipe,
+    PasswordEyePipe,
+    CustomMessageDatePipe,
+    PhoneNumberPipe
+  ],
   imports: [
     CommonModule
   ]

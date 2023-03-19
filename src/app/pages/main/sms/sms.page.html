@@ -5,9 +5,9 @@
         <div>Введите код из SMS</div>
       </div>
 
-      <div class="sub-title">
+      <div class="align-items-center">
         Код подтверждения отправлен на номер
-        <div>{{phoneNumber}}</div>
+        <div>{{phoneNumber | phoneNumber}}</div>
       </div>
 
       <div class="sms-code-inputs">
@@ -25,7 +25,15 @@
                type="tel" maxlength="1">
       </div>
 
-      <div class="sub-title">Отправить код повторно через 00:16</div>
+      <div *ngIf="remainingTime$ | async as remainingTime; else sendCodeAgainTemplate" class="align-items-center">
+        <span>Отправить код повторно через</span>
+        <span>{{remainingTime | formatTime}}</span>
+      </div>
+      <ng-template #sendCodeAgainTemplate>
+        <div class="send-again" (click)="sendSmsCodeAgain()">
+          Отправить код повторно
+        </div>
+      </ng-template>
     </div>
     <div class="footer">
       <button appThrottleClick (throttleClick)="changeNumber()"

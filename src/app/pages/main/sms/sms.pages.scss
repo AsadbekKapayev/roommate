@@ -3,6 +3,10 @@ ion-content {
 }
 
 :host {
+  font-style: var(--custom-font-style-normal);
+  font-weight: var(--custom-font-weight-regular);
+  font-size: var(--custom-font-size-5);
+  line-height: var(--custom-line-height);
 
   .sms {
     height: 100vh;
@@ -18,16 +22,6 @@ ion-content {
   font-style: var(--custom-font-style-normal);
   font-weight: var(--custom-font-weight-semibold);
   font-size: var(--custom-font-size-2);
-  line-height: var(--custom-line-height);
-}
-
-.sub-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-style: var(--custom-font-style-normal);
-  font-weight: var(--custom-font-weight-regular);
-  font-size: var(--custom-font-size-5);
   line-height: var(--custom-line-height);
 }
 
@@ -64,4 +58,10 @@ ion-content {
     border: 2px solid var(--custom-background-color-primary);
     background: var(--custom-background-color-white);
   }
+}
+
+.send-again {
+  text-align: center;
+  color: var(--custom-b-text-color-primary);
+  text-decoration: underline;
 }
