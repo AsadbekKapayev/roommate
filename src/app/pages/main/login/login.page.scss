@@ -16,7 +16,13 @@ ion-content {
 
 .title {
   font-style: var(--custom-font-style-normal);
-  font-weight: var(--custom-font-weight-bold);
+  font-weight: var(--custom-font-weight-semibold);
   font-size: var(--custom-font-size-2);
   line-height: var(--custom-line-height);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

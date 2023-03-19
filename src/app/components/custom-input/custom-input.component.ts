@@ -10,8 +10,8 @@ import {makeId} from "../../shares/cores/util-method";
 export class CustomInputComponent implements OnInit {
 
   @Input() controlName: string = '';
-  @Input() error: string = 'asd';
-  @Input() label: string = 'asd';
+  @Input() error: string = '';
+  @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() type: 'tel' | 'password' | 'text' | 'number' | 'sms-code' | 'email' | 'textarea';
   @Input() value: any;
@@ -32,17 +32,21 @@ export class CustomInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  valueChanged($event: string) {
-    if ($event != null && $event !== '') {
+  valueChanged() {
+    if (this.value != null && this.value !== '') {
       this.focus = true;
     }
-    this.valueChange.emit($event);
+    this.valueChange.emit(this.value);
   }
 
   checkFocus() {
     this.focus = this.value != null && this.value !== '';
 
     this.blur.emit();
+  }
+
+  maskFilled() {
+    this.valueChanged();
   }
 
 }

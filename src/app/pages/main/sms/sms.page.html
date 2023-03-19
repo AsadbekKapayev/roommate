@@ -1,0 +1,37 @@
+<ion-content scrollY="false">
+  <div class="sms page-padding-24px">
+    <div class="body">
+      <div class="title">
+        <div>Введите код из SMS</div>
+      </div>
+
+      <div class="sub-title">
+        Код подтверждения отправлен на номер
+        <div>{{phoneNumber}}</div>
+      </div>
+
+      <div class="sms-code-inputs">
+        <input class="sms-input" [class.sms-input-filled]="one" #input [(ngModel)]="one"
+               (keyup)="moveFocus($event, 0)" autocomplete="one-time-code"
+               type="tel" maxlength="1"/>
+        <input class="sms-input" [class.sms-input-filled]="two" #input [(ngModel)]="two"
+               (keyup)="moveFocus($event, 1)"
+               type="tel" maxlength="1">
+        <input class="sms-input" [class.sms-input-filled]="three" #input [(ngModel)]="three"
+               (keyup)="moveFocus($event, 2)"
+               type="tel" maxlength="1">
+        <input class="sms-input" [class.sms-input-filled]="four" #input [(ngModel)]="four"
+               (keyup)="moveFocus($event, 3)"
+               type="tel" maxlength="1">
+      </div>
+
+      <div class="sub-title">Отправить код повторно через 00:16</div>
+    </div>
+    <div class="footer">
+      <button appThrottleClick (throttleClick)="changeNumber()"
+              class="custom-button-primary">
+        Изменить номер
+      </button>
+    </div>
+  </div>
+</ion-content>

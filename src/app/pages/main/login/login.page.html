@@ -2,19 +2,20 @@
   <div class="login page-padding-24px">
     <div class="body">
       <div class="title">
-        <div>Восстановление пароля</div>
+        <div>Вход в профиль</div>
       </div>
       <div>
         <app-custom-input
           [type]="'tel'"
           [label]="'Введите номер телефона'"
-          [value]="''"
+          [error]="phoneNumberError && 'Неправильный номер телефона'"
+          [(value)]="phoneNumber"
         ></app-custom-input>
       </div>
     </div>
     <div class="footer">
-      <!--              [disabled]="!phoneNumber || phoneNumber.length !== 10"-->
       <button appThrottleClick (throttleClick)="goToSms()"
+              [disabled]="!phoneNumber || phoneNumber.length !== 9"
               class="custom-button-primary">
         Продолжить
       </button>

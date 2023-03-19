@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {NavController} from "@ionic/angular";
+import {ALL_URL} from "../../../shares/url-static";
 
 @Component({
   selector: 'app-login',
@@ -6,16 +8,18 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  phoneNumber: any = '';
 
-  constructor() {
-    console.log('ogn8e294i6 ')
+  phoneNumber: string = '';
+  phoneNumberError: boolean = false;
+
+  constructor(private navCtrl: NavController) {
   }
 
   ngOnInit() {
   }
 
   goToSms() {
-
+    this.navCtrl.navigateForward(ALL_URL.SMS).then();
   }
+
 }

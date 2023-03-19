@@ -1,0 +1,67 @@
+ion-content {
+  --background: var(--custom-background-color-white);
+}
+
+:host {
+
+  .sms {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+}
+
+.title {
+  font-style: var(--custom-font-style-normal);
+  font-weight: var(--custom-font-weight-semibold);
+  font-size: var(--custom-font-size-2);
+  line-height: var(--custom-line-height);
+}
+
+.sub-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-style: var(--custom-font-style-normal);
+  font-weight: var(--custom-font-weight-regular);
+  font-size: var(--custom-font-size-5);
+  line-height: var(--custom-line-height);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sms-code-inputs {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  column-gap: 12px;
+
+  .sms-input {
+    outline: none;
+    height: 56px;
+    width: 56px;
+    background: #F4F5F6;
+    border-radius: 8px;
+    border: 1px solid #F4F5F6;
+    text-align: center;
+
+    font-style: var(--custom-font-style-normal);
+    font-weight: var(--custom-font-weight-medium);
+    font-size: var(--custom-font-size-3);
+    line-height: var(--custom-line-height-150);
+  }
+
+  .sms-input-filled,
+  .sms-input:focus {
+    box-sizing: border-box;
+    border: 2px solid var(--custom-background-color-primary);
+    background: var(--custom-background-color-white);
+  }
+}

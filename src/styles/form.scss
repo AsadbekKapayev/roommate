@@ -1,7 +1,7 @@
 @mixin custom-button-font {
   font-style: var(--custom-font-style-normal);
   font-weight: var(--custom-font-weight-regular);
-  font-size: var(--custom-font-size-5);
+  font-size: var(--custom-font-size-4);
   line-height: var(--custom-line-height);
 }
 
@@ -30,19 +30,15 @@
 
 @mixin custom-button-disable {
   &:disabled {
-    color: var(--custom-text-color-white);
     border: 1px solid transparent;
+    opacity: .5;
     box-shadow: none;
-    background: var(--custom-background-color-disable);
   }
 }
 
-@mixin custom-button-active($color,$borderColor, $backgroundColor) {
+@mixin custom-button-active() {
   &:active {
     transform: scale(0.95);
-    //color: $color;
-    //border: 1px solid $color;
-    //background: $backgroundColor;
   }
 }
 
@@ -111,11 +107,9 @@
 .custom-button-primary {
   background: var(--custom-background-color-primary);
   color: var(--custom-text-color-white);
-  font-weight: var(--custom-font-weight-semibold) !important;
+  font-weight: var(--custom-font-weight-medium) !important;
   @include custom-button-outline(var(--custom-background-color-primary), var(--custom-b-text-color-primary), transparent);
-  @include custom-button-active(var(--custom-b-text-color-primary),
-    var(--custom-b-text-color-primary),
-    var(--custom-background-color-white));
+  @include custom-button-active();
   @include custom-button;
   @include custom-button-disable;
 }
