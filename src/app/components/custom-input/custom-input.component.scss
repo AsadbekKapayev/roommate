@@ -2,39 +2,18 @@
   position: relative;
 
   .tel-input {
+    padding-left: 45px;
+  }
 
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    align-items: center;
-    column-gap: 10px;
-    height: 50px;
-    background: var(--custom-background-color-input);
-    border-radius: var(--custom-border-radius);
-
-    .tel-prefix {
-      flex: 0 1 auto;
-      font-style: var(--custom-font-style-normal) !important;
-      font-weight: var(--custom-font-weight-medium) !important;
-      font-size: var(--custom-font-size-5) !important;
-      border: 1px solid var(--custom-background-color-gray);
-      padding: 16px 20px;
-    }
-
-    > input {
-      font-style: var(--custom-font-style-normal) !important;
-      font-weight: var(--custom-font-weight-medium) !important;
-      font-size: var(--custom-font-size-5) !important;
-      border: 1px solid var(--custom-background-color-gray) !important;
-      padding: 16px 20px;
-    }
-
-    .tel-divider {
-      height: 50px;
-      width: 1px;
-      background: #EAEAEA;
-    }
+  .tel-prefix {
+    z-index: 1;
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    color: var(--custom-text-color-black);
+    font-size: var(--custom-font-size-5);
+    font-weight: var(--custom-font-weight-medium);
+    line-height: 16px;
   }
 
   .password-eye {

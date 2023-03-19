@@ -1,4 +1,21 @@
-<div class="input-form">
+<div *ngIf="type === 'tel'" class="input-form">
+  <app-error-message-form [setErrorMessage]="error">
+    <input (focusin)="focus = true"
+           (focusout)="checkFocus()"
+           (keyup.enter)="enterPressed.emit()"
+           (ngModelChange)="valueChanged($event)"
+           [(ngModel)]="value"
+           [class.custom-input-filled]="value"
+           class="custom-input tel-input"
+           id="input{{id}}"
+           [mask]="'(000) 000 00 00'"
+           #input>
+    <label for="input{{id}}">{{label}}</label>
+    <div *ngIf="focus || value" class="tel-prefix">+7</div>
+  </app-error-message-form>
+</div>
+
+<div *ngIf="type !== 'tel' && type !== 'sms-code'" class="input-form">
   <app-error-message-form [setErrorMessage]="error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"
@@ -9,6 +26,6 @@
            class="custom-input"
            id="input{{id}}"
            #input>
-    <label for="input{{id}}" class="input-label">{{label}}</label>
+    <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>
 </div>
