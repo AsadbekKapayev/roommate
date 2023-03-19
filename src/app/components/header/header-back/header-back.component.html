@@ -1,0 +1,9 @@
+<div class="header-back-container">
+  <img
+    *ngIf="showBackButton"
+    src="assets/icon/arrow_left_black.svg"
+    alt="back"
+    (click)="goBack()"
+  >
+  <div class="title">{{title}}</div>
+</div>

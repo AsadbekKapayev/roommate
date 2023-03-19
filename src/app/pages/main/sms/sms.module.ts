@@ -8,6 +8,7 @@ import {ThrottleClickModule} from "../../../directives/cores/throttle-click/thro
 import {FormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
+import {HeaderBackModule} from "../../../components/header/header-back/header-back.module";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {PipesModule} from "../../../pipes/cores/pipes.module";
     FormsModule,
     NgxMaskModule.forRoot(),
     PipesModule,
+    HeaderBackModule,
   ]
 })
 export class SmsModule { }

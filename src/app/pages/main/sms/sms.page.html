@@ -1,10 +1,7 @@
 <ion-content scrollY="false">
+  <app-header-back [title]="'Введите код из SMS'"></app-header-back>
   <div class="sms page-padding-24px">
     <div class="body">
-      <div class="title">
-        <div>Введите код из SMS</div>
-      </div>
-
       <div class="align-items-center">
         Код подтверждения отправлен на номер
         <div>{{phoneNumber | phoneNumber}}</div>
@@ -34,12 +31,6 @@
           Отправить код повторно
         </div>
       </ng-template>
-    </div>
-    <div class="footer">
-      <button appThrottleClick (throttleClick)="changeNumber()"
-              class="custom-button-primary">
-        Изменить номер
-      </button>
     </div>
   </div>
 </ion-content>

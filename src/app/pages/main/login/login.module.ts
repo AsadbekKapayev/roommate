@@ -7,6 +7,7 @@ import {IonicModule} from "@ionic/angular";
 import {ThrottleClickModule} from "../../../directives/cores/throttle-click/throttle-click.module";
 import {MatInputModule} from "@angular/material/input";
 import {CustomModuleModule} from "../../../components/custom-input/custom-module.module";
+import {HeaderBackModule} from "../../../components/header/header-back/header-back.module";
 
 @NgModule({
   declarations: [LoginPage],
@@ -16,7 +17,8 @@ import {CustomModuleModule} from "../../../components/custom-input/custom-module
     IonicModule,
     ThrottleClickModule,
     MatInputModule,
-    CustomModuleModule
+    CustomModuleModule,
+    HeaderBackModule
   ]
 })
 export class LoginModule {

@@ -9,8 +9,7 @@ ion-content {
   line-height: var(--custom-line-height);
 
   .sms {
-    height: 100vh;
-
+    height: calc(100% - 56px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
