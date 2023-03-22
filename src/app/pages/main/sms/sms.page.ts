@@ -22,7 +22,7 @@ export class SmsPage implements OnInit {
 
   remainingTime$ = this.createTimer();
   time: Date = new Date();
-  limitSeconds = 5;
+  limitSeconds = 120;
   retryCodeAvailable: boolean = false;
 
   @ViewChildren('input') listInput: QueryList<any>;
@@ -67,7 +67,7 @@ export class SmsPage implements OnInit {
     if (smsCode !== '7777') {
       await this.toastService.present('Неправильно заполнили поле SMS');
     } else {
-
+      this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
     }
   }
 

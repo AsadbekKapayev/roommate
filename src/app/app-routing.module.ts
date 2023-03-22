@@ -2,9 +2,6 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
-  {  path: '',
-    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
-  },
   {
     path: 'main',
     children: [
@@ -17,6 +14,18 @@ const routes: Routes = [
         loadChildren: () => import('./pages/main/sms/sms.module').then(m => m.SmsModule)
       },
     ],
+  },
+  {
+    path: 'outer-tab',
+    children: [],
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+  },
+  {
+    path: '',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
   },
 ];
 
