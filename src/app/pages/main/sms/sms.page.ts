@@ -5,6 +5,7 @@ import {ToastService} from "../../../services/core/toast.service";
 import {AuthService} from "../../../services/core/auth.service";
 import {timer} from "rxjs";
 import {map} from "rxjs/operators";
+import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-sms',
@@ -29,7 +30,8 @@ export class SmsPage implements OnInit {
 
   constructor(private navCtrl: NavController,
               private toastService: ToastService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private settingControllerService: SettingControllerService) {
   }
 
   ngOnInit() {
@@ -68,6 +70,7 @@ export class SmsPage implements OnInit {
       await this.toastService.present('Неправильно заполнили поле SMS');
     } else {
       this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
+      this.settingControllerService.setFillProfileModal().present().then();
     }
   }
 

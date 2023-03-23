@@ -166,6 +166,18 @@
   @include custom-button;
 }
 
+.custom-button-white-border {
+  width: 100%;
+  height: 13vw;
+  background: var(--custom-text-color-white);
+  color: var(--custom-text-color-black);
+  border: 1px solid var(--custom-text-color-black);
+  font-weight: var(--custom-font-weight-medium) !important;
+  @include custom-button-active();
+  @include custom-button;
+  @include custom-button-disable;
+}
+
 .custom-button-white-selected {
   color: var(--custom-text-color-white);
   background: var(--custom-b-text-color-primary);
