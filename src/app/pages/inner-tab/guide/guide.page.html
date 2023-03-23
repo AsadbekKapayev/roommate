@@ -1,3 +1,14 @@
-<ion-content scrollY="false">
-test
+<ion-content>
+  <div class="categories">
+
+    <ng-container *ngFor="let category of categories">
+      <button
+        [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': category.selected}"
+        (click)="onClickCategory(category)"
+      >
+        {{category.title}}
+      </button>
+    </ng-container>
+
+  </div>
 </ion-content>

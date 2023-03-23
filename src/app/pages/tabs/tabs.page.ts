@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
-
-export class IonicTab {
-  id: string;
-  title: string;
-  icon: string;
-  icon2?: string;
-  selected: boolean;
-  route: string;
-}
+import {IonicTab} from "../../models/core/IonicTab";
 
 @Component({
   selector: 'app-tabs',
