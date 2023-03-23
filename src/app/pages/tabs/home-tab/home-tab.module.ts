@@ -2,10 +2,10 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { GuidePage } from './guide.page';
+import { HomeTabPage } from './home-tab.page';
 
 import {ExploreContainerComponentModule} from "../../../explore-container/explore-container.module";
-import {GuideRoutingModule} from "./guide-routing.module";
+import {HomeTabRoutingModule} from "./home-tab-routing.module";
 
 @NgModule({
   imports: [
@@ -13,8 +13,8 @@ import {GuideRoutingModule} from "./guide-routing.module";
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    GuideRoutingModule,
+    HomeTabRoutingModule,
   ],
-  declarations: [GuidePage]
+  declarations: [HomeTabPage]
 })
-export class GuideModule {}
+export class HomeTabModule {}

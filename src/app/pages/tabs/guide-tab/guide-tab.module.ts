@@ -2,10 +2,10 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ProfilePage } from './profile.page';
+import { GuideTabPage } from './guide-tab.page';
 
 import {ExploreContainerComponentModule} from "../../../explore-container/explore-container.module";
-import {ProfileRoutingModule} from "./profile-routing.module";
+import {GuideTabRoutingModule} from "./guide-tab-routing.module";
 
 @NgModule({
   imports: [
@@ -13,8 +13,8 @@ import {ProfileRoutingModule} from "./profile-routing.module";
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    ProfileRoutingModule,
+    GuideTabRoutingModule,
   ],
-  declarations: [ProfilePage]
+  declarations: [GuideTabPage]
 })
-export class ProfileModule {}
+export class GuideTabModule {}

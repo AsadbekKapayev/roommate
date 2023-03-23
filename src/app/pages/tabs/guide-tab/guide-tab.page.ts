@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-guide',
-  templateUrl: 'guide.page.html',
-  styleUrls: ['guide.page.scss']
+  templateUrl: 'guide-tab.page.html',
+  styleUrls: ['guide-tab.page.scss']
 })
-export class GuidePage {
+export class GuideTabPage {
 
   constructor() {}
 

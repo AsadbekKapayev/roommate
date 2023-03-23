@@ -9,19 +9,19 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../tabs/home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('./home-tab/home-tab.module').then(m => m.HomeTabModule)
       },
       {
         path: 'favourites',
-        loadChildren: () => import('../tabs/favourites/favourites.module').then(m => m.FavouritesModule)
+        loadChildren: () => import('./favourite-tab/favourite-tab.module').then(m => m.FavouriteTabModule)
       },
       {
         path: 'profile',
-        loadChildren: () => import('../tabs/profile/profile.module').then(m => m.ProfileModule)
+        loadChildren: () => import('./profile-tab/profile-tab.module').then(m => m.ProfileTabModule)
       },
       {
         path: 'guide',
-        loadChildren: () => import('../tabs/guide/guide.module').then(m => m.GuideModule)
+        loadChildren: () => import('./guide-tab/guide-tab.module').then(m => m.GuideTabModule)
       },
       {
         path: '',

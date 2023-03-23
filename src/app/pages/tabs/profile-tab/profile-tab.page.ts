@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: 'profile.page.html',
-  styleUrls: ['profile.page.scss']
+  templateUrl: 'profile-tab.page.html',
+  styleUrls: ['profile-tab.page.scss']
 })
-export class ProfilePage {
+export class ProfileTabPage {
 
   constructor() {}
 
