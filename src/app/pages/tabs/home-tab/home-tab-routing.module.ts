@@ -6,6 +6,22 @@ const routes: Routes = [
   {
     path: '',
     component: HomeTabPage,
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('app/pages/inner-tab/home/home.module').then(m => m.HomeModule),
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/home-tab/home',
+        pathMatch: 'full'
+      }
+    ],
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/home-tab/home',
+    pathMatch: 'full'
   }
 ];
 
