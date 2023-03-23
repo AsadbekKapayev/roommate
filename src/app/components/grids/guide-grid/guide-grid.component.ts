@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {GuideItem} from "../../../models/commons/GuideItem";
+import {ALL_URL} from "../../../shares/url-static";
 
 @Component({
   selector: 'app-guide-grid',
@@ -16,4 +17,9 @@ export class GuideGridComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onGuideClicked(guide: GuideItem) {
+    this.navCtrl.navigateForward(ALL_URL.GUIDE_DETAIL + guide.id).then();
+  }
+
 }

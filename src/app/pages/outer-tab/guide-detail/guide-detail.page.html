@@ -1,0 +1,26 @@
+<ion-content>
+
+  <div class="guide">
+    <div class="guide-img-container">
+      <div class="guide-back" (click)="onClickBackIcon()">
+        <img class="guide-back-icon" src="assets/icon/arrow_left_black.svg" alt="arrow-left">
+      </div>
+
+      <img class="guide-img" [src]="guide?.img ? guide.img : 'assets/images/guide-holder.png'" alt="guide-img">
+    </div>
+
+    <div class="guide-content">
+      <div class="guide-title">{{guide?.title}}</div>
+      <div class="guide-description">{{guide?.description}}</div>
+    </div>
+
+    <div class="guide-others">
+      <div class="guide-title h-margin-12">Другие статьи</div>
+
+      <app-guide-grid
+        [guides]="guides"
+      ></app-guide-grid>
+    </div>
+  </div>
+
+</ion-content>

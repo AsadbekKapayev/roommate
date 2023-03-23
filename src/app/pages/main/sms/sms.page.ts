@@ -1,8 +1,8 @@
 import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {ALL_URL} from "../../../shares/url-static";
 import {NavController} from "@ionic/angular";
-import {ToastService} from "../../../services/toast.service";
-import {AuthService} from "../../../services/auth.service";
+import {ToastService} from "../../../services/core/toast.service";
+import {AuthService} from "../../../services/core/auth.service";
 import {timer} from "rxjs";
 import {map} from "rxjs/operators";
 

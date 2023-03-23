@@ -17,7 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'outer-tab',
-    children: [],
+    children: [
+      {
+        path: 'guide-detail/:id',
+        loadChildren: () => import('./pages/outer-tab/guide-detail/guide-detail.module').then(m => m.GuideDetailModule)
+      },
+    ],
   },
   {
     path: 'tabs',

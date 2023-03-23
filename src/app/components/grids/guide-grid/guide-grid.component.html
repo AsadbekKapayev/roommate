@@ -2,8 +2,8 @@
 
   <ng-container *ngFor="let guide of guides">
 
-    <div class="guide">
-      <img class="guide-img" src="{{guide?.img ? guide.img : 'assets/images/guide-holder.png'}}" alt="guide-holder">
+    <div class="guide" (click)="onGuideClicked(guide)">
+      <img [src]="guide?.img ? guide.img : 'assets/images/guide-holder.png'" alt="guide-holder">
 
       <div class="guide-content">
         <div class="guide-title">{{guide?.title}}</div>

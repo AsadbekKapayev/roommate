@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {StorageService} from "../storages/storage.service";
-import {StorageSecureKeyEnum} from "../shares/static";
-import {ALL_URL} from "../shares/url-static";
+import {StorageService} from "../../storages/storage.service";
+import {StorageSecureKeyEnum} from "../../shares/static";
+import {ALL_URL} from "../../shares/url-static";
 import {NavController} from "@ionic/angular";
 
 @Injectable({
