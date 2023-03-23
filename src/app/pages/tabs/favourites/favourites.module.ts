@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FavouritesPage } from './favourites.page';
 
 import {ExploreContainerComponentModule} from "../../../explore-container/explore-container.module";
+import {FavouritesRoutingModule} from "./favourites-routing.module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {ExploreContainerComponentModule} from "../../../explore-container/explor
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
+    FavouritesRoutingModule,
   ],
   declarations: [FavouritesPage]
 })

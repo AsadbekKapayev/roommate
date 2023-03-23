@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ProfilePage } from './profile.page';
 
 import {ExploreContainerComponentModule} from "../../../explore-container/explore-container.module";
+import {ProfileRoutingModule} from "./profile-routing.module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {ExploreContainerComponentModule} from "../../../explore-container/explor
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
+    ProfileRoutingModule,
   ],
   declarations: [ProfilePage]
 })

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { GuidePage } from './guide.page';
 
 import {ExploreContainerComponentModule} from "../../../explore-container/explore-container.module";
+import {GuideRoutingModule} from "./guide-routing.module";
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {ExploreContainerComponentModule} from "../../../explore-container/explor
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
+    GuideRoutingModule,
   ],
   declarations: [GuidePage]
 })

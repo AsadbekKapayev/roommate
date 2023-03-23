@@ -60,14 +60,10 @@ export class TabsPage {
 
   constructor() {}
 
-  onClickTab(selectedTab: IonicTab) {
+  ionTabsWillChange(event: any) {
     this.tabs.forEach((tab: IonicTab) => {
-      tab.selected = tab.id === selectedTab.id;
+      tab.selected = tab.route === event.tab;
     });
-  }
-
-  ionTabsWillChange($event: any) {
-    console.log('V2s75F3p')
   }
 
 }
