@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-guide',
+  selector: 'app-guide-tab',
   templateUrl: 'guide-tab.page.html',
   styleUrls: ['guide-tab.page.scss']
 })

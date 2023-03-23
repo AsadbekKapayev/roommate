@@ -12,7 +12,9 @@ export class LoginService {
               private authService: AuthService) { }
 
   login(phoneNumber: string) {
-    this.authService.setPhoneNumber(phoneNumber);
+    const phone = '7' + phoneNumber;
+
+    this.authService.setPhoneNumber(phone);
     this.navCtrl.navigateForward(ALL_URL.SMS).then();
   }
 

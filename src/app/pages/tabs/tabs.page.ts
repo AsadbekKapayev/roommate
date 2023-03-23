@@ -23,7 +23,7 @@ export class TabsPage {
       icon: 'assets/icon/home.svg',
       icon2: 'assets/icon/home-black.svg',
       selected: false,
-      route: 'home'
+      route: 'home-tab'
     },
     {
       id: '2',
@@ -31,7 +31,7 @@ export class TabsPage {
       icon: 'assets/icon/fav.svg',
       icon2: 'assets/icon/fav-black.svg',
       selected: false,
-      route: 'favourites'
+      route: 'favourites-tab'
     },
     {
       id: '3',
@@ -46,7 +46,7 @@ export class TabsPage {
       icon: 'assets/icon/guide.svg',
       icon2: 'assets/icon/guide-black.svg',
       selected: false,
-      route: 'guide'
+      route: 'guide-tab'
     },
     {
       id: '5',
@@ -54,7 +54,7 @@ export class TabsPage {
       icon: 'assets/icon/profile.svg',
       icon2: 'assets/icon/profile-black.svg',
       selected: false,
-      route: 'profile'
+      route: 'profile-tab'
     },
   ]
 
