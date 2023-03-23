@@ -1,0 +1,18 @@
+<div class="guides">
+
+  <ng-container *ngFor="let guide of guides">
+
+    <div class="guide">
+      <img class="guide-img" src="{{guide?.img ? guide.img : 'assets/images/guide-holder.png'}}" alt="guide-holder">
+
+      <div class="guide-content">
+        <div class="guide-title">{{guide?.title}}</div>
+        <div class="guide-description">{{guide?.description}}</div>
+
+        <div class="guide-more">УЗНАТЬ БОЛЬШЕ</div>
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

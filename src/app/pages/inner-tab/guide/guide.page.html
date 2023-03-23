@@ -1,6 +1,6 @@
 <ion-content>
-  <div class="categories">
 
+  <div class="categories">
     <ng-container *ngFor="let category of categories">
       <button
         [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': category.selected}"
@@ -9,6 +9,10 @@
         {{category.title}}
       </button>
     </ng-container>
-
   </div>
+
+  <app-guide-grid
+    [guides]="guides"
+  ></app-guide-grid>
+
 </ion-content>

@@ -8,6 +8,7 @@ import {ThrottleClickModule} from "../../../directives/cores/throttle-click/thro
 import {MatInputModule} from "@angular/material/input";
 import {CustomModuleModule} from "../../../components/custom-input/custom-module.module";
 import {HeaderBackModule} from "../../../components/header/header-back/header-back.module";
+import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.module";
 
 @NgModule({
   declarations: [GuidePage],
@@ -19,6 +20,7 @@ import {HeaderBackModule} from "../../../components/header/header-back/header-ba
     MatInputModule,
     CustomModuleModule,
     HeaderBackModule,
+    GuideGridModule,
   ]
 })
 export class GuideModule {
