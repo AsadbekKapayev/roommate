@@ -6,6 +6,22 @@ const routes: Routes = [
   {
     path: '',
     component: FavouriteTabPage,
+    children: [
+      {
+        path: 'favourites',
+        loadChildren: () => import('app/pages/inner-tab/favourites/favourites.module').then(m => m.FavouritesModule),
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/favourites-tab/favourites',
+        pathMatch: 'full'
+      }
+    ],
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/favourites-tab/favourites',
+    pathMatch: 'full'
   }
 ];
 

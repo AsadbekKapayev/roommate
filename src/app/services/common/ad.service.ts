@@ -95,4 +95,8 @@ export class AdService {
     return this.ads.find(ad => ad.id === id);
   }
 
+  loadFavourites() {
+    return this.ads.filter(ad => ad.isLiked);
+  }
+
 }
