@@ -6,7 +6,7 @@ import {GuideService} from "../../../services/common/guide.service";
 import {GuideItem} from "../../../models/commons/GuideItem";
 
 @Component({
-  selector: 'app-guide',
+  selector: 'app-guide-detail',
   templateUrl: './guide-detail.page.html',
   styleUrls: ['./guide-detail.page.scss'],
 })

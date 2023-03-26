@@ -22,7 +22,7 @@ export class AdGridComponent implements OnInit {
   }
 
   onClickAd(ad: AdItem) {
-    // this.navCtrl.navigateForward(ALL_URL.GUIDE_DETAIL + guide.id).then();
+    this.navCtrl.navigateForward(ALL_URL.AD_DETAIL + ad.id).then();
   }
 
   onClickLike(ad: AdItem) {

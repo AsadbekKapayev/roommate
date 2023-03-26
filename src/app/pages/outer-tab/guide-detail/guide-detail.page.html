@@ -1,11 +1,8 @@
 <ion-content>
+  <app-header-back [title]="guide.title"></app-header-back>
 
   <div class="guide">
     <div class="guide-img-container">
-      <div class="guide-back" (click)="onClickBackIcon()">
-        <img class="guide-back-icon" src="assets/icon/arrow_left_black.svg" alt="arrow-left">
-      </div>
-
       <img class="guide-img" [src]="guide?.img ? guide.img : 'assets/images/guide-holder.png'" alt="guide-img">
     </div>
 
@@ -15,7 +12,7 @@
     </div>
 
     <div class="guide-others">
-      <div class="guide-title h-margin-12">Другие статьи</div>
+      <div class="others-title h-margin-12">Другие статьи</div>
 
       <app-guide-grid
         [guides]="guides"

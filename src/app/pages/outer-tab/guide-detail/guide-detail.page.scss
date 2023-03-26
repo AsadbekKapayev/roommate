@@ -9,20 +9,6 @@
   background-size: cover;
 }
 
-.guide-back {
-  z-index: 1;
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  width: 32px;
-  height: 32px;
-  background: var(--custom-background-color-light-gray);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .guide-content {
   display: flex;
   flex-direction: column;
@@ -36,6 +22,12 @@
   font-size: var(--custom-font-size-4);
   font-weight: var(--custom-font-weight-medium);
   line-height: var(--custom-line-height);
+}
+
+.others-title {
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-medium);
+  padding-bottom: 12px;
 }
 
 .guide-description {

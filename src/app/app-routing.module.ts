@@ -22,6 +22,10 @@ const routes: Routes = [
         path: 'guide-detail/:id',
         loadChildren: () => import('./pages/outer-tab/guide-detail/guide-detail.module').then(m => m.GuideDetailModule)
       },
+      {
+        path: 'ad-detail/:id',
+        loadChildren: () => import('./pages/outer-tab/ad-detail/ad-detail.module').then(m => m.AdDetailModule)
+      },
     ],
   },
   {

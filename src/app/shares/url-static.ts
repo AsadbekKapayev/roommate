@@ -8,6 +8,7 @@ export const ALL_URL = {
   TAB_HOME: '/tabs/home-tab/home',
 
   // outer tab
+  AD_DETAIL: '/outer-tab/ad-detail/', // add :id
   GUIDE_DETAIL: '/outer-tab/guide-detail/', // add :id
 
 }

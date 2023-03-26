@@ -7,7 +7,7 @@
         <div class="ad-price">{{ad.price | priceCurrency}}</div>
         <img [src]="ad.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
              [alt]="ad.isLiked ? 'heart-filled' : 'heart'"
-             (click)="onClickLike(ad)"
+             (click)="$event.stopPropagation(); onClickLike(ad)"
         >
       </div>
 
@@ -16,7 +16,7 @@
 
         <div class="ad-content">
           <div class="ad-info">
-            <div class="ad-title">{{ad.title}}</div>
+            <div class="title">{{ad.title}}</div>
             <div class="ad-description custom-ellipses">{{ad.description}}</div>
           </div>
 
