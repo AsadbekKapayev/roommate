@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
-import {GuideService} from "../../../services/common/guide.service";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
+import {AdItem} from "../../../models/commons/ad/AdItem";
+import {AdService} from "../../../services/common/ad.service";
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,16 @@ import {SettingControllerService} from "../../../services/controllers/setting-co
 })
 export class GuidePage implements OnInit {
 
+  ads: AdItem[];
+
   constructor(private navCtrl: NavController,
+              private adService: AdService,
               private loginService: LoginService,
-              private guideService: GuideService,
               private settingControllerService: SettingControllerService) {
   }
 
   ngOnInit() {
-    this.settingControllerService.setFillProfileModal().present().then();
+    this.ads = this.adService.loadAds();
   }
 
 }

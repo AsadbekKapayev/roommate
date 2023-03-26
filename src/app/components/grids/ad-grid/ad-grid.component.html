@@ -1,0 +1,33 @@
+<div class="ads">
+
+  <ng-container *ngFor="let ad of ads">
+
+    <div class="ad" (click)="onClickAd(ad)">
+      <div class="ad-head">
+        <div class="ad-price">{{ad.price | priceCurrency}}</div>
+        <img [src]="ad.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
+             [alt]="ad.isLiked ? 'heart-filled' : 'heart'"
+             (click)="onClickLike(ad)"
+        >
+      </div>
+
+      <div class="ad-bottom">
+        <img [src]="ad.img ? ad.img : 'assets/images/no-image.jpg'" alt="ad-holder">
+
+        <div class="ad-content">
+          <div class="ad-info">
+            <div class="ad-title">{{ad.title}}</div>
+            <div class="ad-description custom-ellipses">{{ad.description}}</div>
+          </div>
+
+          <div class="ad-additional-info">
+            <div>{{ad.publishedAt | date : 'd MMMM'}}</div>
+            <div>{{ad.viewCount}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

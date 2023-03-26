@@ -9,6 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {CustomModuleModule} from "../../../components/custom-input/custom-module.module";
 import {HeaderBackModule} from "../../../components/header/header-back/header-back.module";
 import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.module";
+import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
 
 @NgModule({
   declarations: [GuidePage],
@@ -21,6 +22,7 @@ import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.m
     CustomModuleModule,
     HeaderBackModule,
     GuideGridModule,
+    AdGridModule,
   ]
 })
 export class HomeModule {
