@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SmsRoutingModule } from './sms-routing.module';
 import {SmsPage} from "./sms.page";
 import {IonicModule} from "@ionic/angular";
@@ -8,8 +7,7 @@ import {ThrottleClickModule} from "../../../directives/cores/throttle-click/thro
 import {FormsModule} from "@angular/forms";
 import {NgxMaskModule} from "ngx-mask";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
-import {HeaderBackModule} from "../../../components/header/header-back/header-back.module";
-
+import {HeaderModule} from "../../../components/header/header.module";
 
 @NgModule({
   declarations: [SmsPage],
@@ -21,7 +19,7 @@ import {HeaderBackModule} from "../../../components/header/header-back/header-ba
     FormsModule,
     NgxMaskModule.forRoot(),
     PipesModule,
-    HeaderBackModule,
+    HeaderModule,
   ]
 })
 export class SmsModule { }

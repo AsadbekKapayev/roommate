@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
 
 @Component({
-  selector: 'app-header-back',
-  templateUrl: './header-back.component.html',
-  styleUrls: ['./header-back.component.scss'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderBackComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   @Input() title: string = '';
   @Input() showBackButton: boolean;

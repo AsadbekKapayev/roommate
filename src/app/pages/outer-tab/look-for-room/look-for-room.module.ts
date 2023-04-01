@@ -9,7 +9,7 @@ import {ThrottleClickModule} from "../../../directives/cores/throttle-click/thro
 import {MatInputModule} from "@angular/material/input";
 import {CustomModuleModule} from "../../../components/custom-input/custom-module.module";
 import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.module";
-import {HeaderBackModule} from "../../../components/header/header-back/header-back.module";
+import {HeaderModule} from "../../../components/header/header.module";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
 import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
 
@@ -22,7 +22,7 @@ import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
     ThrottleClickModule,
     MatInputModule,
     CustomModuleModule,
-    HeaderBackModule,
+    HeaderModule,
     GuideGridModule,
     PipesModule,
     NgxMaskModule,
