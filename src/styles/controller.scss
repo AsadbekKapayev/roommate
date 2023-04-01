@@ -25,6 +25,19 @@ ion-modal.bottom-modal-component.auto-height {
   }
 }
 
+.city-modal-component .modal-wrapper {
+  align-items: flex-end;
+  position: absolute;
+  --max-height: 90%;
+  --backdrop-opacity: 0;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  bottom: 0;
+  :first-of-type {
+    --backdrop-opacity: 30%;
+  }
+}
+
 .modal-title {
   font-weight: var(--custom-font-weight-medium);
   font-size: var(--custom-font-size-3);

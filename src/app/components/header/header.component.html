@@ -3,24 +3,39 @@
     <img
       *ngIf="showBackButton"
       src="../../../assets/icon/arrow_left_black.svg"
-      alt="arrow-left"
+      alt="arrow-left-icon"
       (click)="goBack()"
     >
-    <div class="title">{{title}}</div>
+
+    <img
+      *ngIf="showCloseButton"
+      src="../../../assets/icon/close.svg"
+      alt="close-icon"
+      (click)="onClickClose()"
+    >
+
+    <div class="title custom-ellipses-1">{{title}}</div>
   </div>
 
   <div class="header-right">
     <div
       *ngIf="showFiltersButton"
       class="filters"
+      (click)="onClickFilter()"
     >
       <div>Фильтры</div>
 
       <img
         src="../../../assets/icon/filter.svg"
         alt="filter-icon"
-        (click)="onClickFilter()"
       >
+    </div>
+
+    <div
+      *ngIf="showResetButton"
+      class="reset"
+    >
+      Сбросить
     </div>
   </div>
 </div>

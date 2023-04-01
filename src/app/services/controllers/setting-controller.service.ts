@@ -7,6 +7,7 @@ import {ModalService} from "./modal.service";
 import {
   FillProfileModalComponent
 } from "../../components/modals/bottom-modals/fill-profile-modal/fill-profile-modal.component";
+import {FilterModalComponent} from "../../components/modals/full-modals/filter-modal/filter-modal.component";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -41,6 +42,18 @@ export class SettingControllerService extends AbstractSettingController {
         componentProps: {
         },
         cssClass: 'bottom-modal-component auto-height',
+        swipeToClose: true,
+      };
+    });
+  }
+
+  public setFilterModal(): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: FilterModalComponent,
+        componentProps: {
+        },
+        cssClass: 'city-modal-component',
         swipeToClose: true,
       };
     });

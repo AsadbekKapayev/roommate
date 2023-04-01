@@ -102,6 +102,13 @@
   }
 }
 
+@mixin custom-ellipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
 .custom-button-primary {
   width: 100%;
   height: 13vw;
@@ -191,12 +198,14 @@
   background: var(--custom-b-text-color-primary);
 }
 
-.custom-ellipses {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
+.custom-ellipses-1 {
+  -webkit-line-clamp: 1;
+  @include custom-ellipses;
+}
+
+.custom-ellipses-2 {
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  @include custom-ellipses;
 }
 
 .custom-chip {

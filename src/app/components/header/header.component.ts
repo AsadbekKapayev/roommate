@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
+import {SettingControllerService} from "../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,12 @@ export class HeaderComponent implements OnInit {
 
   @Input() title: string = '';
   @Input() showBackButton: boolean;
+  @Input() showCloseButton: boolean;
+  @Input() showResetButton: boolean;
   @Input() showFiltersButton: boolean;
 
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController,
+              private settingControllerService: SettingControllerService) {
   }
 
   ngOnInit() {
@@ -23,6 +27,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickFilter() {
+    this.settingControllerService.setFilterModal().present().then()
+  }
+
+  onClickClose() {
 
   }
 }
