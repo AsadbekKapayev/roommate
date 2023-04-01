@@ -21,4 +21,7 @@ export class FilterModalComponent implements OnInit {
     this.modalService.dismiss().then();
   }
 
+  reset() {
+
+  }
 }

@@ -9,6 +9,7 @@ import {AppComponent} from './app.component';
 
 import localeRu from '@angular/common/locales/ru';
 import {registerLocaleData} from "@angular/common";
+import {ComponentControllerModule} from "./modules/component-controller.module";
 
 registerLocaleData(localeRu);
 
@@ -17,6 +18,7 @@ registerLocaleData(localeRu);
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    ComponentControllerModule.forRoot(),
     AppRoutingModule,
   ],
   providers: [

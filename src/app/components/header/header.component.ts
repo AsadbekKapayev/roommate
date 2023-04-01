@@ -15,6 +15,9 @@ export class HeaderComponent implements OnInit {
   @Input() showResetButton: boolean;
   @Input() showFiltersButton: boolean;
 
+  @Output() onCloseClicked: EventEmitter<string> = new EventEmitter();
+  @Output() onResetClicked: EventEmitter<string> = new EventEmitter();
+
   constructor(private navCtrl: NavController,
               private settingControllerService: SettingControllerService) {
   }
@@ -31,6 +34,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickClose() {
+    this.onCloseClicked.emit();
+  }
 
+  onClickReset() {
+    this.onResetClicked.emit();
   }
 }

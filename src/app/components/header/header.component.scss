@@ -1,4 +1,4 @@
-.header-back-container {
+.header-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -6,6 +6,7 @@
   min-height: 56px;
   height: 56px;
   background: var(--custom-background-color-white);
+  border-bottom: 1px solid var(--custom-border-color);
 }
 
 .header-left {

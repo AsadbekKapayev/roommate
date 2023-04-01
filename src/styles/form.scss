@@ -127,9 +127,16 @@
   padding-right: 20px;
   padding-left: 20px;
 
-  &-filled,
   &:focus {
     border-color: var(--custom-b-text-color-primary);
+  }
+
+  &:focus + label {
+    color: var(--custom-b-text-color-primary) !important;
+  }
+
+  &-filled,
+  &:focus {
     padding-top: 24px;
     padding-bottom: 8px;
     outline: none;
@@ -139,7 +146,6 @@
   &:focus + label {
     top: 6px !important;
     font-size: var(--custom-font-size-6) !important;
-    color: var(--custom-b-text-color-primary) !important;
   }
 
   & + label {

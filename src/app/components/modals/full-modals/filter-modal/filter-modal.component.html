@@ -1,1 +1,27 @@
-hey
+<ion-header>
+  <app-header
+    [title]="'Фильтры'"
+    [showCloseButton]="true"
+    [showResetButton]="true"
+    (onCloseClicked)="close()"
+    (onResetClicked)="reset()"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="filter-modal">
+    <div class="price">
+      <div class="title margin-bottom-12">Цена</div>
+
+<!--      <app-custom-input-->
+<!--        [type]="''"-->
+<!--        [label]="'Введите номер телефона'"-->
+<!--        [error]="phoneNumberError && 'Неправильный номер телефона'"-->
+<!--        [(value)]="phoneNumber"-->
+<!--      ></app-custom-input>-->
+
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+  </div>
+</ion-content>

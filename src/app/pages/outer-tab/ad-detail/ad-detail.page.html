@@ -1,7 +1,9 @@
-<app-header
-  [title]="ad.title"
-  [showBackButton]="true"
-></app-header>
+<ion-header>
+  <app-header
+    [title]="ad.title"
+    [showBackButton]="true"
+  ></app-header>
+</ion-header>
 
 <ion-content>
   <div class="ad-detail">
@@ -30,7 +32,7 @@
         <div class="content-info">Площадь, 20 м2</div> <!-- todo -->
         <div class="content-info">Высота потолков, 2.2 м</div> <!-- todo -->
 
-        <hr class="horizontal-divider"/>
+        <hr class="horizontal-divider v-margin-12"/>
 
         <div class="flex-direction-row-10">
           <div *ngFor="let chip of utilChips" class="custom-chip">
