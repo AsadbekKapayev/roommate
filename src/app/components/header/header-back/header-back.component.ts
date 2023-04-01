@@ -9,8 +9,8 @@ import {NavController} from "@ionic/angular";
 export class HeaderBackComponent implements OnInit {
 
   @Input() title: string = '';
-  @Input() showHomeIcon: boolean = false;
-  @Input() showBackButton: boolean = false;
+  @Input() showBackButton: boolean;
+  @Input() showFiltersButton: boolean;
 
   constructor(private navCtrl: NavController) {
   }
@@ -20,5 +20,9 @@ export class HeaderBackComponent implements OnInit {
 
   goBack() {
     this.navCtrl.pop();
+  }
+
+  onClickFilter() {
+
   }
 }

@@ -1,11 +1,24 @@
 .header-back-container {
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  justify-content: space-between;
   padding: var(--custom-padding);
   min-height: 56px;
   height: 56px;
   background: var(--custom-background-color-white);
+}
+
+.header-left {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .title {
@@ -22,4 +35,15 @@
 
 .roommate-icon {
   color: red;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-medium);
+  color: var(--custom-b-text-color-primary);
 }

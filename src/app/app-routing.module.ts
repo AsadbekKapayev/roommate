@@ -26,6 +26,14 @@ const routes: Routes = [
         path: 'ad-detail/:id',
         loadChildren: () => import('./pages/outer-tab/ad-detail/ad-detail.module').then(m => m.AdDetailModule)
       },
+      {
+        path: 'look-for-room',
+        loadChildren: () => import('./pages/outer-tab/look-for-room/look-for-room.module').then(m => m.LookForRoomModule)
+      },
+      {
+        path: 'look-for-roommate',
+        loadChildren: () => import('./pages/outer-tab/look-for-roommate/look-for-roommate.module').then(m => m.LookForRoommateModule)
+      },
     ],
   },
   {

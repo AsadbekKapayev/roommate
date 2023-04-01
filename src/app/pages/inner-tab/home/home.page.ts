@@ -5,6 +5,8 @@ import {SettingControllerService} from "../../../services/controllers/setting-co
 import {AdItem} from "../../../models/commons/ad/AdItem";
 import {AdService} from "../../../services/common/ad.service";
 import {IonicButton} from "../../../models/core/IonicButton";
+import {ALL_URL} from "../../../shares/url-static";
+import {AdType} from "../../../models/commons/ad/AdType";
 
 @Component({
   selector: 'app-home',
@@ -17,11 +19,11 @@ export class GuidePage implements OnInit {
 
   categories: IonicButton[] = [
     {
-      id: 'look-for-roommate',
+      id: AdType.ROOMMATE,
       title: 'Ищу сожителя',
     },
     {
-      id: 'look-for-room',
+      id: AdType.ROOM,
       title: 'Сниму комнату',
     },
   ];
@@ -37,6 +39,12 @@ export class GuidePage implements OnInit {
   }
 
   onClickCategory(category: IonicButton) {
+    var url = category?.id === AdType.ROOM ? ALL_URL.LOOK_FOR_ROOM :
+      category?.id === AdType.ROOMMATE ? ALL_URL.LOOK_FOR_ROOMMATE :
+        null;
 
+    if (url) {
+      this.navCtrl.navigateForward([url]).then();
+    }
   }
 }

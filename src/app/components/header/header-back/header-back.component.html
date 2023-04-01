@@ -1,15 +1,26 @@
 <div class="header-back-container">
-  <img
-    *ngIf="showHomeIcon"
-    src="assets/icon/home.svg"
-    class="roommate-icon"
-    alt="roommate-icon"
-  >
-  <img
-    *ngIf="showBackButton"
-    src="assets/icon/arrow_left_black.svg"
-    alt="arrow-left"
-    (click)="goBack()"
-  >
-  <div class="title">{{title}}</div>
+  <div class="header-left">
+    <img
+      *ngIf="showBackButton"
+      src="assets/icon/arrow_left_black.svg"
+      alt="arrow-left"
+      (click)="goBack()"
+    >
+    <div class="title">{{title}}</div>
+  </div>
+
+  <div class="header-right">
+    <div
+      *ngIf="showFiltersButton"
+      class="filters"
+    >
+      <div>Фильтры</div>
+
+      <img
+        src="assets/icon/filter.svg"
+        alt="filter-icon"
+        (click)="onClickFilter()"
+      >
+    </div>
+  </div>
 </div>
