@@ -156,6 +156,14 @@
   @include custom-input;
 }
 
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0 12px 12px 12px;
+}
+
 .custom-button-white {
   padding: 12px;
   background: var(--custom-text-color-white);

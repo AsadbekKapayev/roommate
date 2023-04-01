@@ -1,5 +1,11 @@
 <div class="header-back-container">
   <img
+    *ngIf="showHomeIcon"
+    src="assets/icon/home.svg"
+    class="roommate-icon"
+    alt="roommate-icon"
+  >
+  <img
     *ngIf="showBackButton"
     src="assets/icon/arrow_left_black.svg"
     alt="arrow-left"

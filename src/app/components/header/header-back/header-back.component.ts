@@ -9,7 +9,8 @@ import {NavController} from "@ionic/angular";
 export class HeaderBackComponent implements OnInit {
 
   @Input() title: string = '';
-  @Input() showBackButton: boolean = true;
+  @Input() showHomeIcon: boolean = false;
+  @Input() showBackButton: boolean = false;
 
   constructor(private navCtrl: NavController) {
   }

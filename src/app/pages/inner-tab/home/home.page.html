@@ -1,5 +1,24 @@
 <ion-content>
-  <app-ad-grid
-    [ads]="ads"
-  ></app-ad-grid>
+  <app-header-back
+    [showHomeIcon]="true"
+    [title]="'Roommate'"
+  ></app-header-back>
+
+  <div class="home">
+    <div class="categories">
+      <ng-container *ngFor="let category of categories">
+        <button
+          [ngClass]="{'custom-button-white': true}"
+          (click)="onClickCategory(category)"
+        >
+          {{category.title}}
+        </button>
+      </ng-container>
+    </div>
+
+    <app-ad-grid
+      [ads]="ads"
+    ></app-ad-grid>
+  </div>
+
 </ion-content>
