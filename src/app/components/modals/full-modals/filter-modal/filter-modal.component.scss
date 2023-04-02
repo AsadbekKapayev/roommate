@@ -24,11 +24,3 @@
   font-weight: var(--custom-font-weight-medium);
   color: var(--custom-text-color-black);
 }
-
-.search-button {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 0 16px 40px 16px;
-  background: var(--custom-background-color-white);
-}

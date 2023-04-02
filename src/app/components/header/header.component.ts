@@ -44,6 +44,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickSetting() {
-    this.navCtrl.navigateForward('');
+    this.settingControllerService.setSettingModal().present().then();
   }
 }

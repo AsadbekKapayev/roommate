@@ -1,7 +1,6 @@
 .bottom-modal-component {
   align-items: flex-end;
   --max-height: 50%;
-  --backdrop-opacity: 0;
   --border-radius: 15px;
 
   :first-of-type {
@@ -52,4 +51,12 @@ ion-modal.bottom-modal-component.auto-height {
   flex-direction: row;
   gap: 12px;
   margin-top: 32px;
+}
+
+.modal-button {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px 40px 16px;
+  background: var(--custom-background-color-white);
 }

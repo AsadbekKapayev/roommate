@@ -1,0 +1,66 @@
+<ion-header>
+  <app-header
+    [title]="'Настройки'"
+    [showCloseButton]="true"
+    (click)="close()"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="setting">
+
+    <div class="setting-content">
+      <div class="setting-photo">
+        <div class="setting-photo-title">Фото профиля</div>
+
+        <img src="assets/icon/setting-photo-holder.svg" alt="setting-photo-holder">
+      </div>
+
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Фамилия'"
+      ></app-custom-input>
+
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Имя'"
+      ></app-custom-input>
+
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Отчество'"
+      ></app-custom-input>
+
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Дата рождения'"
+      ></app-custom-input>
+
+      <div class="h-margin-12">
+        <div class="profile-title">Пол</div>
+
+        <div class="categories">
+          <button
+            [ngClass]="{'gender': true, 'custom-button-white-selected': selectedGender === gender.MALE}"
+            (click)="selectedGender = gender.MALE"
+          >
+            {{gender.MALE}}
+          </button>
+
+          <button
+            [ngClass]="{'gender': true, 'custom-button-white-selected': selectedGender === gender.FEMALE}"
+            (click)="selectedGender = gender.FEMALE"
+          >
+            {{gender.FEMALE}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-button">
+      <hr class="horizontal-divider">
+
+      <div class="custom-button-primary">Сохранить</div>
+    </div>
+  </div>
+</ion-content>
