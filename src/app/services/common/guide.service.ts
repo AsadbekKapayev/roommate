@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GuideItem} from "../../models/commons/GuideItem";
+import {GuideType} from "../../models/commons/GuideType";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide.jpg',
+      category: GuideType.ADVICE,
     },
     {
       id: '2',
@@ -20,6 +23,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide1.jpg',
+      category: GuideType.ADVICE,
     },
     {
       id: '3',
@@ -27,6 +32,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide2.jpg',
+      category: GuideType.ADVICE,
     },
     {
       id: '4',
@@ -34,6 +41,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide3.jpg',
+      category: GuideType.NEW,
     },
     {
       id: '5',
@@ -41,6 +50,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide4.png',
+      category: GuideType.NEW,
     },
     {
       id: '6',
@@ -48,6 +59,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide5.png',
+      category: GuideType.NEW,
     },
     {
       id: '7',
@@ -55,6 +68,8 @@ export class GuideService {
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
         'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
         'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      img: 'assets/images/guide6.jpg',
+      category: GuideType.ADVICE,
     },
   ];
 
@@ -63,6 +78,10 @@ export class GuideService {
 
   loadGuides() {
     return this.guides;
+  }
+
+  loadByCategory(category: GuideType) {
+    return this.guides.filter(guide => guide.category === category);
   }
 
   loadGuidesOther(id: string) {

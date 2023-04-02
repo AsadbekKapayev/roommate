@@ -6,10 +6,10 @@
 
 <ion-content>
   <div class="guide">
-    <div class="categories">
+    <div class="categories h-margin-12">
       <ng-container *ngFor="let category of categories">
         <button
-          [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': category.selected}"
+          [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': selectedCategory === category?.id}"
           (click)="onClickCategory(category)"
         >
           {{category.title}}
