@@ -1,0 +1,26 @@
+.filter-modal {
+  background: var(--custom-background-color-white);
+  padding: 12px;
+}
+
+.title {
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-semibold);
+  line-height: var(--custom-line-height);
+  color: var(--custom-text-color-black);
+}
+
+.rooms-filter-content {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.room-filter {
+  background: #F8F8F8;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: var(--custom-font-size-5);
+  font-weight: var(--custom-font-weight-medium);
+  color: var(--custom-text-color-black);
+}

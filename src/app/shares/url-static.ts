@@ -12,5 +12,6 @@ export const ALL_URL = {
   LOOK_FOR_ROOMMATE: '/outer-tab/look-for-roommate',
   AD_DETAIL: '/outer-tab/ad-detail/', // add :id
   GUIDE_DETAIL: '/outer-tab/guide-detail/', // add :id
+  CREATE_AD: '/outer-tab/create-ad',
 
 }

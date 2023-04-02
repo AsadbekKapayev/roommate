@@ -34,6 +34,10 @@ const routes: Routes = [
         path: 'look-for-roommate',
         loadChildren: () => import('./pages/outer-tab/look-for-roommate/look-for-roommate.module').then(m => m.LookForRoommateModule)
       },
+      {
+        path: 'create-ad',
+        loadChildren: () => import('./pages/outer-tab/create-ad/create-ad.module').then(m => m.CreateAdModule)
+      },
     ],
   },
   {

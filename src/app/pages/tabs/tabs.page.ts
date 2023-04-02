@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicTab} from "../../models/core/IonicTab";
+import {NavController} from "@ionic/angular";
+import {ALL_URL} from "../../shares/url-static";
 
 @Component({
   selector: 'app-tabs',
@@ -30,7 +32,7 @@ export class TabsPage {
       title: 'Добавить',
       icon: 'assets/icon/add.svg',
       selected: false,
-      route: 'add'
+      route: 'create-ad'
     },
     {
       id: '4',
@@ -50,7 +52,7 @@ export class TabsPage {
     },
   ]
 
-  constructor() {}
+  constructor(private navCtrl: NavController) {}
 
   ionTabsWillChange(event: any) {
     this.tabs.forEach((tab: IonicTab) => {
@@ -58,4 +60,9 @@ export class TabsPage {
     });
   }
 
+  navigate(tab: IonicTab) {
+    if (tab?.id === '3') {
+      this.navCtrl.navigateForward(ALL_URL.CREATE_AD);
+    }
+  }
 }

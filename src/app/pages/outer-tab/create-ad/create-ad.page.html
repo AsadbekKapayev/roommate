@@ -1,41 +1,18 @@
 <ion-header>
   <app-header
-    [title]="'Фильтры'"
-    [showCloseButton]="true"
-    [showResetButton]="true"
-    (onCloseClicked)="close()"
-    (onResetClicked)="reset()"
+    [title]="'Подать объявление'"
+    [showBackButton]="true"
   ></app-header>
 </ion-header>
 
 <ion-content>
   <div class="filter-modal">
-    <div class="search-filter">
-
-      <app-custom-input
-        [type]="'text'"
-        [label]="'Поиск'"
-      ></app-custom-input>
-
-      <hr class="horizontal-divider v-margin-12">
-    </div>
-
     <div class="price-filter">
-      <div class="title margin-12">Цена</div>
-
-      <div class="flex-row-16">
-        <app-custom-input
-          [type]="'number'"
-          [label]="'От'"
-          [icon]="'currency'"
-        ></app-custom-input>
-
-        <app-custom-input
-          [type]="'number'"
-          [label]="'До'"
-          [icon]="'currency'"
-        ></app-custom-input>
-      </div>
+      <app-custom-input
+        [type]="'number'"
+        [label]="'Цена'"
+        [icon]="'currency'"
+      ></app-custom-input>
 
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -87,14 +64,14 @@
 
     <div>
       <app-custom-checkbox
-        [title]="'Не первый этаж'"
+        [title]="'Первый этаж'"
       ></app-custom-checkbox>
       <hr class="horizontal-divider v-margin-12">
     </div>
 
     <div>
       <app-custom-checkbox
-        [title]="'Не последний этаж'"
+        [title]="'Последний этаж'"
       ></app-custom-checkbox>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -107,61 +84,37 @@
     </div>
 
     <div class="floor-filter">
-      <div class="title margin-12">Количество этажей</div>
-
-      <div class="flex-row-16">
-        <app-custom-input
-          [type]="'number'"
-          [label]="'От'"
-        ></app-custom-input>
-
-        <app-custom-input
-          [type]="'number'"
-          [label]="'До'"
-        ></app-custom-input>
-      </div>
+      <app-custom-input
+        [type]="'number'"
+        [label]="'Количество этажей'"
+      ></app-custom-input>
 
       <hr class="horizontal-divider v-margin-12">
     </div>
 
     <div class="square-filter">
-      <div class="title margin-12">Площадь</div>
-
-      <div class="flex-row-16">
-        <app-custom-input
-          [type]="'number'"
-          [label]="'От'"
-        ></app-custom-input>
-
-        <app-custom-input
-          [type]="'number'"
-          [label]="'До'"
-        ></app-custom-input>
-      </div>
+      <app-custom-input
+        [type]="'number'"
+        [label]="'Площадь'"
+      ></app-custom-input>
 
       <hr class="horizontal-divider v-margin-12">
     </div>
 
     <div class="ceil-filter">
-      <div class="title margin-12">Выстота потолков</div>
-
-      <div class="flex-row-16">
-        <app-custom-input
-          [type]="'number'"
-          [label]="'От'"
-        ></app-custom-input>
-
-        <app-custom-input
-          [type]="'number'"
-          [label]="'До'"
-        ></app-custom-input>
-      </div>
+      <app-custom-input
+        [type]="'number'"
+        [label]="'Выстота потолков'"
+      ></app-custom-input>
     </div>
   </div>
 
   <div class="modal-button">
     <hr class="horizontal-divider">
 
-    <button class="custom-button-primary">Поиск</button>
+    <button
+      class="custom-button-primary"
+      (click)="onClickSave()"
+    >Сохранить</button>
   </div>
 </ion-content>
