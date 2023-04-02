@@ -1,0 +1,19 @@
+<ion-header>
+  <app-header
+    [title]="'Выберите город'"
+    [showCloseButton]="true"
+    (click)="close()"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="cities">
+    <div
+      *ngFor="let city of cities"
+      (click)="onClickCity(city)"
+      class="city"
+    >
+      {{city?.name}}
+    </div>
+  </div>
+</ion-content>

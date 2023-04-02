@@ -8,6 +8,10 @@ import {
   FillProfileModalComponent
 } from "../../components/modals/bottom-modals/fill-profile-modal/fill-profile-modal.component";
 import {FilterModalComponent} from "../../components/modals/full-modals/filter-modal/filter-modal.component";
+import {
+  CityAlmatyModalComponent
+} from "../../components/modals/bottom-modals/city-almaty-modal/city-almaty-modal.component";
+import {CityModalComponent} from "../../components/modals/full-modals/city-modal/city-modal.component";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -47,13 +51,37 @@ export class SettingControllerService extends AbstractSettingController {
     });
   }
 
+  public setCityAlmatyModal(): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: CityAlmatyModalComponent,
+        componentProps: {
+        },
+        cssClass: 'bottom-modal-component auto-height',
+        swipeToClose: true,
+      };
+    });
+  }
+
   public setFilterModal(): IonicControllerAbstract {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: FilterModalComponent,
         componentProps: {
         },
-        cssClass: 'city-modal-component',
+        cssClass: 'full-modal-component',
+        swipeToClose: true,
+      };
+    });
+  }
+
+  public setCityModal(): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: CityModalComponent,
+        componentProps: {
+        },
+        cssClass: 'full-modal-component',
         swipeToClose: true,
       };
     });

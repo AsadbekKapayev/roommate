@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickFilter() {
-    this.settingControllerService.setFilterModal().present().then()
+    this.settingControllerService.setFilterModal().present().then();
   }
 
   onClickClose() {

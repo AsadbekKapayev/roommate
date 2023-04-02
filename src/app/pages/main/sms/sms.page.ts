@@ -69,8 +69,13 @@ export class SmsPage implements OnInit {
     if (smsCode !== '7777') {
       await this.toastService.present('Неправильно заполнили поле SMS');
     } else {
-      this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
-      this.settingControllerService.setFillProfileModal().present().then();
+      this.settingControllerService.setFillProfileModal().present().then(x => {
+        if (x?.data) {
+          this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
+        }
+
+        this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
+      });
     }
   }
 

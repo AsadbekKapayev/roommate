@@ -1,7 +1,6 @@
 .filter-modal {
   background: var(--custom-background-color-white);
   padding: 12px;
-  min-height: 100%;
 }
 
 .title {
@@ -31,4 +30,5 @@
   flex-direction: column;
   gap: 16px;
   padding: 0 16px 40px 16px;
+  background: var(--custom-background-color-white);
 }

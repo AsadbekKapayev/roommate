@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TabsPage} from './tabs.page';
+import {AuthGuard} from "../../guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
     children: [
       {
         path: 'home-tab',
-        loadChildren: () => import('./home-tab/home-tab.module').then(m => m.HomeTabModule)
+        loadChildren: () => import('./home-tab/home-tab.module').then(m => m.HomeTabModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'favourites-tab',

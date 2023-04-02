@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import {FillProfileModalComponent} from "./fill-profile-modal.component";
 
 @NgModule({
@@ -9,7 +8,6 @@ import {FillProfileModalComponent} from "./fill-profile-modal.component";
   entryComponents: [FillProfileModalComponent],
   imports: [
     CommonModule,
-    IonicModule,
   ]
 })
 export class FillProfileModalModule {

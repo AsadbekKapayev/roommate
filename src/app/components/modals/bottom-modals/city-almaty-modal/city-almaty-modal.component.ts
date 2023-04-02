@@ -3,11 +3,11 @@ import {NavController} from "@ionic/angular";
 import {ModalService} from "../../../../services/controllers/modal.service";
 
 @Component({
-  selector: 'app-fill-profile-modal',
-  templateUrl: './fill-profile-modal.component.html',
-  styleUrls: ['./fill-profile-modal.component.scss'],
+  selector: 'app-city-almaty-modal',
+  templateUrl: './city-almaty-modal.component.html',
+  styleUrls: ['./city-almaty-modal.component.scss'],
 })
-export class FillProfileModalComponent implements OnInit {
+export class CityAlmatyModalComponent implements OnInit {
 
   constructor(private navCtrl: NavController,
               private modalService: ModalService) {

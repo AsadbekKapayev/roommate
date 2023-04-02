@@ -25,13 +25,11 @@ ion-modal.bottom-modal-component.auto-height {
   }
 }
 
-.city-modal-component .modal-wrapper {
+.full-modal-component .modal-wrapper {
   align-items: flex-end;
   position: absolute;
-  --max-height: 90%;
+  --min-height: 100%;
   --backdrop-opacity: 0;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
   bottom: 0;
   :first-of-type {
     --backdrop-opacity: 30%;
@@ -45,3 +43,13 @@ ion-modal.bottom-modal-component.auto-height {
   color: var(--custom-text-color-black);
 }
 
+.bottom-modal-padding {
+  padding: 16px 24px 40px 24px;
+}
+
+.bottom-modal-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 32px;
+}

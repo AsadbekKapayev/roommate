@@ -1,0 +1,18 @@
+.cities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px;
+  background: var(--custom-background-color-white);
+  min-height: 100%;
+}
+
+.city {
+  background: #F8F8F8;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: var(--custom-font-size-5);
+  font-weight: var(--custom-font-weight-regular);
+  color: var(--custom-text-color-black);
+}
