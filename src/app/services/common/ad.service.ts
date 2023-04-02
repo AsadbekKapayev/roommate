@@ -13,7 +13,7 @@ export class AdService {
       title: '1-комнатная квартира',
       description: 'Алматы р-н, Нажимеденова',
       price: 150000,
-      img: '',
+      img: 'assets/images/house.jpg',
       isLiked: false,
       publishedAt: new Date(),
       viewCount: 150
@@ -33,7 +33,7 @@ export class AdService {
       title: '1-комнатная квартира',
       description: 'Алматы р-н, Нажимеденова',
       price: 150000,
-      img: '',
+      img: 'assets/images/house2.jpg',
       isLiked: true,
       publishedAt: new Date(),
       viewCount: 150
@@ -43,7 +43,7 @@ export class AdService {
       title: '1-комнатная квартира',
       description: 'Алматы р-н, Нажимеденова',
       price: 150000,
-      img: '',
+      img: 'assets/images/house3.jpg',
       isLiked: false,
       publishedAt: new Date(),
       viewCount: 150
@@ -53,7 +53,7 @@ export class AdService {
       title: '1-комнатная квартира',
       description: 'Алматы р-н, Нажимеденова',
       price: 150000,
-      img: '',
+      img: 'assets/images/house4.jpg',
       isLiked: false,
       publishedAt: new Date(),
       viewCount: 150
@@ -63,7 +63,7 @@ export class AdService {
       title: '1-комнатная квартира',
       description: 'Алматы р-н, Нажимеденова',
       price: 150000,
-      img: '',
+      img: 'assets/images/room1.jpg',
       isLiked: false,
       publishedAt: new Date(),
       viewCount: 150
@@ -73,7 +73,7 @@ export class AdService {
       title: '1-комнатная квартира',
       description: 'Алматы р-н, Нажимеденова',
       price: 150000,
-      img: '',
+      img: 'assets/images/room2.jpg',
       isLiked: true,
       publishedAt: new Date(),
       viewCount: 150

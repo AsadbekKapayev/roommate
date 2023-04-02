@@ -25,6 +25,6 @@ export class GuidePage implements OnInit {
   }
 
   onClickLike(ad: AdItem) {
-    this.ads = this.ads.filter(x => x.isLiked);
+    this.ads = this.ads.filter(x => x.id !== ad.id);
   }
 }
