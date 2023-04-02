@@ -6,5 +6,23 @@
 </ion-header>
 
 <ion-content>
-  profile
+  <div class="profile">
+    <div class="h-margin-12">
+      <div class="profile-title">Мои объявления</div>
+
+      <div class="categories">
+        <button
+          *ngFor="let category of categories"
+          [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': category.selected}"
+          (click)="onClickCategory(category)"
+        >
+          {{category.title}}
+        </button>
+      </div>
+    </div>
+
+    <app-ad-grid
+      [ads]="ads"
+    ></app-ad-grid>
+  </div>
 </ion-content>

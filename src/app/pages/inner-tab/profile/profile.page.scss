@@ -1,1 +1,19 @@
+.profile {
+  padding: 20px 0;
+}
 
+.profile-title {
+  margin-left: 12px;
+  color: var(--custom-text-color-black);
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-medium);
+  line-height: var(--custom-line-height);
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 0;
+}
