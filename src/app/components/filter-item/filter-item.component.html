@@ -1,0 +1,15 @@
+<div class="filter-item">
+  <div class="item-title custom-ellipses-1">{{title}}</div>
+
+  <div class="filter-item-left">
+    <div class="custom-ellipses-1">
+      <ng-container *ngIf="!selectedItems?.length">Не выбрано</ng-container>
+      <ng-container *ngFor="let item of selectedItems">{{item}}, </ng-container>
+    </div>
+
+    <img
+      src="../../../assets/icon/expand_right.svg"
+      alt="arrow-right-icon"
+    >
+  </div>
+</div>

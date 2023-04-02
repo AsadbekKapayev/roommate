@@ -10,18 +10,156 @@
 
 <ion-content>
   <div class="filter-modal">
-    <div class="price">
-      <div class="title margin-bottom-12">Цена</div>
+    <div class="search-filter">
 
-<!--      <app-custom-input-->
-<!--        [type]="''"-->
-<!--        [label]="'Введите номер телефона'"-->
-<!--        [error]="phoneNumberError && 'Неправильный номер телефона'"-->
-<!--        [(value)]="phoneNumber"-->
-<!--      ></app-custom-input>-->
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Поиск'"
+      ></app-custom-input>
 
       <hr class="horizontal-divider v-margin-12">
     </div>
 
+    <div class="price-filter">
+      <div class="title margin-12">Цена</div>
+
+      <div class="flex-row-16">
+        <app-custom-input
+          [type]="'number'"
+          [label]="'От'"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'number'"
+          [label]="'До'"
+        ></app-custom-input>
+      </div>
+
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="rooms-filter">
+      <div class="title margin-12">Количество комнат</div>
+
+      <div class="rooms-filter-content">
+        <div
+          *ngFor="let room of roomsQuantity"
+          (click)="selectedRoomQuantity = room"
+          class="room-filter"
+          [class.custom-button-white-selected]="selectedRoomQuantity === room"
+        >
+          {{room}}
+        </div >
+      </div>
+
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Город'"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Пол'"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Заселение возможно'"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Условия проживания'"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-custom-checkbox
+        [title]="'Не первый этаж'"
+      ></app-custom-checkbox>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-custom-checkbox
+        [title]="'Не последний этаж'"
+      ></app-custom-checkbox>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Параметры жилья'"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="floor-filter">
+      <div class="title margin-12">Количество этажей</div>
+
+      <div class="flex-row-16">
+        <app-custom-input
+          [type]="'number'"
+          [label]="'От'"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'number'"
+          [label]="'До'"
+        ></app-custom-input>
+      </div>
+
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="square-filter">
+      <div class="title margin-12">Площадь</div>
+
+      <div class="flex-row-16">
+        <app-custom-input
+          [type]="'number'"
+          [label]="'От'"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'number'"
+          [label]="'До'"
+        ></app-custom-input>
+      </div>
+
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="ceil-filter">
+      <div class="title margin-12">Выстота потолков</div>
+
+      <div class="flex-row-16">
+        <app-custom-input
+          [type]="'number'"
+          [label]="'От'"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'number'"
+          [label]="'До'"
+        ></app-custom-input>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-button">
+    <hr class="horizontal-divider">
+
+    <div class="custom-button-primary">Поиск</div>
   </div>
 </ion-content>

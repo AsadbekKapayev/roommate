@@ -11,6 +11,11 @@ import {ModalService} from "../../../../services/controllers/modal.service";
 })
 export class FilterModalComponent implements OnInit {
 
+  selectedRoomQuantity: string;
+  roomsQuantity: string[] = [
+    '1', '2', '3', '4', '5+'
+  ]
+
   constructor(private modalService: ModalService) {
   }
 

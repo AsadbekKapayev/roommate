@@ -13,7 +13,7 @@ export class CustomInputComponent implements OnInit {
   @Input() error: string = '';
   @Input() label: string = '';
   @Input() placeholder: string = '';
-  @Input() type: 'tel' | 'password' | 'text' | 'number' | 'sms-code' | 'email' | 'textarea';
+  @Input() type: 'tel' | 'password' | 'text' | 'number' | 'email' | 'textarea';
   @Input() value: any;
   @Input() whiteBackground: boolean = false;
 

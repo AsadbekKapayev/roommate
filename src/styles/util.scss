@@ -39,10 +39,6 @@
   margin: 0 12px !important;
 }
 
-.margin-bottom-12 {
-  margin: 12px !important;
-}
-
 .header-padding {
   padding-left: 10px;
   padding-right: 10px;
@@ -171,4 +167,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.item-title {
+  color: var(--custom-text-color-black);
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-regular);
+  line-height: 24px;
+  min-width: 40%;
+}
+
+.flex-row-16 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }

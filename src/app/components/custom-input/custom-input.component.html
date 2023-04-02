@@ -15,7 +15,25 @@
   <div *ngIf="focus || value" class="tel-prefix">+7</div>
 </div>
 
-<div *ngIf="type !== 'tel' && type !== 'sms-code'" class="input-form">
+<div *ngIf="type === 'number'" class="input-form">
+  <app-error-message-form [setErrorMessage]="error">
+    <input (focusin)="focus = true"
+           (focusout)="checkFocus()"
+           (keyup.enter)="enterPressed.emit()"
+           [(ngModel)]="value"
+           [class.custom-input-filled]="value"
+           class="custom-input"
+           id="input{{id}}"
+           [mask]="'000 000 000 000'"
+           (ngModelChange)="valueChanged()"
+           #input>
+    <label for="input{{id}}">{{label}}</label>
+  </app-error-message-form>
+
+  <img class="suffix" src="assets/icon/currency.svg" alt="currency-icon">
+</div>
+
+<div *ngIf="type !== 'tel' && type !== 'number'" class="input-form">
   <app-error-message-form [setErrorMessage]="error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"

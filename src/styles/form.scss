@@ -200,8 +200,8 @@
 }
 
 .custom-button-white-selected {
-  color: var(--custom-text-color-white);
-  background: var(--custom-b-text-color-primary);
+  color: var(--custom-text-color-white) !important;
+  background: var(--custom-b-text-color-primary) !important;
 }
 
 .custom-ellipses-1 {
