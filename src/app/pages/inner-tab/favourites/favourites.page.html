@@ -8,6 +8,7 @@
   <div class="favourites">
     <app-ad-grid
       [ads]="ads"
+      (likeClicked)="onClickLike($event)"
     ></app-ad-grid>
   </div>
 </ion-content>

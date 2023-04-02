@@ -14,6 +14,8 @@ export class AdGridComponent implements OnInit {
 
   @Input() ads: AdItem[];
 
+  @Output() likeClicked = new EventEmitter<AdItem>();
+
   constructor(private navCtrl: NavController,
               private adService: AdService) {
   }
@@ -27,5 +29,6 @@ export class AdGridComponent implements OnInit {
 
   onClickLike(ad: AdItem) {
     this.ads.find(x => x.id === ad.id).isLiked = !ad.isLiked;
+    this.likeClicked.emit(ad);
   }
 }

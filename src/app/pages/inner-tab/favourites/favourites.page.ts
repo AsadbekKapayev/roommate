@@ -24,4 +24,7 @@ export class GuidePage implements OnInit {
     this.ads = this.adService.loadFavourites();
   }
 
+  onClickLike(ad: AdItem) {
+    this.ads = this.ads.filter(x => x.isLiked);
+  }
 }
