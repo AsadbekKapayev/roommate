@@ -37,5 +37,12 @@
     >
       Сбросить
     </div>
+
+    <img
+      *ngIf="showSettingButton"
+      src="../../../assets/icon/setting.svg"
+      alt="setting-icon"
+      (click)="onClickSetting()"
+    >
   </div>
 </div>

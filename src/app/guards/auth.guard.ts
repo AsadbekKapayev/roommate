@@ -20,11 +20,17 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    // this.settingControllerService.setCityAlmatyModal().present().then(x => {
-    //   if (!x?.data) {
-    //     this.settingControllerService.setCityModal().present().then();
-    //   }
-    // });
+    if (this.authService.token) {
+      return true;
+    }
+
+    this.settingControllerService.setCityAlmatyModal().present().then(x => {
+      if (x?.data !== undefined && !x?.data) {
+        this.settingControllerService.setCityModal().present().then();
+      }
+
+      this.authService.token = 'J85QIBd0';
+    });
 
     return true;
   }

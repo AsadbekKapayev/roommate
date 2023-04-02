@@ -6,6 +6,22 @@ const routes: Routes = [
   {
     path: '',
     component: ProfileTabPage,
+    children: [
+      {
+        path: 'profile',
+        loadChildren: () => import('app/pages/inner-tab/profile/profile.module').then(m => m.ProfileModule),
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/profile-tab/profile',
+        pathMatch: 'full'
+      }
+    ],
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/profile-tab/profile',
+    pathMatch: 'full'
   }
 ];
 

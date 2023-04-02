@@ -9,6 +9,8 @@ import {NavController} from "@ionic/angular";
 })
 export class AuthService {
 
+  token: string;
+
   constructor(private navCtrl: NavController,
               private storage: StorageService) {
   }
