@@ -10,6 +10,7 @@ import {CustomModuleModule} from "../../../components/custom-input/custom-module
 import {HeaderModule} from "../../../components/header/header.module";
 import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.module";
 import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
+import {RoommateGridModule} from "../../../components/grids/roommate-grid/roommate-grid.module";
 
 @NgModule({
   declarations: [ProfilePage],
@@ -23,6 +24,7 @@ import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.modu
     HeaderModule,
     GuideGridModule,
     RoomGridModule,
+    RoommateGridModule,
   ]
 })
 export class ProfileModule {

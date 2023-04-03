@@ -22,7 +22,13 @@
     </div>
 
     <app-room-grid
-      [rooms]="ads"
+      *ngIf="selectedCategory === adType.ROOM"
+      [rooms]="rooms"
     ></app-room-grid>
+
+    <app-roommate-grid
+      *ngIf="selectedCategory === adType.ROOMMATE"
+      [roommates]="roommates"
+    ></app-roommate-grid>
   </div>
 </ion-content>

@@ -6,6 +6,7 @@ import {IonicButton} from "../../../models/core/IonicButton";
 import {AdType} from "../../../models/commons/ad/AdType";
 import {AdService} from "../../../services/common/ad.service";
 import {RoomItem} from "../../../models/commons/ad/RoomItem";
+import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,11 @@ import {RoomItem} from "../../../models/commons/ad/RoomItem";
 })
 export class ProfilePage implements OnInit {
 
-  ads: RoomItem[];
+  rooms: RoomItem[];
+  roommates: RoommateItem[];
 
+  adType = AdType;
+  selectedCategory: string = AdType.ROOMMATE;
   categories: IonicButton[] = [
     {
       id: AdType.ROOMMATE,
@@ -34,13 +38,16 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadRooms();
+    this.rooms = this.adService.loadRooms();
+    this.roommates = this.adService.loadRoommates();
   }
 
   onClickCategory(category: IonicButton) {
     this.categories.forEach((c) => {
       c.selected = c.id === category.id;
     });
+
+    this.selectedCategory = category.id;
   }
 
 }
