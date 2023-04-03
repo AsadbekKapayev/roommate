@@ -1,4 +1,4 @@
-export interface AdItem {
+export interface RoomItem {
   id: string;
   title: string;
   description: string;

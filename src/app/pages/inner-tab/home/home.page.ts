@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
-import {AdItem} from "../../../models/commons/ad/AdItem";
+import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {ALL_URL} from "../../../shares/url-static";
@@ -15,7 +15,7 @@ import {AdType} from "../../../models/commons/ad/AdType";
 })
 export class GuidePage implements OnInit {
 
-  ads: AdItem[];
+  ads: RoomItem[];
 
   categories: IonicButton[] = [
     {
@@ -35,7 +35,7 @@ export class GuidePage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadAds();
+    this.ads = this.adService.loadRooms();
   }
 
   onClickCategory(category: IonicButton) {

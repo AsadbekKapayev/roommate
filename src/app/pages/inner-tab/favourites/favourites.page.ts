@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
-import {AdItem} from "../../../models/commons/ad/AdItem";
+import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
 
 @Component({
@@ -12,7 +12,7 @@ import {AdService} from "../../../services/common/ad.service";
 })
 export class GuidePage implements OnInit {
 
-  ads: AdItem[];
+  ads: RoomItem[];
 
   constructor(private navCtrl: NavController,
               private adService: AdService,
@@ -24,7 +24,7 @@ export class GuidePage implements OnInit {
     this.ads = this.adService.loadFavourites();
   }
 
-  onClickLike(ad: AdItem) {
+  onClickLike(ad: RoomItem) {
     this.ads = this.ads.filter(x => x.id !== ad.id);
   }
 }

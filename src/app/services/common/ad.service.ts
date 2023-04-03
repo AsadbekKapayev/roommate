@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {GuideItem} from "../../models/commons/GuideItem";
-import {AdItem} from "../../models/commons/ad/AdItem";
+import {RoomItem} from "../../models/commons/ad/RoomItem";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdService {
 
-  ads: AdItem[] = [
+  rooms: RoomItem[] = [
     {
       id: '1',
       title: '1-комнатная квартира',
@@ -83,20 +83,20 @@ export class AdService {
   constructor() {
   }
 
-  loadAds() {
-    return this.ads;
+  loadRooms() {
+    return this.rooms;
   }
 
-  loadAdsOther(id: string) {
-    return this.ads.filter(ad => ad.id !== id);
+  loadRoomsOther(id: string) {
+    return this.rooms.filter(room => room.id !== id);
   }
 
-  loadAdById(id: string) {
-    return this.ads.find(ad => ad.id === id);
+  loadRoomById(id: string) {
+    return this.rooms.find(room => room.id === id);
   }
 
   loadFavourites() {
-    return this.ads.filter(ad => ad.isLiked);
+    return this.rooms.filter(room => room.isLiked);
   }
 
 }

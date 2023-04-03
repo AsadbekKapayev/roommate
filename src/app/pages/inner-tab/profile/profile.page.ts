@@ -5,7 +5,7 @@ import {GuideService} from "../../../services/common/guide.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {AdType} from "../../../models/commons/ad/AdType";
 import {AdService} from "../../../services/common/ad.service";
-import {AdItem} from "../../../models/commons/ad/AdItem";
+import {RoomItem} from "../../../models/commons/ad/RoomItem";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +14,7 @@ import {AdItem} from "../../../models/commons/ad/AdItem";
 })
 export class ProfilePage implements OnInit {
 
-  ads: AdItem[];
+  ads: RoomItem[];
 
   categories: IonicButton[] = [
     {
@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadAds();
+    this.ads = this.adService.loadRooms();
   }
 
   onClickCategory(category: IonicButton) {

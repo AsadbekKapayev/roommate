@@ -3,7 +3,7 @@ import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
 import {GuideService} from "../../../services/common/guide.service";
-import {AdItem} from "../../../models/commons/ad/AdItem";
+import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
 
 @Component({
@@ -13,8 +13,8 @@ import {AdService} from "../../../services/common/ad.service";
 })
 export class AdDetailPage implements OnInit {
 
-  ad: AdItem;
-  ads: AdItem[];
+  ad: RoomItem;
+  ads: RoomItem[];
 
   utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
   chips2: string[] = ['Можно держать животных', 'Можно курить']; // todo
@@ -33,8 +33,8 @@ export class AdDetailPage implements OnInit {
   initAdDetail() {
     const adId = this.route.snapshot?.params?.id;
 
-    this.ad = this.adService.loadAdById(adId);
-    this.ads = this.adService.loadAdsOther(adId);
+    this.ad = this.adService.loadRoomById(adId);
+    this.ads = this.adService.loadRoomsOther(adId);
   }
 
   onClickBackIcon() {

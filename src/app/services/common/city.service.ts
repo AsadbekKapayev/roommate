@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {GuideItem} from "../../models/commons/GuideItem";
-import {AdItem} from "../../models/commons/ad/AdItem";
+import {RoomItem} from "../../models/commons/ad/RoomItem";
 import {CommonItem} from "../../models/commons/CommonItem";
 
 @Injectable({
