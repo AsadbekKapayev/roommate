@@ -12,7 +12,7 @@ import {AdService} from "../../../services/common/ad.service";
 })
 export class RoomGridComponent implements OnInit {
 
-  @Input() ads: RoomItem[];
+  @Input() rooms: RoomItem[];
 
   @Output() likeClicked = new EventEmitter<RoomItem>();
 
@@ -23,12 +23,12 @@ export class RoomGridComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickAd(ad: RoomItem) {
-    this.navCtrl.navigateForward(ALL_URL.AD_DETAIL + ad.id).then();
+  onClickRoom(room: RoomItem) {
+    this.navCtrl.navigateForward(ALL_URL.ROOM_DETAIL + room.id).then();
   }
 
-  onClickLike(ad: RoomItem) {
-    this.ads.find(x => x.id === ad.id).isLiked = !ad.isLiked;
-    this.likeClicked.emit(ad);
+  onClickLike(room: RoomItem) {
+    this.rooms.find(x => x.id === room.id).isLiked = !room.isLiked;
+    this.likeClicked.emit(room);
   }
 }

@@ -23,8 +23,12 @@ const routes: Routes = [
         loadChildren: () => import('./pages/outer-tab/guide-detail/guide-detail.module').then(m => m.GuideDetailModule)
       },
       {
-        path: 'ad-detail/:id',
-        loadChildren: () => import('./pages/outer-tab/ad-detail/ad-detail.module').then(m => m.AdDetailModule)
+        path: 'room-detail/:id',
+        loadChildren: () => import('./pages/outer-tab/room-detail/room-detail.module').then(m => m.RoomDetailModule)
+      },
+      {
+        path: 'roommate-detail/:id',
+        loadChildren: () => import('./pages/outer-tab/roommate-detail/roommate-detail.module').then(m => m.RoommateDetailModule)
       },
       {
         path: 'look-for-room',

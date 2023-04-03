@@ -21,7 +21,7 @@ export class GuidePage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadFavourites();
+    this.ads = this.adService.loadRoomsFavourites();
   }
 
   onClickLike(ad: RoomItem) {

@@ -7,6 +7,7 @@ import {AdService} from "../../../services/common/ad.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {ALL_URL} from "../../../shares/url-static";
 import {AdType} from "../../../models/commons/ad/AdType";
+import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ import {AdType} from "../../../models/commons/ad/AdType";
 })
 export class GuidePage implements OnInit {
 
-  ads: RoomItem[];
+  rooms: RoomItem[];
+  roommates: RoommateItem[];
 
   categories: IonicButton[] = [
     {
@@ -35,7 +37,8 @@ export class GuidePage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadRooms();
+    this.rooms = this.adService.loadRooms();
+    this.roommates = this.adService.loadRoommate();
   }
 
   onClickCategory(category: IonicButton) {

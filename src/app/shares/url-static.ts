@@ -10,7 +10,8 @@ export const ALL_URL = {
   // outer tab
   LOOK_FOR_ROOM: '/outer-tab/look-for-room',
   LOOK_FOR_ROOMMATE: '/outer-tab/look-for-roommate',
-  AD_DETAIL: '/outer-tab/ad-detail/', // add :id
+  ROOM_DETAIL: '/outer-tab/room-detail/', // add :id
+  ROOMMATE_DETAIL: '/outer-tab/roommate-detail/', // add :id
   GUIDE_DETAIL: '/outer-tab/guide-detail/', // add :id
   CREATE_AD: '/outer-tab/create-ad',
 

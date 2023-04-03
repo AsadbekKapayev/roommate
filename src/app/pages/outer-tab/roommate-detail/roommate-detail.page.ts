@@ -2,19 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
-import {GuideService} from "../../../services/common/guide.service";
 import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
+import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 
 @Component({
-  selector: 'app-ad-detail',
-  templateUrl: './ad-detail.page.html',
-  styleUrls: ['./ad-detail.page.scss'],
+  selector: 'app-roommate-detail',
+  templateUrl: './roommate-detail.page.html',
+  styleUrls: ['./roommate-detail.page.scss'],
 })
-export class AdDetailPage implements OnInit {
+export class RoommateDetailPage implements OnInit {
 
-  ad: RoomItem;
-  ads: RoomItem[];
+  roommate: RoommateItem;
+  roommates: RoommateItem[];
 
   utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
   chips2: string[] = ['Можно держать животных', 'Можно курить']; // todo
@@ -31,10 +31,10 @@ export class AdDetailPage implements OnInit {
   }
 
   initAdDetail() {
-    const adId = this.route.snapshot?.params?.id;
+    const roommateId = this.route.snapshot?.params?.id;
 
-    this.ad = this.adService.loadRoomById(adId);
-    this.ads = this.adService.loadRoomsOther(adId);
+    this.roommate = this.adService.loadRoommateById(roommateId);
+    this.roommates = this.adService.loadRoommatesOther(roommateId);
   }
 
   onClickBackIcon() {

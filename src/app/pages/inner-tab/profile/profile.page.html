@@ -10,7 +10,7 @@
     <div class="h-margin-12">
       <div class="profile-title">Мои объявления</div>
 
-      <div class="categories">
+      <div class="categories v-margin-12">
         <button
           *ngFor="let category of categories"
           [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': category.selected}"
@@ -22,7 +22,7 @@
     </div>
 
     <app-room-grid
-      [ads]="ads"
+      [rooms]="ads"
     ></app-room-grid>
   </div>
 </ion-content>

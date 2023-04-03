@@ -1,6 +1,6 @@
 <ion-header>
   <app-header
-    [title]="ad.title"
+    [title]="roommate.surname + ' ' + roommate.name"
     [showBackButton]="true"
   ></app-header>
 </ion-header>
@@ -8,14 +8,14 @@
 <ion-content>
   <div class="ad-detail">
     <div class="ad-detail-img-container">
-      <img class="ad-detail-img" [src]="ad?.img ? ad.img : 'assets/images/no-image.jpg'" alt="guide-img">
+      <img class="ad-detail-img" [src]="roommate?.img ? roommate.img : 'assets/images/no-image.jpg'" alt="guide-img">
     </div>
 
     <div class="ad-detail-content">
       <div class="flex-space-between">
         <div class="content-title">Ищу сожителя</div>
         <div class="price-container">
-          <div class="price">{{ad.price | priceCurrency}}</div>
+          <div class="price">{{roommate.price | priceCurrency}}</div>
           <div class="content-info">Ком. услуги {{10000 | priceCurrency}}</div>
           <div class="content-info">Залог 20%</div>
         </div>
@@ -71,9 +71,9 @@
     <div class="ad-others">
       <div class="others-title h-margin-12">Другие объявление</div>
 
-      <app-room-grid
-        [ads]="ads"
-      ></app-room-grid>
+      <app-roommate-grid
+        [roommates]="roommates"
+      ></app-roommate-grid>
     </div>
   </div>
 

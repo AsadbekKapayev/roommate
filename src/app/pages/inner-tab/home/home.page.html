@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="home">
-    <div class="categories h-margin-12">
+    <div class="categories h-margin-12 page-padding-bottom-20px">
       <ng-container *ngFor="let category of categories">
         <button
           [ngClass]="{'custom-button-white': true}"
@@ -17,9 +17,15 @@
       </ng-container>
     </div>
 
+    <div class="home-title margin-12">Ищут сожителя</div>
     <app-room-grid
-      [ads]="ads"
+      [rooms]="rooms?.slice(0, 4)"
     ></app-room-grid>
+
+    <div class="home-title margin-12 page-padding-top-20px">Ищут комнату</div>
+    <app-roommate-grid
+      [roommates]="roommates?.slice(0, 4)"
+    ></app-roommate-grid>
   </div>
 
 </ion-content>
