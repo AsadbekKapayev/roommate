@@ -158,7 +158,7 @@ export class AdService {
     return this.rooms.filter(room => room.isLiked);
   }
 
-  loadRoommate() {
+  loadRoommates() {
     return this.roommates;
   }
 

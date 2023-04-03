@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../../services/core/login.service";
 import {AdService} from "../../../services/common/ad.service";
 import {RoomItem} from "../../../models/commons/ad/RoomItem";
+import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 
 @Component({
   selector: 'app-look-for-roommate',
@@ -13,7 +14,7 @@ import {RoomItem} from "../../../models/commons/ad/RoomItem";
 export class LookForRoommatePage implements OnInit {
 
   title: string;
-  ads: RoomItem[];
+  roommates: RoommateItem[];
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
@@ -22,7 +23,7 @@ export class LookForRoommatePage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadRooms();
+    this.roommates = this.adService.loadRoommates();
   }
 
   onClickBackIcon() {

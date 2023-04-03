@@ -12,6 +12,7 @@ import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.m
 import {HeaderModule} from "../../../components/header/header.module";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
 import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
+import {RoommateGridModule} from "../../../components/grids/roommate-grid/roommate-grid.module";
 
 @NgModule({
   declarations: [LookForRoommatePage],
@@ -27,6 +28,7 @@ import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.modu
     PipesModule,
     NgxMaskModule,
     RoomGridModule,
+    RoommateGridModule,
   ]
 })
 export class LookForRoommateModule {
