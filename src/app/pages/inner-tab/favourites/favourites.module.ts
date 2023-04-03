@@ -9,7 +9,7 @@ import {MatInputModule} from "@angular/material/input";
 import {CustomModuleModule} from "../../../components/custom-input/custom-module.module";
 import {HeaderModule} from "../../../components/header/header.module";
 import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.module";
-import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
+import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
 
 @NgModule({
   declarations: [GuidePage],
@@ -22,7 +22,7 @@ import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
     CustomModuleModule,
     HeaderModule,
     GuideGridModule,
-    AdGridModule,
+    RoomGridModule,
   ]
 })
 export class FavouritesModule {

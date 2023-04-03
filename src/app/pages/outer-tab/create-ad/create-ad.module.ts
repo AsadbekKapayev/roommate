@@ -11,7 +11,7 @@ import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.m
 import {CreateAdRoutingModule} from "./create-ad-routing.module";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
 import {NgxMaskModule} from "ngx-mask";
-import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
+import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
 import {FilterItemModule} from "../../../components/filter-item/filter-item.module";
 import {CustomCheckboxModule} from "../../../components/custom-checkbox/custom-checkbox.module";
 
@@ -28,7 +28,7 @@ import {CustomCheckboxModule} from "../../../components/custom-checkbox/custom-c
     GuideGridModule,
     PipesModule,
     NgxMaskModule,
-    AdGridModule,
+    RoomGridModule,
     FilterItemModule,
     CustomCheckboxModule,
   ]

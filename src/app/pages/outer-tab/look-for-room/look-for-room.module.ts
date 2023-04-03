@@ -11,7 +11,7 @@ import {CustomModuleModule} from "../../../components/custom-input/custom-module
 import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.module";
 import {HeaderModule} from "../../../components/header/header.module";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
-import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
+import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
 
 @NgModule({
   declarations: [LookForRoomPage],
@@ -26,7 +26,7 @@ import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
     GuideGridModule,
     PipesModule,
     NgxMaskModule,
-    AdGridModule,
+    RoomGridModule,
   ]
 })
 export class LookForRoomModule {

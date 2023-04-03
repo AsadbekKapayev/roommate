@@ -6,11 +6,11 @@ import {AdItem} from "../../../models/commons/ad/AdItem";
 import {AdService} from "../../../services/common/ad.service";
 
 @Component({
-  selector: 'app-ad-grid',
-  templateUrl: './ad-grid.component.html',
-  styleUrls: ['./ad-grid.component.scss'],
+  selector: 'app-room-grid',
+  templateUrl: './room-grid.component.html',
+  styleUrls: ['./room-grid.component.scss'],
 })
-export class AdGridComponent implements OnInit {
+export class RoomGridComponent implements OnInit {
 
   @Input() ads: AdItem[];
 

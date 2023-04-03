@@ -11,7 +11,7 @@ import {GuideGridModule} from "../../../components/grids/guide-grid/guide-grid.m
 import {AdDetailRoutingModule} from "./ad-detail-routing.module";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
 import {NgxMaskModule} from "ngx-mask";
-import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
+import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
 
 @NgModule({
   declarations: [AdDetailPage],
@@ -26,7 +26,7 @@ import {AdGridModule} from "../../../components/grids/ad-grid/ad-grid.module";
     GuideGridModule,
     PipesModule,
     NgxMaskModule,
-    AdGridModule,
+    RoomGridModule,
   ]
 })
 export class AdDetailModule {
