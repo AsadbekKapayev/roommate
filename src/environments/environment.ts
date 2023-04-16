@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // desktop: true,
+  desktop: true,
+  name: 'roommate',
+  url: 'https://roommate.kz/api'
 };
 
 /*

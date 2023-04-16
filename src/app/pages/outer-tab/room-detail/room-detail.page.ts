@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {GuideService} from "../../../services/common/guide.service";
 import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
+import {TestController} from "../../../controllers/TestController";
 
 @Component({
   selector: 'app-room-detail',
@@ -22,12 +23,16 @@ export class RoomDetailPage implements OnInit {
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private route: ActivatedRoute,
+              private testController: TestController,
               private adService: AdService) {
   }
 
   ngOnInit() {
     this.initAdDetail();
 
+    this.testController.loadGenders().toPromise().then(x => {
+      console.log('P738E33h :: ', x)
+    })
   }
 
   initAdDetail() {

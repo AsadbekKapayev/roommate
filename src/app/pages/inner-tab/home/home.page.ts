@@ -39,6 +39,10 @@ export class GuidePage implements OnInit {
   ngOnInit() {
     this.rooms = this.adService.loadRooms();
     this.roommates = this.adService.loadRoommates();
+
+    // this.testController.loadGenders().toPromise().then(x => {
+    //   console.log('GsCX6LWF :: ', x)
+    // })
   }
 
   onClickCategory(category: IonicButton) {

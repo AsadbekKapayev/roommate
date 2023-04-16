@@ -10,6 +10,7 @@ import {AppComponent} from './app.component';
 import localeRu from '@angular/common/locales/ru';
 import {registerLocaleData} from "@angular/common";
 import {ComponentControllerModule} from "./modules/component-controller.module";
+import {HttpClientModule} from "@angular/common/http";
 
 registerLocaleData(localeRu);
 
@@ -26,6 +27,7 @@ registerLocaleData(localeRu);
     ),
     ComponentControllerModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
