@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
-import {GuideService} from "../../../services/common/guide.service";
 import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
 import {TestController} from "../../../controllers/TestController";
+import {Ad} from "../../../models/commons/ad/Ad";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-room-detail',
@@ -15,7 +16,7 @@ import {TestController} from "../../../controllers/TestController";
 export class RoomDetailPage implements OnInit {
 
   room: RoomItem;
-  rooms: RoomItem[];
+  rooms: Ad[];
 
   utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
   chips2: string[] = ['Можно держать животных', 'Можно курить']; // todo
@@ -37,9 +38,13 @@ export class RoomDetailPage implements OnInit {
 
   initAdDetail() {
     const roomId = this.route.snapshot?.params?.id;
-
     this.room = this.adService.loadRoomById(roomId);
-    this.rooms = this.adService.loadRoomsOther(roomId);
+
+    this.adService.loadRooms().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.rooms = x.data;
+    });
   }
 
   onClickBackIcon() {

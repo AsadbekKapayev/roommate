@@ -1,9 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
-import {GuideItem} from "../../../models/commons/GuideItem";
 import {ALL_URL} from "../../../shares/url-static";
-import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
+import {Ad} from "../../../models/commons/ad/Ad";
 
 @Component({
   selector: 'app-room-grid',
@@ -12,9 +11,9 @@ import {AdService} from "../../../services/common/ad.service";
 })
 export class RoomGridComponent implements OnInit {
 
-  @Input() rooms: RoomItem[];
+  @Input() rooms: Ad[];
 
-  @Output() likeClicked = new EventEmitter<RoomItem>();
+  @Output() likeClicked = new EventEmitter<Ad>();
 
   constructor(private navCtrl: NavController,
               private adService: AdService) {
@@ -23,12 +22,12 @@ export class RoomGridComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickRoom(room: RoomItem) {
+  onClickRoom(room: Ad) {
     this.navCtrl.navigateForward(ALL_URL.ROOM_DETAIL + room.id).then();
   }
 
-  onClickLike(room: RoomItem) {
-    this.rooms.find(x => x.id === room.id).isLiked = !room.isLiked;
+  onClickLike(room: Ad) {
+    // this.rooms.find(x => x.id === room.id).isLiked = !room.isLiked;
     this.likeClicked.emit(room);
   }
 }

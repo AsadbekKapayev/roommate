@@ -5,24 +5,24 @@
     <div class="ad" (click)="onClickAd(roommate)">
       <div class="ad-head">
         <div class="ad-price">{{roommate.price | priceCurrency}}</div>
-        <img [src]="roommate.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
-             [alt]="roommate.isLiked ? 'heart-filled' : 'heart'"
-             (click)="$event.stopPropagation(); onClickLike(roommate)"
-        >
+        <!--        <img [src]="roommate.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"-->
+        <!--             [alt]="roommate.isLiked ? 'heart-filled' : 'heart'"-->
+        <!--             (click)="$event.stopPropagation(); onClickLike(roommate)"-->
+        <!--        >-->
       </div>
 
       <div class="ad-bottom">
-        <img [src]="roommate.img ? roommate.img : 'assets/images/no-image.jpg'" alt="ad-holder">
+        <img [src]="roommate.media[0] ? roommate.media[0] : 'assets/images/no-image.jpg'" alt="ad-holder">
 
         <div class="ad-content">
           <div class="ad-info">
-            <div class="title">{{roommate.surname}} {{roommate.name}}</div>
+            <div class="title">{{roommate.contact_name}}</div>
             <div class="ad-description custom-ellipses-2">{{roommate.description}}</div>
           </div>
 
           <div class="ad-additional-info">
-            <div>{{roommate.publishedAt | date : 'd MMMM'}}</div>
-<!--            <div>{{roommate.viewCount}}</div>-->
+            <div>{{roommate.created_at | date : 'd MMMM'}}</div>
+            <div>{{roommate.views}}</div>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import {ALL_URL} from "../../../shares/url-static";
 import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
 import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
+import {Ad} from "../../../models/commons/ad/Ad";
 
 @Component({
   selector: 'app-roommate-grid',
@@ -12,7 +13,7 @@ import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 })
 export class RoommateGridComponent implements OnInit {
 
-  @Input() roommates: RoommateItem[];
+  @Input() roommates: Ad[];
 
   @Output() likeClicked = new EventEmitter<RoommateItem>();
 
@@ -23,12 +24,12 @@ export class RoommateGridComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickAd(roommate: RoommateItem) {
+  onClickAd(roommate: Ad) {
     this.navCtrl.navigateForward(ALL_URL.ROOMMATE_DETAIL + roommate.id).then();
   }
 
-  onClickLike(roommate: RoommateItem) {
-    this.roommates.find(x => x.id === roommate.id).isLiked = !roommate.isLiked;
-    this.likeClicked.emit(roommate);
+  onClickLike(roommate: Ad) {
+    // this.roommates.find(x => x.id === roommate.id).isLiked = !roommate.isLiked;
+    // this.likeClicked.emit(roommate);
   }
 }

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
-import {LoginService} from "../../../services/core/login.service";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
-import {RoomItem} from "../../../models/commons/ad/RoomItem";
 import {AdService} from "../../../services/common/ad.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {ALL_URL} from "../../../shares/url-static";
 import {AdType} from "../../../models/commons/ad/AdType";
-import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
+import {SubSink} from "../../../shares/SubSink";
+import {Ad} from "../../../models/commons/ad/Ad";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -16,8 +16,10 @@ import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 })
 export class GuidePage implements OnInit {
 
-  rooms: RoomItem[];
-  roommates: RoommateItem[];
+  subSink = new SubSink();
+
+  rooms: Ad[];
+  roommates: Ad[];
 
   categories: IonicButton[] = [
     {
@@ -32,17 +34,32 @@ export class GuidePage implements OnInit {
 
   constructor(private navCtrl: NavController,
               private adService: AdService,
-              private loginService: LoginService,
               private settingControllerService: SettingControllerService) {
   }
 
   ngOnInit() {
-    this.rooms = this.adService.loadRooms();
-    this.roommates = this.adService.loadRoommates();
+    this.initAds();
+
+    // this.rooms = this.adService.loadRooms();
+    // this.roommates = this.adService.loadRoommates();
 
     // this.testController.loadGenders().toPromise().then(x => {
     //   console.log('GsCX6LWF :: ', x)
     // })
+  }
+
+  initAds() {
+    this.adService.loadRooms().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.rooms = x.data;
+    });
+
+    this.adService.loadRoommates().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.roommates = x.data;
+    });
   }
 
   onClickCategory(category: IonicButton) {

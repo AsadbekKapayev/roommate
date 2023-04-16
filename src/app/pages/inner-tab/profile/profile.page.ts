@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
-import {GuideService} from "../../../services/common/guide.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {AdType} from "../../../models/commons/ad/AdType";
 import {AdService} from "../../../services/common/ad.service";
-import {RoomItem} from "../../../models/commons/ad/RoomItem";
-import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
+import {Ad} from "../../../models/commons/ad/Ad";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -15,8 +14,8 @@ import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 })
 export class ProfilePage implements OnInit {
 
-  rooms: RoomItem[];
-  roommates: RoommateItem[];
+  rooms: Ad[];
+  roommates: Ad[];
 
   adType = AdType;
   selectedCategory: string = AdType.ROOMMATE;
@@ -38,8 +37,7 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.rooms = this.adService.loadRooms();
-    this.roommates = this.adService.loadRoommates();
+    this.initAds();
   }
 
   onClickCategory(category: IonicButton) {
@@ -48,6 +46,20 @@ export class ProfilePage implements OnInit {
     });
 
     this.selectedCategory = category.id;
+  }
+
+  initAds() {
+    this.adService.loadRooms().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.rooms = x.data;
+    });
+
+    this.adService.loadRoommates().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.roommates = x.data;
+    });
   }
 
 }

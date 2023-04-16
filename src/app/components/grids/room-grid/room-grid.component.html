@@ -5,24 +5,24 @@
     <div class="ad" (click)="onClickRoom(room)">
       <div class="ad-head">
         <div class="ad-price">{{room.price | priceCurrency}}</div>
-        <img [src]="room.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
-             [alt]="room.isLiked ? 'heart-filled' : 'heart'"
-             (click)="$event.stopPropagation(); onClickLike(room)"
-        >
+        <!--        <img [src]="room.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"-->
+        <!--             [alt]="room.isLiked ? 'heart-filled' : 'heart'"-->
+        <!--             (click)="$event.stopPropagation(); onClickLike(room)"-->
+        <!--        >-->
       </div>
 
       <div class="ad-bottom">
-        <img [src]="room.img ? room.img : 'assets/images/no-image.jpg'" alt="ad-holder">
+        <img [src]="room.media[0] ? room.media[0] : 'assets/images/no-image.jpg'" alt="ad-holder">
 
         <div class="ad-content">
           <div class="ad-info">
-            <div class="title">{{room.title}}</div>
+            <div class="title">{{room.contact_name}}</div>
             <div class="ad-description custom-ellipses-2">{{room.description}}</div>
           </div>
 
           <div class="ad-additional-info">
-            <div>{{room.publishedAt | date : 'd MMMM'}}</div>
-            <div>{{room.viewCount}}</div>
+            <div>{{room.created_at | date : 'd MMMM'}}</div>
+            <div>{{room.views}}</div>
           </div>
         </div>
       </div>

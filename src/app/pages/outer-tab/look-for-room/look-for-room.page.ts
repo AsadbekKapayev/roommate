@@ -3,7 +3,8 @@ import {NavController} from "@ionic/angular";
 import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../../services/core/login.service";
 import {AdService} from "../../../services/common/ad.service";
-import {RoomItem} from "../../../models/commons/ad/RoomItem";
+import {Ad} from "../../../models/commons/ad/Ad";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-look-for-room',
@@ -13,7 +14,7 @@ import {RoomItem} from "../../../models/commons/ad/RoomItem";
 export class LookForRoomPage implements OnInit {
 
   title: string;
-  ads: RoomItem[];
+  ads: Ad[];
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
@@ -22,10 +23,25 @@ export class LookForRoomPage implements OnInit {
   }
 
   ngOnInit() {
-    this.ads = this.adService.loadRooms();
+    this.initAds();
   }
 
   onClickBackIcon() {
     this.navCtrl.back();
   }
+
+  initAds() {
+    this.adService.loadRooms().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.ads = x.data;
+    });
+
+    // this.adService.loadRoommates().pipe(
+    //   take(1)
+    // ).subscribe(x => {
+    //   this.roommates = x.data;
+    // });
+  }
+
 }

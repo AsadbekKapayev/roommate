@@ -17,14 +17,14 @@
       </ng-container>
     </div>
 
-    <div class="home-title margin-12">Ищут сожителя</div>
+    <div *ngIf="rooms?.length" class="home-title margin-12">Ищут сожителя</div>
     <app-room-grid
-      [rooms]="rooms?.slice(0, 4)"
+      [rooms]="rooms"
     ></app-room-grid>
 
-    <div class="home-title margin-12 page-padding-top-20px">Ищут комнату</div>
+    <div *ngIf="roommates?.length" class="home-title margin-12 page-padding-top-20px">Ищут комнату</div>
     <app-roommate-grid
-      [roommates]="roommates?.slice(0, 4)"
+      [roommates]="roommates"
     ></app-roommate-grid>
   </div>
 

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {GuideItem} from "../../models/commons/GuideItem";
 import {RoomItem} from "../../models/commons/ad/RoomItem";
 import {RoommateItem} from "../../models/commons/ad/RoommateItem";
+import {AdController} from "../../controllers/AdController";
 
 @Injectable({
   providedIn: 'root'
@@ -139,11 +140,11 @@ export class AdService {
     },
   ]
 
-  constructor() {
+  constructor(private adController: AdController) {
   }
 
   loadRooms() {
-    return this.rooms;
+    return this.adController.loadRooms();
   }
 
   loadRoomsOther(id: string) {
@@ -159,7 +160,7 @@ export class AdService {
   }
 
   loadRoommates() {
-    return this.roommates;
+    return this.adController.loadRoommates();
   }
 
   loadRoommatesOther(id: string) {
