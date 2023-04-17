@@ -24,6 +24,9 @@ export class CustomInputComponent implements OnInit {
 
   subSink = new SubSink();
 
+  hidePassword: boolean = true;
+  isPassword = false;
+
   id = makeId(10);
   focus: boolean = false;
 
@@ -31,13 +34,14 @@ export class CustomInputComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isPassword = this.type === 'password';
   }
 
-  valueChanged() {
-    if (this.value != null && this.value !== '') {
+  valueChanged(val: string) {
+    if (val != null && val !== '') {
       this.focus = true;
     }
-    this.valueChange.emit(this.value);
+    this.valueChange.emit(val);
   }
 
   checkFocus() {
@@ -47,7 +51,12 @@ export class CustomInputComponent implements OnInit {
   }
 
   maskFilled() {
-    this.valueChanged();
+    this.valueChanged(this.value);
+  }
+
+  changePasswordType() {
+    this.hidePassword = !this.hidePassword;
+    this.type = this.hidePassword ? 'password' : 'text';
   }
 
 }

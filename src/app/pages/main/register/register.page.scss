@@ -1,0 +1,19 @@
+ion-content {
+  --background: var(--custom-background-color-white);
+}
+
+:host {
+  .register {
+    height: calc(100% - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

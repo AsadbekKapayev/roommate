@@ -3,6 +3,7 @@ export const ALL_URL = {
   // main
   LOGIN: '/main/login',
   SMS: '/main/sms',
+  REGISTER: '/main/register',
 
   // tab
   TAB_HOME: '/tabs/home-tab/home',

@@ -13,6 +13,10 @@ const routes: Routes = [
         path: 'sms',
         loadChildren: () => import('./pages/main/sms/sms.module').then(m => m.SmsModule)
       },
+      {
+        path: 'register',
+        loadChildren: () => import('./pages/main/register/register.module').then(m => m.RegisterModule)
+      },
     ],
   },
   {

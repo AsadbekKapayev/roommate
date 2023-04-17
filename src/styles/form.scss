@@ -155,15 +155,15 @@
     top: 16px;
     font-style: var(--custom-font-style-normal);
     font-size: var(--custom-font-size-5);
+    font-weight: var(--custom-font-weight-regular);
     color: var(--custom-text-color-gray);
     line-height: 16px;
-    transition:
-      background 0.2s,
-      color 0.2s,
-      top 0.2s,
-      bottom 0.2s,
-      right 0.2s,
-      left 0.2s;
+    transition: background 0.2s,
+    color 0.2s,
+    top 0.2s,
+    bottom 0.2s,
+    right 0.2s,
+    left 0.2s;
   }
 
   @include custom-input;
@@ -179,6 +179,16 @@
 .custom-button-white {
   padding: 12px;
   background: var(--custom-text-color-white);
+  border-radius: 12px;
+  font-size: var(--custom-font-size-6);
+  color: var(--custom-text-color-black);
+  transition: none !important;
+  @include custom-button;
+}
+
+.custom-button-gray {
+  padding: 12px;
+  background: var(--custom-background-color-input);
   border-radius: 12px;
   font-size: var(--custom-font-size-6);
   color: var(--custom-text-color-black);

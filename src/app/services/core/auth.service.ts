@@ -34,6 +34,14 @@ export class AuthService {
     return this.authController.verifyOtpCode(this.getPhoneNumber(), code);
   }
 
+  register(name: string, email: string, gender_id: number, password: string, password_confirmation: string) {
+    return this.authController.register(name, email, gender_id, password, password_confirmation);
+  }
+
+  loadGenders() {
+    return this.authController.loadGenders();
+  }
+
   goToHome() {
     return this.navCtrl.navigateRoot([`${ALL_URL.TAB_HOME}`]);
   }

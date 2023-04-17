@@ -7,8 +7,8 @@ export class PasswordEyePipe implements PipeTransform {
   }
 
   transform(hidePassword: boolean): string {
-    const showPasswordIcon = 'assets/icon/mobidom/password-eye.svg';
-    const hidePasswordIcon = 'assets/icon/mobidom/password-closed-eye.svg';
+    const showPasswordIcon = 'assets/icon/eye.svg';
+    const hidePasswordIcon = 'assets/icon/eye-hide.svg';
     return hidePassword ? hidePasswordIcon : showPasswordIcon;
   }
 }

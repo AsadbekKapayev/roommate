@@ -1,0 +1,65 @@
+<ion-header>
+  <app-header
+    [title]="'Регистрация'"
+    [showBackButton]="true"
+  ></app-header>
+</ion-header>
+
+<ion-content scrollY="false">
+  <div class="register page-padding-24px">
+
+    <div class="body">
+      <app-custom-input
+        [label]="'Имя'"
+        [(value)]="name"
+      ></app-custom-input>
+
+      <app-custom-input
+        [label]="'Введите почту'"
+        [error]="!isEmailValid && 'Неправильно заполнен email'"
+        (valueChange)="onChangeEmail($event)"
+        [value]="email"
+      ></app-custom-input>
+
+      <app-custom-input
+        [type]="'password'"
+        [label]="'Введите пароль'"
+        [error]="!isPasswordValid && 'Пороль должен быть больше 8 символов, и содержать символы и цифры'"
+        (valueChange)="onChangePassword($event)"
+        [value]="password"
+      ></app-custom-input>
+
+      <app-custom-input
+        [type]="'password'"
+        [label]="'Повторите пароль'"
+        [error]="passwordRepeat?.length && !isPasswordEqual && 'Пороль не совподает'"
+        (valueChange)="checkPasswordEqual($event)"
+        [value]="passwordRepeat"
+      ></app-custom-input>
+
+      <div>
+        <div class="margin-12">Пол</div>
+        <div class="categories">
+          <ng-container *ngFor="let gender of genders">
+            <button
+              [ngClass]="{'custom-button-gray': true, 'custom-button-white-selected': selectedGender?.id === gender?.id}"
+              (click)="onClickGender(gender)"
+            >
+              {{gender.title}}
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button appThrottleClick (throttleClick)="register()"
+              [disabled]="!email?.length || !password?.length || !passwordRepeat?.length
+               || !isEmailValid || !isPasswordValid || !isPasswordEqual"
+              class="custom-button-primary">
+        Продолжить
+      </button>
+    </div>
+
+  </div>
+</ion-content>

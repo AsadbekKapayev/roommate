@@ -8,7 +8,7 @@
            class="custom-input tel-input"
            id="input{{id}}"
            [mask]="'(000) 000 00 00'"
-           (ngModelChange)="valueChanged()"
+           (ngModelChange)="valueChanged($event)"
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>
@@ -25,7 +25,7 @@
            class="custom-input"
            id="input{{id}}"
            [mask]="'000 000 000 000'"
-           (ngModelChange)="valueChanged()"
+           (ngModelChange)="valueChanged($event)"
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>
@@ -37,8 +37,9 @@
   <app-error-message-form [setErrorMessage]="error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"
+           [type]="type"
            (keyup.enter)="enterPressed.emit()"
-           (ngModelChange)="valueChanged()"
+           (ngModelChange)="valueChanged($event)"
            [(ngModel)]="value"
            [class.custom-input-filled]="value"
            class="custom-input"
@@ -46,4 +47,8 @@
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>
+
+  <div class="password-eye" *ngIf="isPassword">
+    <img src="{{hidePassword | passwordEye}}" (click)="changePasswordType()" alt="eye">
+  </div>
 </div>
