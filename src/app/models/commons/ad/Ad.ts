@@ -1,3 +1,6 @@
+import {User} from "../user/User";
+import {Item} from "../Item";
+
 export class Ad {
   id: number;
   ad_gender_type_id: number;
@@ -31,4 +34,18 @@ export class Ad {
   updated_at: Date;
   user_id: number;
   views: number;
+  apartment_bathrooms_types: string[];
+  apartment_bathrooms: string[];
+  apartment_furniture_status: string[];
+  apartment_furniture: string[];
+  apartment_facilities: string[];
+  apartment_bathroom_types: string[];
+  apartment_securities: string[];
+  window_directions: string[];
+  apartment_for: string[];
+  user_liked: boolean;
+  user: User;
+  apartment_condition: Item;
+  gender_type: Item;
+  liked_users: string[];
 }

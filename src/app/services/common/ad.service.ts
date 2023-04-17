@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {GuideItem} from "../../models/commons/GuideItem";
 import {RoomItem} from "../../models/commons/ad/RoomItem";
 import {RoommateItem} from "../../models/commons/ad/RoommateItem";
 import {AdController} from "../../controllers/AdController";
@@ -82,7 +81,7 @@ export class AdService {
     },
   ];
 
-  roommates: RoommateItem[] =[
+  roommates: RoommateItem[] = [
     {
       id: '1',
       surname: 'Tarasov',
@@ -152,7 +151,7 @@ export class AdService {
   }
 
   loadRoomById(id: string) {
-    return this.rooms.find(room => room.id === id);
+    return this.adController.loadRoomById(id);
   }
 
   loadRoomsFavourites() {
@@ -168,7 +167,7 @@ export class AdService {
   }
 
   loadRoommateById(id: string) {
-    return this.roommates.find(roommate => roommate.id === id);
+    return this.adController.loadRoommateById(id);
   }
 
   loadRoommatesFavourites() {

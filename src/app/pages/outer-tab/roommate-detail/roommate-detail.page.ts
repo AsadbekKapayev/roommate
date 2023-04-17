@@ -34,7 +34,7 @@ export class RoommateDetailPage implements OnInit {
   initAdDetail() {
     const roommateId = this.route.snapshot?.params?.id;
 
-    this.roommate = this.adService.loadRoommateById(roommateId);
+    // this.roommate = this.adService.loadRoommateById(roommateId);
 
     this.adService.loadRoommates().pipe(
       take(1)
