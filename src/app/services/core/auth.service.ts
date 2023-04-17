@@ -3,15 +3,18 @@ import {StorageService} from "../../storages/storage.service";
 import {StorageSecureKeyEnum} from "../../shares/static";
 import {ALL_URL} from "../../shares/url-static";
 import {NavController} from "@ionic/angular";
+import {AuthController} from "../../controllers/AuthController";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  otpCode: string;
   token: string;
 
   constructor(private navCtrl: NavController,
+              private authController: AuthController,
               private storage: StorageService) {
   }
 
@@ -21,6 +24,14 @@ export class AuthService {
 
   setPhoneNumber(value: string) {
     return this.storage.set(StorageSecureKeyEnum.PHONE_NUMBER, value);
+  }
+
+  sendOtpCode(phoneNumber: string) {
+    return this.authController.sendOtpCode(phoneNumber);
+  }
+
+  verifyOtpCode(code: string) {
+    return this.authController.verifyOtpCode(this.getPhoneNumber(), code);
   }
 
   goToHome() {

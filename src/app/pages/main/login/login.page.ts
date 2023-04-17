@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
+import {AuthService} from "../../../services/core/auth.service";
+import {take} from "rxjs";
 import {ALL_URL} from "../../../shares/url-static";
-import {LoginService} from "../../../services/core/login.service";
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,22 @@ export class LoginPage implements OnInit {
   phoneNumberError: boolean = false;
 
   constructor(private navCtrl: NavController,
-              private loginService: LoginService) {
+              private authService: AuthService) {
   }
 
   ngOnInit() {
   }
 
   goToSms() {
-    this.loginService.login(this.phoneNumber);
+    const phone = '7' + this.phoneNumber;
+
+    this.authService.sendOtpCode(phone).pipe(
+      take(1)
+    ).subscribe(x => {
+      this.authService.otpCode = x;
+      this.authService.setPhoneNumber(phone);
+      this.navCtrl.navigateForward(ALL_URL.SMS).then();
+    })
   }
 
 }

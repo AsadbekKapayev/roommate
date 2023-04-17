@@ -3,7 +3,7 @@ import {ALL_URL} from "../../../shares/url-static";
 import {NavController} from "@ionic/angular";
 import {ToastService} from "../../../services/core/toast.service";
 import {AuthService} from "../../../services/core/auth.service";
-import {timer} from "rxjs";
+import {take, timer} from "rxjs";
 import {map} from "rxjs/operators";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {TokenService} from "../../../services/common/token.service";
@@ -37,6 +37,7 @@ export class SmsPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('W5nh1QR6 :: code :: ', this.authService.otpCode)
     this.phoneNumber = this.authService.getPhoneNumber();
   }
 
@@ -68,21 +69,25 @@ export class SmsPage implements OnInit {
       return;
     }
 
-    if (smsCode !== '7777') {
-      await this.toastService.present('Неправильно заполнили поле SMS');
-    } else {
-      this.settingControllerService.setFillProfileModal().present().then(x => {
-        if (x?.data) {
-          this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {
-            this.settingControllerService.setSettingModal().present().then();
-          });
-        }
+    this.authService.verifyOtpCode(smsCode).pipe(
+      take(1)
+    ).subscribe(
+      res => {
+        this.settingControllerService.setFillProfileModal().present().then(x => {
+          if (x?.data) {
+            this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {
+              this.settingControllerService.setSettingModal().present().then();
+            });
+          }
 
-        this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
-      });
+          this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
+        });
 
-      this.tokenService.setToken('jQeUIp9l');
-    }
+        this.tokenService.setToken(res.token);
+      },
+      error => this.toastService.present('Неправильно заполнили поле SMS')
+    );
+
   }
 
   createTimer() {
