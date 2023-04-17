@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: var(--custom-padding);
+  align-items: center;
+  padding-left: 16px;
   min-height: 56px;
   height: 56px;
   background: var(--custom-background-color-white);

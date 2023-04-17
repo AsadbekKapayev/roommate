@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {AuthService} from "../services/core/auth.service";
 import {NavController} from "@ionic/angular";
 import {SettingControllerService} from "../services/controllers/setting-controller.service";
+import {TokenService} from "../services/common/token.service";
+import {ALL_URL} from "../shares/url-static";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService,
               private navCtrl: NavController,
+              private tokenService: TokenService,
               private settingControllerService: SettingControllerService) {
   }
 
@@ -20,19 +23,21 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.authService.token) {
+    if (this.tokenService.getToken()?.length) {
       return true;
     }
 
-    this.settingControllerService.setCityAlmatyModal().present().then(x => {
-      if (x?.data !== undefined && !x?.data) {
-        this.settingControllerService.setCityModal().present().then();
-      }
+    this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
 
-      this.authService.token = 'J85QIBd0';
-    });
-
-    return true;
+    // this.settingControllerService.setCityAlmatyModal().present().then(x => {
+    //   if (x?.data !== undefined && !x?.data) {
+    //     this.settingControllerService.setCityModal().present().then();
+    //   }
+    //
+    //   this.authService.token = 'J85QIBd0';
+    // });
+    //
+    // return true;
   }
 
 }

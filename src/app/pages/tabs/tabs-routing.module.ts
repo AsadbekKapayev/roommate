@@ -11,7 +11,6 @@ const routes: Routes = [
       {
         path: 'home-tab',
         loadChildren: () => import('./home-tab/home-tab.module').then(m => m.HomeTabModule),
-        canActivate: [AuthGuard]
       },
       {
         path: 'favourites-tab',
@@ -19,11 +18,13 @@ const routes: Routes = [
       },
       {
         path: 'profile-tab',
-        loadChildren: () => import('./profile-tab/profile-tab.module').then(m => m.ProfileTabModule)
+        loadChildren: () => import('./profile-tab/profile-tab.module').then(m => m.ProfileTabModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'guide-tab',
-        loadChildren: () => import('./guide-tab/guide-tab.module').then(m => m.GuideTabModule)
+        loadChildren: () => import('./guide-tab/guide-tab.module').then(m => m.GuideTabModule),
+        canActivate: [AuthGuard]
       },
       {
         path: '',

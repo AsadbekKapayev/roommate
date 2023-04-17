@@ -6,6 +6,7 @@ import {AuthService} from "../../../services/core/auth.service";
 import {timer} from "rxjs";
 import {map} from "rxjs/operators";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
+import {TokenService} from "../../../services/common/token.service";
 
 @Component({
   selector: 'app-sms',
@@ -31,6 +32,7 @@ export class SmsPage implements OnInit {
   constructor(private navCtrl: NavController,
               private toastService: ToastService,
               private authService: AuthService,
+              private tokenService: TokenService,
               private settingControllerService: SettingControllerService) {
   }
 
@@ -71,11 +73,15 @@ export class SmsPage implements OnInit {
     } else {
       this.settingControllerService.setFillProfileModal().present().then(x => {
         if (x?.data) {
-          this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
+          this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {
+            this.settingControllerService.setSettingModal().present().then();
+          });
         }
 
         this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
       });
+
+      this.tokenService.setToken('jQeUIp9l');
     }
   }
 

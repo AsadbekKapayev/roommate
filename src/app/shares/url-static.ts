@@ -6,6 +6,7 @@ export const ALL_URL = {
 
   // tab
   TAB_HOME: '/tabs/home-tab/home',
+  TAB_PROFILE: '/tabs/profile-tab/profile',
 
   // outer tab
   LOOK_FOR_ROOM: '/outer-tab/look-for-room',
