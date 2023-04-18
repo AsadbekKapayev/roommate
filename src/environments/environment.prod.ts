@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  desktop: false,
+  name: 'roommate',
+  url: 'https://roommate.kz/api'
 };

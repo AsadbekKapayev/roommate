@@ -19,12 +19,10 @@ const routes: Routes = [
       {
         path: 'profile-tab',
         loadChildren: () => import('./profile-tab/profile-tab.module').then(m => m.ProfileTabModule),
-        canActivate: [AuthGuard]
       },
       {
         path: 'guide-tab',
         loadChildren: () => import('./guide-tab/guide-tab.module').then(m => m.GuideTabModule),
-        canActivate: [AuthGuard]
       },
       {
         path: '',
