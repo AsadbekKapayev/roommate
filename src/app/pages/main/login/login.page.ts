@@ -33,4 +33,12 @@ export class LoginPage implements OnInit {
     })
   }
 
+  onClickLoginEmail() {
+    this.navCtrl.navigateForward(ALL_URL.LOGIN_EMAIL).then();
+  }
+
+  onClickRegister() {
+    this.navCtrl.navigateForward(ALL_URL.REGISTER).then();
+  }
+
 }

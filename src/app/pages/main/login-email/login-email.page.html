@@ -1,0 +1,41 @@
+<ion-header>
+  <app-header
+    [title]="'Войти'"
+    [showBackButton]="true"
+  ></app-header>
+</ion-header>
+
+<ion-content scrollY="false">
+  <div class="login-email page-padding-24px">
+
+    <div class="body">
+      <app-custom-input
+        [label]="'Введите почту'"
+        [error]="!isEmailValid && 'Неправильно заполнен email'"
+        (valueChange)="onChangeEmail($event)"
+        [value]="email"
+      ></app-custom-input>
+
+      <app-custom-input
+        [type]="'password'"
+        [label]="'Введите пароль'"
+        (valueChange)="onChangePassword($event)"
+        [value]="password"
+      ></app-custom-input>
+    </div>
+
+    <div class="footer">
+      <div class="links">
+        <div (click)="onClickLoginEmail()">Войти через смс</div>
+        <div (click)="onClickRegister()">Зарегистрироваться</div>
+      </div>
+
+      <button appThrottleClick (throttleClick)="login()"
+              [disabled]="!email?.length || !password?.length || !isEmailValid || !isPasswordValid"
+              class="custom-button-primary">
+        Продолжить
+      </button>
+    </div>
+
+  </div>
+</ion-content>

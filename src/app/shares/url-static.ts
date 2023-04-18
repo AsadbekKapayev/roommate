@@ -4,6 +4,7 @@ export const ALL_URL = {
   LOGIN: '/main/login',
   SMS: '/main/sms',
   REGISTER: '/main/register',
+  LOGIN_EMAIL: '/main/login-email',
 
   // tab
   TAB_HOME: '/tabs/home-tab/home',

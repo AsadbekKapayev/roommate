@@ -1,32 +1,23 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {AuthService} from "../../../services/core/auth.service";
-import {take} from "rxjs";
-import {Item} from "../../../models/commons/Item";
 import {ToastService} from "../../../services/core/toast.service";
 import {TokenService} from "../../../services/common/token.service";
+import {take} from "rxjs";
 import {ALL_URL} from "../../../shares/url-static";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-login-email',
+  templateUrl: './login-email.page.html',
+  styleUrls: ['./login-email.page.scss'],
 })
-export class RegisterPage implements OnInit {
-
-  name: string;
+export class LoginEmailPage implements OnInit {
 
   email: string;
   isEmailValid: boolean = true;
 
   password: string;
   isPasswordValid: boolean = true;
-
-  passwordRepeat: string;
-  isPasswordEqual: boolean = true;
-
-  selectedGender: Item;
-  genders: Item[];
 
   constructor(private navCtrl: NavController,
               private authService: AuthService,
@@ -35,12 +26,11 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.loadGenders().pipe(
-      take(1)
-    ).subscribe(x => {
-      this.genders = x;
-      this.selectedGender = x[0];
-    })
+  }
+
+  onChangePassword(pass: string) {
+    this.isPasswordValid = pass?.length >= 8;
+    this.password = pass;
   }
 
   onChangeEmail(email: string) {
@@ -49,22 +39,8 @@ export class RegisterPage implements OnInit {
     this.email = email;
   }
 
-  onChangePassword(pass: string) {
-    this.isPasswordValid = pass?.length >= 8;
-    this.password = pass;
-  }
-
-  checkPasswordEqual(pass: any) {
-    this.isPasswordEqual = this.password === pass;
-    this.passwordRepeat = pass;
-  }
-
-  onClickGender(gender: Item) {
-    this.selectedGender = gender;
-  }
-
-  register() {
-    this.authService.register(this.name, this.email, this.selectedGender?.id, this.password, this.passwordRepeat).pipe(
+  login() {
+    this.authService.loginEmail(this.email, this.password).pipe(
       take(1)
     ).subscribe(
       x => {
@@ -77,14 +53,15 @@ export class RegisterPage implements OnInit {
         }
       }
     )
+
   }
 
   onClickLoginEmail() {
-    this.navCtrl.navigateForward(ALL_URL.LOGIN_EMAIL).then();
+    this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
   }
 
-  onClickLogin() {
-    this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
+  onClickRegister() {
+    this.navCtrl.navigateForward(ALL_URL.REGISTER).then();
   }
 
 }

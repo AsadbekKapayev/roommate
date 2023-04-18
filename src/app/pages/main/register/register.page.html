@@ -53,6 +53,11 @@
     </div>
 
     <div class="footer">
+      <div class="links">
+        <div (click)="onClickLoginEmail()">Войти через почту</div>
+        <div (click)="onClickLogin()">Войти</div>
+      </div>
+
       <button appThrottleClick (throttleClick)="register()"
               [disabled]="!email?.length || !password?.length || !passwordRepeat?.length
                || !isEmailValid || !isPasswordValid || !isPasswordEqual"

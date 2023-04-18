@@ -38,6 +38,10 @@ export class AuthService {
     return this.authController.register(name, email, gender_id, password, password_confirmation);
   }
 
+  loginEmail(email: string, password: string) {
+    return this.authController.loginEmail(email, password);
+  }
+
   loadGenders() {
     return this.authController.loadGenders();
   }

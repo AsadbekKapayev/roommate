@@ -35,6 +35,13 @@ export class AuthController {
     }).pipe(map((value) => value.body.data as UserWithToken));
   }
 
+  loginEmail(email: string, password: string): Observable<UserWithToken> {
+    return this.httpService.post('/login/email', {
+      email: email,
+      password: password,
+    }).pipe(map((value) => value.body.data as UserWithToken));
+  }
+
   loadGenders(): Observable<Item[]> {
     return this.httpService.get('/genders', {})
       .pipe(map((value) => value.body.data[0] as Item[]));

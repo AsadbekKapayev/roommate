@@ -17,3 +17,13 @@ ion-content {
   flex-direction: column;
   gap: 16px;
 }
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: var(--custom-font-size-5);
+  font-weight: var(--custom-font-weight-regular);
+  margin-bottom: 16px;
+  color: blue;
+}
