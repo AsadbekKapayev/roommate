@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Roommate</string>
+    <string name="title_activity_main">Roommate</string>
+    <string name="package_name">kz.roommate.mobile</string>
+    <string name="custom_url_scheme">kz.roommate.mobile</string>
+</resources>
