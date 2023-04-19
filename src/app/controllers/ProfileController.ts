@@ -3,7 +3,6 @@ import {HttpService} from "../services/roots/http.service";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs/internal/Observable";
-import {UserWithToken} from "../models/commons/user/UserWithToken";
 import {Item} from "../models/commons/Item";
 
 @Injectable({
@@ -15,9 +14,13 @@ export class ProfileController {
     this.httpService = this.httpService.setPrefix(environment.url);
   }
 
-  sendOtpCode(name: string,): Observable<any> {
-    return this.httpService.post('/OTPSendCode', {})
-      .pipe(map((value) => value.body as any));
+  updateProfile(name: string, email: string, genderId: number, photo: Blob): Observable<any> {
+    return this.httpService.postMultipart('/user/profile/update', {
+      name: name,
+      email: email,
+      gender_id: genderId,
+      photo: photo
+    }).pipe(map((value) => value.body as any));
   }
 
   loadGenders(): Observable<Item[]> {

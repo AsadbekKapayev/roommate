@@ -4,6 +4,7 @@ import {StorageSecureKeyEnum} from "../../shares/static";
 import {ALL_URL} from "../../shares/url-static";
 import {NavController} from "@ionic/angular";
 import {AuthController} from "../../controllers/AuthController";
+import {TokenService} from "../common/token.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthService {
 
   constructor(private navCtrl: NavController,
               private authController: AuthController,
+              private tokenService: TokenService,
               private storage: StorageService) {
   }
 
@@ -44,6 +46,14 @@ export class AuthService {
 
   goToHome() {
     return this.navCtrl.navigateRoot([`${ALL_URL.TAB_HOME}`]);
+  }
+
+  hasSession(): boolean {
+    return !!this.tokenService.token;
+  }
+
+  getSession(): string {
+    return this.tokenService.token;
   }
 
 }

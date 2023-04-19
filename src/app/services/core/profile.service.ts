@@ -22,4 +22,8 @@ export class ProfileService {
     return this.profileController.loadGenders();
   }
 
+  updateProfile(name: string, email: string, genderId: number, photo: Blob) {
+    return this.profileController.updateProfile(name, email, genderId, photo);
+  }
+
 }

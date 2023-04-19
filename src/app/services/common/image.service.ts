@@ -137,6 +137,16 @@ export class ImageService {
     this.uploadData(formData);
   }
 
+  async getFormData(file: LocalFile) {
+    const response = await fetch(file.data);
+    const blob = await response.blob();
+    const formData = new FormData();
+    formData.append('file', blob, file.name);
+
+    return formData;
+  }
+
+
   async uploadData(formData: FormData) {
     const loading = await this.loadingCtrl.create({
       message: 'Uploading image...',

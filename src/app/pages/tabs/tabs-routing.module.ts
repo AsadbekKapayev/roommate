@@ -14,11 +14,13 @@ const routes: Routes = [
       },
       {
         path: 'favourites-tab',
-        loadChildren: () => import('./favourite-tab/favourite-tab.module').then(m => m.FavouriteTabModule)
+        loadChildren: () => import('./favourite-tab/favourite-tab.module').then(m => m.FavouriteTabModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'profile-tab',
         loadChildren: () => import('./profile-tab/profile-tab.module').then(m => m.ProfileTabModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'guide-tab',

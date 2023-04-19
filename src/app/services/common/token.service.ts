@@ -9,7 +9,7 @@ export class TokenService {
   constructor() {
   }
 
-  getToken() {
+  get token() {
     return localStorage.getItem(LocalStorage.TOKEN);
   }
 

@@ -22,49 +22,42 @@
 
       <app-custom-input
         [type]="'text'"
-        [label]="'Фамилия'"
-      ></app-custom-input>
-
-      <app-custom-input
-        [type]="'text'"
         [label]="'Имя'"
+        [error]="!name?.length && 'Поле не должен быть пустым'"
+        [(value)]="name"
       ></app-custom-input>
 
       <app-custom-input
-        [type]="'text'"
-        [label]="'Отчество'"
+        [label]="'Введите почту'"
+        [error]="!isEmailValid && 'Неправильно заполнен email'"
+        (valueChange)="onChangeEmail($event)"
+        [value]="email"
       ></app-custom-input>
 
-      <app-custom-input
-        [type]="'text'"
-        [label]="'Дата рождения'"
-      ></app-custom-input>
-
-      <div class="h-margin-12">
-        <div class="profile-title">Пол</div>
-
-        <div class="categories v-margin-12">
-          <button
-            [ngClass]="{'gender': true, 'custom-button-white-selected': selectedGender === gender.MALE}"
-            (click)="selectedGender = gender.MALE"
-          >
-            {{gender.MALE}}
-          </button>
-
-          <button
-            [ngClass]="{'gender': true, 'custom-button-white-selected': selectedGender === gender.FEMALE}"
-            (click)="selectedGender = gender.FEMALE"
-          >
-            {{gender.FEMALE}}
-          </button>
+      <div>
+        <div class="margin-12">Пол</div>
+        <div class="categories">
+          <ng-container *ngFor="let gender of genders">
+            <button
+              [ngClass]="{'custom-button-gray': true, 'custom-button-white-selected': selectedGender?.id === gender?.id}"
+              (click)="onClickGender(gender)"
+            >
+              {{gender.title}}
+            </button>
+          </ng-container>
         </div>
       </div>
+
     </div>
 
     <div class="modal-button">
       <hr class="horizontal-divider">
 
-      <div class="custom-button-primary">Сохранить</div>
+      <div
+        (click)="onClickSave()"
+        class="custom-button-primary"
+      >Сохранить
+      </div>
     </div>
   </div>
 </ion-content>

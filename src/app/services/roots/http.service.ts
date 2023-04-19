@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpParameterCodec, HttpParams, HttpResponse} from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import {Observable} from 'rxjs/internal/Observable';
 
 class OptionsBuilder {
   private appendingHeaders: { [key: string]: string }[] = [];
