@@ -6,9 +6,11 @@
 </ion-header>
 
 <ion-content>
-  <div class="ad-detail">
-    <div class="ad-detail-img-container">
-      <img class="ad-detail-img" [src]="room?.media[0] ? room.media[0] : 'assets/images/no-image.jpg'" alt="guide-img">
+    <div class="ad-detail">
+    <div class="ad-detail-img-container ad-detail-img">
+      <app-image-swiper-item
+        [imageUrls]="room?.media"
+      ></app-image-swiper-item>
     </div>
 
     <div class="ad-detail-content">

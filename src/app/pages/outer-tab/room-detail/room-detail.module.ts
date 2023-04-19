@@ -12,6 +12,7 @@ import {RoomDetailRoutingModule} from "./room-detail-routing.module";
 import {PipesModule} from "../../../pipes/cores/pipes.module";
 import {NgxMaskModule} from "ngx-mask";
 import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
+import {ImageSwiperModule} from "../../../components/image-swiper/image-swiper.module";
 
 @NgModule({
   declarations: [RoomDetailPage],
@@ -27,6 +28,7 @@ import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.modu
     PipesModule,
     NgxMaskModule,
     RoomGridModule,
+    ImageSwiperModule,
   ]
 })
 export class RoomDetailModule {
