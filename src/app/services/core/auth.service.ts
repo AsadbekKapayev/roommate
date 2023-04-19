@@ -42,10 +42,6 @@ export class AuthService {
     return this.authController.loginEmail(email, password);
   }
 
-  loadGenders() {
-    return this.authController.loadGenders();
-  }
-
   goToHome() {
     return this.navCtrl.navigateRoot([`${ALL_URL.TAB_HOME}`]);
   }

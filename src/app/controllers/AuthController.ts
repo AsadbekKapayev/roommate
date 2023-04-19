@@ -42,9 +42,4 @@ export class AuthController {
     }).pipe(map((value) => value.body.data as UserWithToken));
   }
 
-  loadGenders(): Observable<Item[]> {
-    return this.httpService.get('/genders', {})
-      .pipe(map((value) => value.body.data[0] as Item[]));
-  }
-
 }

@@ -5,6 +5,7 @@ import {CommonItem} from "../../../../models/commons/CommonItem";
 import {Gender} from "../../../../models/commons/Gender";
 import {ImageService, LocalFile} from "../../../../services/common/image.service";
 import {SubSink} from "../../../../shares/SubSink";
+import {ProfileService} from "../../../../services/core/profile.service";
 
 @Component({
   selector: 'app-profile-setting-modal',
@@ -24,6 +25,7 @@ export class ProfileSettingModalComponent implements OnInit {
 
   constructor(private modalService: ModalService,
               private cityService: CityService,
+              private profileService: ProfileService,
               private imageService: ImageService) {
   }
 

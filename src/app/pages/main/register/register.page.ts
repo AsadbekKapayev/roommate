@@ -6,6 +6,7 @@ import {Item} from "../../../models/commons/Item";
 import {ToastService} from "../../../services/core/toast.service";
 import {TokenService} from "../../../services/common/token.service";
 import {ALL_URL} from "../../../shares/url-static";
+import {ProfileService} from "../../../services/core/profile.service";
 
 @Component({
   selector: 'app-register',
@@ -31,11 +32,12 @@ export class RegisterPage implements OnInit {
   constructor(private navCtrl: NavController,
               private authService: AuthService,
               private tokenService: TokenService,
+              private profileService: ProfileService,
               private toastService: ToastService) {
   }
 
   ngOnInit() {
-    this.authService.loadGenders().pipe(
+    this.profileService.loadGenders().pipe(
       take(1)
     ).subscribe(x => {
       this.genders = x;
