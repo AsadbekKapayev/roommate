@@ -13,6 +13,7 @@ import {PipesModule} from "../../../pipes/cores/pipes.module";
 import {NgxMaskModule} from "ngx-mask";
 import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
 import {RoommateGridModule} from "../../../components/grids/roommate-grid/roommate-grid.module";
+import {ImageSwiperModule} from "../../../components/image-swiper/image-swiper.module";
 
 @NgModule({
   declarations: [RoommateDetailPage],
@@ -29,6 +30,7 @@ import {RoommateGridModule} from "../../../components/grids/roommate-grid/roomma
     NgxMaskModule,
     RoomGridModule,
     RoommateGridModule,
+    ImageSwiperModule,
   ]
 })
 export class RoommateDetailModule {

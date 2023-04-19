@@ -6,11 +6,14 @@
 </ion-header>
 
 <ion-content>
-    <div class="ad-detail">
+  <div class="ad-detail">
     <div class="ad-detail-img-container ad-detail-img">
       <app-image-swiper-item
+        *ngIf="room?.media?.length"
         [imageUrls]="room?.media"
       ></app-image-swiper-item>
+
+      <img *ngIf="!room?.media?.length" src="assets/images/no-image.jpg" alt="guide-img">
     </div>
 
     <div class="ad-detail-content">
@@ -29,7 +32,7 @@
       </div>
 
       <div>
-        <div class="content-title">Параметры жилья </div>
+        <div class="content-title">Параметры жилья</div>
         <div class="content-info">Этаж 2</div> <!-- todo -->
         <div class="content-info">Площадь, 20 м2</div> <!-- todo -->
         <div class="content-info">Высота потолков, 2.2 м</div> <!-- todo -->

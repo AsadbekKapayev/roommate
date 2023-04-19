@@ -3,7 +3,6 @@ import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
 import {AdService} from "../../../services/common/ad.service";
-import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {take} from "rxjs";
 
@@ -14,7 +13,7 @@ import {take} from "rxjs";
 })
 export class RoommateDetailPage implements OnInit {
 
-  roommate: RoommateItem;
+  roommate: Ad;
   roommates: Ad[];
 
   utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
@@ -34,6 +33,9 @@ export class RoommateDetailPage implements OnInit {
   initAdDetail() {
     const roommateId = this.route.snapshot?.params?.id;
 
+    this.adService.loadRoommateById(roommateId).subscribe(x => {
+      this.roommate = x;
+    })
     // this.roommate = this.adService.loadRoommateById(roommateId);
 
     this.adService.loadRoommates().pipe(
