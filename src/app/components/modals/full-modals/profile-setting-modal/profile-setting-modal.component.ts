@@ -8,6 +8,7 @@ import {ProfileService} from "../../../../services/core/profile.service";
 import {ToastService} from "../../../../services/core/toast.service";
 import {Item} from "../../../../models/commons/Item";
 import {take} from "rxjs";
+import {User} from "../../../../models/commons/user/User";
 
 @Component({
   selector: 'app-profile-setting-modal',
@@ -26,6 +27,8 @@ export class ProfileSettingModalComponent implements OnInit {
   genders: Item[];
   selectedGender: Item;
 
+  profile: User;
+
   constructor(private modalService: ModalService,
               private cityService: CityService,
               private profileService: ProfileService,
@@ -34,6 +37,16 @@ export class ProfileSettingModalComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.profile = this.profileService.getProfile();
+
+    console.log('56a4DgJQ :: ', this.profile)
+
+    this.name = this.profile?.name;
+    this.email = this.profile?.email;
+    this.selectedGender = {
+      id: this.profile?.gender_id
+    };
+
     this.profileService.loadGenders().pipe(
       take(1)
     ).subscribe(x => {
@@ -60,6 +73,7 @@ export class ProfileSettingModalComponent implements OnInit {
   }
 
   async onClickSave() {
+
     const response = await fetch(this.profileImage.data);
     const blob = await response.blob();
     this.subSink.sink = this.profileService.updateProfile(
@@ -68,7 +82,9 @@ export class ProfileSettingModalComponent implements OnInit {
       this.selectedGender?.id,
       blob
     ).subscribe(
-      () => {
+      (x) => {
+        this.profile = x?.data?.user;
+        this.profileService.setProfile(this.profile);
         this.toastService.present('Ваши изменение сохранены')
       },
       (e) => {

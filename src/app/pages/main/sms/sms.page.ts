@@ -7,6 +7,7 @@ import {take, timer} from "rxjs";
 import {map} from "rxjs/operators";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {TokenService} from "../../../services/common/token.service";
+import {ProfileService} from "../../../services/core/profile.service";
 
 @Component({
   selector: 'app-sms',
@@ -33,6 +34,7 @@ export class SmsPage implements OnInit {
               private toastService: ToastService,
               private authService: AuthService,
               private tokenService: TokenService,
+              private profileService: ProfileService,
               private settingControllerService: SettingControllerService) {
   }
 
@@ -73,6 +75,8 @@ export class SmsPage implements OnInit {
       take(1)
     ).subscribe(
       res => {
+        this.profileService.setProfile(res?.user);
+
         this.settingControllerService.setFillProfileModal().present().then(x => {
           if (x?.data) {
             this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {

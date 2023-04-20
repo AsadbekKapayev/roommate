@@ -15,7 +15,8 @@
 
         <div class="image-wrapper">
           <img
-            [src]="profileImage?.data ? profileImage.data : 'assets/icon/setting-photo-holder.svg'"
+            [src]="profileImage?.data ? profileImage.data :
+            profile?.profile_photo_url ? profile?.profile_photo_url : 'assets/icon/setting-photo-holder.svg'"
             alt="setting-photo-holder">
         </div>
       </div>

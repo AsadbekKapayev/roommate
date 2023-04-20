@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs/internal/Observable";
 import {Item} from "../models/commons/Item";
+import {User} from "../models/commons/user/User";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ProfileController {
       email: email,
       gender_id: genderId,
       photo: photo
-    }).pipe(map((value) => value.body as any));
+    }).pipe(map((value) => value as any));
   }
 
   loadGenders(): Observable<Item[]> {

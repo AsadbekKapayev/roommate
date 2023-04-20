@@ -5,6 +5,7 @@ import {ToastService} from "../../../services/core/toast.service";
 import {TokenService} from "../../../services/common/token.service";
 import {take} from "rxjs";
 import {ALL_URL} from "../../../shares/url-static";
+import {ProfileService} from "../../../services/core/profile.service";
 
 @Component({
   selector: 'app-login-email',
@@ -22,6 +23,7 @@ export class LoginEmailPage implements OnInit {
   constructor(private navCtrl: NavController,
               private authService: AuthService,
               private tokenService: TokenService,
+              private profileService: ProfileService,
               private toastService: ToastService) {
   }
 
@@ -46,6 +48,7 @@ export class LoginEmailPage implements OnInit {
       x => {
         this.tokenService.setToken(x?.token);
         this.navCtrl.navigateForward(ALL_URL.TAB_HOME).then();
+        this.profileService.setProfile(x?.user);
       },
       e => {
         if (e?.status === 422) {
