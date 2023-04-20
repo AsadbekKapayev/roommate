@@ -4,7 +4,9 @@ import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {take} from "rxjs";
+import {forkJoin, take} from "rxjs";
+import {ProfileService} from "../../../services/core/profile.service";
+import {Item} from "../../../models/commons/Item";
 
 @Component({
   selector: 'app-roommate-detail',
@@ -19,8 +21,12 @@ export class RoommateDetailPage implements OnInit {
   utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
   chips2: string[] = ['Можно держать животных', 'Можно курить']; // todo
 
+  genders: Item[];
+  gender: Item;
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
+              private profileService: ProfileService,
               private route: ActivatedRoute,
               private adService: AdService) {
   }
@@ -33,10 +39,14 @@ export class RoommateDetailPage implements OnInit {
   initAdDetail() {
     const roommateId = this.route.snapshot?.params?.id;
 
-    this.adService.loadRoommateById(roommateId).subscribe(x => {
-      this.roommate = x;
+    forkJoin({
+      ad: this.adService.loadRoomById(roommateId),
+      genders: this.profileService.loadGenders()
+    }).subscribe(x => {
+      this.roommate = x.ad;
+      this.genders = x.genders;
+      this.gender = this.genders.find(g => g.id === this.gender?.id);
     })
-    // this.roommate = this.adService.loadRoommateById(roommateId);
 
     this.adService.loadRoommates().pipe(
       take(1)

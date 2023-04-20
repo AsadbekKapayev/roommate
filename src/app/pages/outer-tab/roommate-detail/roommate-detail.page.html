@@ -21,14 +21,14 @@
         <div class="content-title">Ищу сожителя</div>
         <div class="price-container">
           <div class="price">{{roommate.price | priceCurrency}}</div>
-          <div class="content-info">Ком. услуги {{10000 | priceCurrency}}</div>
-          <div class="content-info">Залог 20%</div>
+          <div class="content-info">Ком. услуги {{roommate?.price_com | priceCurrency}}</div>
+          <div class="content-info">Залог {{roommate?.price_pledge}}%</div>
         </div>
       </div>
 
       <div>
         <div class="content-title">Расположение</div>
-        <div class="content-info">Алматы, Байтурсынова, № 142</div> <!-- todo -->
+        <div class="content-info">{{roommate?.location}}</div>
       </div>
 
       <div>
@@ -65,12 +65,7 @@
 
       <div>
         <div class="content-title">Описание</div>
-        <div class="content-info">Летняя кухня, сад, хозпостройки, огород.
-          Земля ровная, плодовые деревья, огород.
-          На участке 2 дома площадью 60 и 110кв. м.
-          Вода, свет, газ, отопление подведены, все счетчики в наличии.
-          Торг при просмотре. Люди живут на постоянной основе.
-        </div>
+        <div class="content-info">{{roommate?.description}}</div>
       </div>
     </div>
 

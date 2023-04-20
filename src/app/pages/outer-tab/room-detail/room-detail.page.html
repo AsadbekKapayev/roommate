@@ -21,20 +21,20 @@
         <div class="content-title">Ищу сожителя</div>
         <div class="price-container">
           <div class="price">{{room?.price | priceCurrency}}</div>
-          <div class="content-info">Ком. услуги {{10000 | priceCurrency}}</div>
-          <div class="content-info">Залог 20%</div>
+          <div class="content-info">Ком. услуги {{room?.price_com | priceCurrency}}</div>
+          <div class="content-info">Залог {{room?.price_pledge}}%</div>
         </div>
       </div>
 
       <div>
         <div class="content-title">Расположение</div>
-        <div class="content-info">Алматы, Байтурсынова, № 142</div> <!-- todo -->
+        <div class="content-info">{{room?.location}}</div> <!-- todo -->
       </div>
 
       <div>
         <div class="content-title">Параметры жилья</div>
-        <div class="content-info">Этаж 2</div> <!-- todo -->
-        <div class="content-info">Площадь, 20 м2</div> <!-- todo -->
+        <div class="content-info">Этаж {{room?.floor}}</div> <!-- todo -->
+        <div class="content-info">Площадь, {{room?.square_general}} м2</div> <!-- todo -->
         <div class="content-info">Высота потолков, 2.2 м</div> <!-- todo -->
 
         <hr class="horizontal-divider v-margin-12"/>
@@ -57,7 +57,7 @@
 
       <div>
         <div class="content-title">Дополнительное информация</div>
-        <div class="content-info">Пол, женский</div>
+        <div class="content-info">Пол, {{gender?.title}}</div>
         <div class="content-info">Заселение возможно, 24.02.2023</div>
       </div>
 

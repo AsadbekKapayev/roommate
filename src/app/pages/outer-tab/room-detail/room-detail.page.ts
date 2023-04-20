@@ -5,7 +5,9 @@ import {ActivatedRoute} from "@angular/router";
 import {AdService} from "../../../services/common/ad.service";
 import {TestController} from "../../../controllers/TestController";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {take} from "rxjs";
+import {forkJoin, take} from "rxjs";
+import {Item} from "../../../models/commons/Item";
+import {ProfileService} from "../../../services/core/profile.service";
 
 @Component({
   selector: 'app-room-detail',
@@ -17,6 +19,9 @@ export class RoomDetailPage implements OnInit {
   room: Ad;
   rooms: Ad[];
 
+  gender: Item;
+  genders: Item[];
+
   utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
   chips2: string[] = ['Можно держать животных', 'Можно курить']; // todo
 
@@ -24,6 +29,7 @@ export class RoomDetailPage implements OnInit {
               private loginService: LoginService,
               private route: ActivatedRoute,
               private testController: TestController,
+              private profileService: ProfileService,
               private adService: AdService) {
   }
 
@@ -34,11 +40,14 @@ export class RoomDetailPage implements OnInit {
   initAdDetail() {
     const roomId = this.route.snapshot?.params?.id;
 
-    this.adService.loadRoomById(roomId).subscribe(x => {
-      this.room = x;
+    forkJoin({
+      ad: this.adService.loadRoomById(roomId),
+      genders: this.profileService.loadGenders()
+    }).subscribe(x => {
+      this.room = x.ad;
+      this.genders = x.genders;
+      this.gender = this.genders.find(g => g.id === this.gender?.id);
     })
-
-    // this.room = this.adService.loadRoomById(roomId);
 
     this.adService.loadRooms().pipe(
       take(1)

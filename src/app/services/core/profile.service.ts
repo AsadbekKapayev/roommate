@@ -6,8 +6,9 @@ import {NavController} from "@ionic/angular";
 import {AuthController} from "../../controllers/AuthController";
 import {ProfileController} from "../../controllers/ProfileController";
 import {UserWithToken} from "../../models/commons/user/UserWithToken";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, of, tap} from "rxjs";
 import {User} from "../../models/commons/user/User";
+import {Item} from "../../models/commons/Item";
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,21 @@ export class ProfileService {
 
   profile: User;
 
+  genders: Item[];
+
   constructor(private navCtrl: NavController,
               private profileController: ProfileController) {
   }
 
   loadGenders() {
-    return this.profileController.loadGenders();
+
+    if (this.genders) {
+      return of(this.genders);
+    }
+
+    return this.profileController.loadGenders().pipe(
+      tap(x => this.genders = x)
+    );
   }
 
   updateProfile(name: string, email: string, genderId: number, photo: Blob) {
