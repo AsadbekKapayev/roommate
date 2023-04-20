@@ -5,10 +5,10 @@
     <div class="ad" (click)="onClickRoom(room)">
       <div class="ad-head">
         <div class="ad-price">{{room.price | priceCurrency}}</div>
-        <!--        <img [src]="room.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"-->
-        <!--             [alt]="room.isLiked ? 'heart-filled' : 'heart'"-->
-        <!--             (click)="$event.stopPropagation(); onClickLike(room)"-->
-        <!--        >-->
+        <img [src]="room.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
+             [alt]="room.isLiked ? 'heart-filled' : 'heart'"
+             (click)="$event.stopPropagation(); onClickLike(room)"
+        >
       </div>
 
       <div class="ad-bottom">
