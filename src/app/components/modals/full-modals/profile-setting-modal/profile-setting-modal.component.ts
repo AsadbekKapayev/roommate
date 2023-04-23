@@ -77,7 +77,8 @@ export class ProfileSettingModalComponent implements OnInit {
     ).subscribe(
       (x) => {
         this.profile = x?.data?.user;
-        this.toastService.present('Ваши изменение сохранены')
+        this.toastService.present('Ваши изменение сохранены');
+        this.close();
       },
       (e) => {
         if (e.status === 422) {
