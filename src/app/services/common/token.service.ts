@@ -17,4 +17,8 @@ export class TokenService {
     localStorage.setItem(LocalStorage.TOKEN, token);
   }
 
+  resetToken() {
+    localStorage.setItem(LocalStorage.TOKEN, '');
+  }
+
 }

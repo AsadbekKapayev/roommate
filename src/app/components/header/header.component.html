@@ -39,6 +39,13 @@
     </div>
 
     <img
+      *ngIf="showExitButton"
+      src="assets/icon/exit.svg"
+      alt="exit-ic"
+      (click)="onClickExit()"
+    >
+
+    <img
       *ngIf="showSettingButton"
       src="../../../assets/icon/setting.svg"
       alt="setting-icon"

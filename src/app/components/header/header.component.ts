@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {SettingControllerService} from "../../services/controllers/setting-controller.service";
 import {ALL_URL} from "../../shares/url-static";
+import {TokenService} from "../../services/common/token.service";
+import {ToastService} from "../../services/core/toast.service";
 
 @Component({
   selector: 'app-header',
@@ -16,11 +18,14 @@ export class HeaderComponent implements OnInit {
   @Input() showResetButton: boolean;
   @Input() showFiltersButton: boolean;
   @Input() showSettingButton: boolean;
+  @Input() showExitButton: boolean;
 
   @Output() onCloseClicked: EventEmitter<string> = new EventEmitter();
   @Output() onResetClicked: EventEmitter<string> = new EventEmitter();
 
   constructor(private navCtrl: NavController,
+              private tokenService: TokenService,
+              private toastService: ToastService,
               private settingControllerService: SettingControllerService) {
   }
 
@@ -46,4 +51,10 @@ export class HeaderComponent implements OnInit {
   onClickSetting() {
     this.settingControllerService.setSettingModal().present().then();
   }
+
+  onClickExit() {
+    this.tokenService.resetToken();
+    this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
+  }
+
 }
