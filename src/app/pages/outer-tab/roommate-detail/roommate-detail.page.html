@@ -1,6 +1,6 @@
 <ion-header>
   <app-header
-    [title]="roommate.contact_name"
+    [title]="roommate?.contact_name"
     [showBackButton]="true"
   ></app-header>
 </ion-header>
@@ -8,19 +8,14 @@
 <ion-content>
   <div class="ad-detail">
     <div class="ad-detail-img-container ad-detail-img">
-      <app-image-swiper-item
-        *ngIf="roommate?.media?.length"
-        [imageUrls]="roommate?.media"
-      ></app-image-swiper-item>
-
-      <img *ngIf="!roommate?.media?.length" src="assets/images/no-image.jpg" alt="guide-img">
+      <img [src]="roommate?.user?.profile_photo_url ?? 'assets/images/no-image.jpg'" alt="ad-holder">
     </div>
 
     <div class="ad-detail-content">
       <div class="flex-space-between">
         <div class="content-title">Ищу сожителя</div>
         <div class="price-container">
-          <div class="price">{{roommate.price | priceCurrency}}</div>
+          <div class="price">{{roommate?.price | priceCurrency}}</div>
           <div class="content-info">Ком. услуги {{roommate?.price_com | priceCurrency}}</div>
           <div class="content-info">Залог {{roommate?.price_pledge}}%</div>
         </div>

@@ -8,7 +8,13 @@
   position: relative;
   width: 100%;
   height: 250px;
-  background-size: cover;
+
+  img {
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+  }
+
 }
 
 .ad-detail-content {

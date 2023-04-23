@@ -52,6 +52,7 @@ export class GuidePage implements OnInit {
     this.adService.loadRooms().pipe(
       take(1)
     ).subscribe(x => {
+      console.log('cjpqsB6Q :: ', x);
       this.rooms = x.data;
     });
 
@@ -63,7 +64,7 @@ export class GuidePage implements OnInit {
   }
 
   onClickCategory(category: IonicButton) {
-    var url = category?.id === AdType.ROOM ? ALL_URL.LOOK_FOR_ROOM :
+    const url = category?.id === AdType.ROOM ? ALL_URL.LOOK_FOR_ROOM :
       category?.id === AdType.ROOMMATE ? ALL_URL.LOOK_FOR_ROOMMATE :
         null;
 

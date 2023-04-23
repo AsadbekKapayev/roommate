@@ -40,7 +40,7 @@ export class RoommateDetailPage implements OnInit {
     const roommateId = this.route.snapshot?.params?.id;
 
     forkJoin({
-      ad: this.adService.loadRoomById(roommateId),
+      ad: this.adService.loadRoommateById(roommateId),
       genders: this.profileService.loadGenders()
     }).subscribe(x => {
       this.roommate = x.ad;
