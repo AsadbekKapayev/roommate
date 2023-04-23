@@ -49,7 +49,7 @@ export class RoomDetailPage implements OnInit {
       this.gender = this.genders.find(g => g.id === this.gender?.id);
     })
 
-    this.adService.loadRooms().pipe(
+    this.adService.loadRooms(1).pipe(
       take(1)
     ).subscribe(x => {
       this.rooms = x.data;

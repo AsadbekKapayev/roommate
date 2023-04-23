@@ -15,8 +15,8 @@ export class AdController {
     this.httpService = this.httpService.setPrefix(environment.url);
   }
 
-  loadRooms(): Observable<Ads> {
-    return this.httpService.get('/ad', {})
+  loadRooms(id: number): Observable<Ads> {
+    return this.httpService.get('/ad', {page: id})
       .pipe(map((value) => value.body.data[0] as Ads));
   }
 
@@ -25,8 +25,8 @@ export class AdController {
       .pipe(map((value) => value.body.data[0] as Ad));
   }
 
-  loadRoommates(): Observable<Ads> {
-    return this.httpService.get('/ad_get', {})
+  loadRoommates(id: number): Observable<Ads> {
+    return this.httpService.get('/ad_get', {page: id})
       .pipe(map((value) => value.body.data[0] as Ads));
   }
 

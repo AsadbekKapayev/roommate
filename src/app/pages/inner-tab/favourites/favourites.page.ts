@@ -30,7 +30,7 @@ export class GuidePage implements OnInit {
   }
 
   initAds() {
-    this.adService.loadRooms().pipe(
+    this.adService.loadRooms(1).pipe(
       take(1)
     ).subscribe(x => {
       this.ads = x.data;

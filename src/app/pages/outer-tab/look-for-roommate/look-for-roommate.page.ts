@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {NavController} from "@ionic/angular";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonInfiniteScroll, IonRefresher, NavController} from "@ionic/angular";
 import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../../services/core/login.service";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {take} from "rxjs";
+import {filter, take} from "rxjs";
 
 @Component({
   selector: 'app-look-for-roommate',
@@ -15,6 +15,12 @@ export class LookForRoommatePage implements OnInit {
 
   title: string;
   roommates: Ad[];
+
+  pageStart: number = 1;
+  pageEnd: number;
+
+  @ViewChild('ionRefresher') ionRefresher: IonRefresher;
+  @ViewChild('adsInfiniteScroll') adsInfiniteScroll: IonInfiniteScroll;
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
@@ -31,17 +37,27 @@ export class LookForRoommatePage implements OnInit {
   }
 
   initAds() {
-    // this.adService.loadRooms().pipe(
-    //   take(1)
-    // ).subscribe(x => {
-    //   this.rooms = x.data;
-    // });
-
-    this.adService.loadRoommates().pipe(
+    this.adService.loadRoommates(this.pageStart).pipe(
       take(1)
     ).subscribe(x => {
       this.roommates = x.data;
+      this.pageStart++;
+      this.pageEnd = x.last_page;
     });
+
+    this.ionRefresher?.complete().then();
   }
 
+  loadMore() {
+    this.adService.loadRoommates(this.pageStart).pipe(
+      take(1),
+      filter(() => this.pageStart < this.pageEnd)
+    ).subscribe(x => {
+      this.roommates?.push(...x.data);
+      this.pageStart++;
+      this.pageEnd = x.last_page;
+    });
+
+    this.adsInfiniteScroll?.complete().then();
+  }
 }

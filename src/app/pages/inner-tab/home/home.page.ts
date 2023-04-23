@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NavController} from "@ionic/angular";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonRefresher, NavController} from "@ionic/angular";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {AdService} from "../../../services/common/ad.service";
 import {IonicButton} from "../../../models/core/IonicButton";
@@ -7,7 +7,7 @@ import {ALL_URL} from "../../../shares/url-static";
 import {AdType} from "../../../models/commons/ad/AdType";
 import {SubSink} from "../../../shares/SubSink";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {take} from "rxjs";
+import {forkJoin, take} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -32,6 +32,8 @@ export class GuidePage implements OnInit {
     },
   ];
 
+  @ViewChild('ionRefresher') ionRefresher: IonRefresher;
+
   constructor(private navCtrl: NavController,
               private adService: AdService,
               private settingControllerService: SettingControllerService) {
@@ -49,18 +51,17 @@ export class GuidePage implements OnInit {
   }
 
   initAds() {
-    this.adService.loadRooms().pipe(
-      take(1)
+    this.subSink.sink = forkJoin([
+      this.adService.loadRooms(1),
+      this.adService.loadRoommates(1)
+    ]).pipe(
+      take(1),
     ).subscribe(x => {
-      console.log('cjpqsB6Q :: ', x);
-      this.rooms = x.data;
+      this.rooms = x[0]?.data;
+      this.roommates = x[1]?.data;
     });
 
-    this.adService.loadRoommates().pipe(
-      take(1)
-    ).subscribe(x => {
-      this.roommates = x.data;
-    });
+    this.ionRefresher?.complete().then();
   }
 
   onClickCategory(category: IonicButton) {
@@ -72,4 +73,13 @@ export class GuidePage implements OnInit {
       this.navCtrl.navigateForward([url]).then();
     }
   }
+
+  showMoreRooms() {
+    this.navCtrl.navigateForward([ALL_URL.LOOK_FOR_ROOM]).then();
+  }
+
+  showMoreRoommates() {
+    this.navCtrl.navigateForward([ALL_URL.LOOK_FOR_ROOMMATE]).then();
+  }
+
 }

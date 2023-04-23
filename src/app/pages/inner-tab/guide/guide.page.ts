@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NavController} from "@ionic/angular";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonInfiniteScroll, IonRefresher, NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {GuideItem} from "../../../models/commons/GuideItem";
@@ -31,13 +31,16 @@ export class GuidePage implements OnInit {
 
   guides: GuideItem[];
 
+  @ViewChild('ionRefresher') ionRefresher: IonRefresher;
+  @ViewChild('adsInfiniteScroll') adsInfiniteScroll: IonInfiniteScroll;
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private guideService: GuideService) {
   }
 
   ngOnInit() {
-    this.guides = this.guideService.loadGuides();
+    this.load();
   }
 
   onClickCategory(category: IonicButton) {
@@ -46,6 +49,17 @@ export class GuidePage implements OnInit {
     this.guides = this.selectedCategory === 'all' ? this.guideService.loadGuides() :
       this.selectedCategory === 'new' ? this.guideService.loadByCategory(GuideType.NEW) :
         this.selectedCategory === 'advice' ? this.guideService.loadByCategory(GuideType.ADVICE) : null;
+  }
+
+  load() {
+    this.guides = this.guideService.loadGuides();
+
+    this.ionRefresher?.complete().then();
+  }
+
+  loadMore() {
+    // this.guides?.push(...this.guideService.loadGuides());
+    this.adsInfiniteScroll?.complete()?.then();
   }
 
 }

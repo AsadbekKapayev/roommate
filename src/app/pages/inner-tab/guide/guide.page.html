@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher #ionRefresher slot="fixed" (ionRefresh)="load()">
+    <ion-refresher-content [pullingIcon]="null" [refreshingSpinner]="'crescent'"></ion-refresher-content>
+  </ion-refresher>
+
   <div class="guide">
     <div class="categories margin-12">
       <ng-container *ngFor="let category of categories">
@@ -20,6 +24,14 @@
     <app-guide-grid
       [guides]="guides"
     ></app-guide-grid>
+
+    <ion-infinite-scroll
+      #adsInfiniteScroll
+      threshold="50%" (ionInfinite)="loadMore()">
+      <ion-infinite-scroll-content
+        loadingSpinner="crescent">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </div>
 
 </ion-content>

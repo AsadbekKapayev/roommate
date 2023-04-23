@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher #ionRefresher slot="fixed" (ionRefresh)="initAds()">
+    <ion-refresher-content [pullingIcon]="null" [refreshingSpinner]="'crescent'"></ion-refresher-content>
+  </ion-refresher>
+
   <div class="home">
     <div class="categories h-margin-12 page-padding-bottom-20px">
       <ng-container *ngFor="let category of categories">
@@ -21,11 +25,21 @@
     <app-room-grid
       [rooms]="rooms"
     ></app-room-grid>
+    <button
+      class="show-more-button margin-top-12px"
+      (click)="showMoreRooms()"
+    >Показать все
+    </button>
 
     <div *ngIf="roommates?.length" class="home-title margin-12 page-padding-top-20px">Ищут комнату</div>
     <app-roommate-grid
       [roommates]="roommates"
     ></app-roommate-grid>
+    <button
+      class="show-more-button margin-top-12px"
+      (click)="showMoreRoommates()"
+    >Показать все
+    </button>
   </div>
 
 </ion-content>

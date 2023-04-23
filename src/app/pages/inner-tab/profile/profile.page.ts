@@ -49,13 +49,13 @@ export class ProfilePage implements OnInit {
   }
 
   initAds() {
-    this.adService.loadRooms().pipe(
+    this.adService.loadRooms(1).pipe(
       take(1)
     ).subscribe(x => {
       this.rooms = x.data;
     });
 
-    this.adService.loadRoommates().pipe(
+    this.adService.loadRoommates(1).pipe(
       take(1)
     ).subscribe(x => {
       this.roommates = x.data;

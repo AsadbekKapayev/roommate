@@ -48,7 +48,7 @@ export class RoommateDetailPage implements OnInit {
       this.gender = this.genders.find(g => g.id === this.gender?.id);
     })
 
-    this.adService.loadRoommates().pipe(
+    this.adService.loadRoommates(1).pipe(
       take(1)
     ).subscribe(x => {
       this.roommates = x.data;

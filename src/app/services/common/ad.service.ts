@@ -142,8 +142,8 @@ export class AdService {
   constructor(private adController: AdController) {
   }
 
-  loadRooms() {
-    return this.adController.loadRooms();
+  loadRooms(id: number) {
+    return this.adController.loadRooms(id);
   }
 
   loadRoomsOther(id: string) {
@@ -158,8 +158,8 @@ export class AdService {
     return this.rooms.filter(room => room.isLiked);
   }
 
-  loadRoommates() {
-    return this.adController.loadRoommates();
+  loadRoommates(id: number) {
+    return this.adController.loadRoommates(id);
   }
 
   loadRoommatesOther(id: string) {
