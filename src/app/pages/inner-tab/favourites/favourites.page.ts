@@ -4,7 +4,7 @@ import {LoginService} from "../../../services/core/login.service";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {take} from "rxjs";
+import {take, tap} from "rxjs";
 
 @Component({
   selector: 'app-favourite',
@@ -31,16 +31,13 @@ export class GuidePage implements OnInit {
 
   initAds() {
     this.adService.loadRooms(1).pipe(
-      take(1)
+      take(1),
+      tap(x => {
+        x.data?.forEach(y => y.isLiked = true);
+      })
     ).subscribe(x => {
       this.ads = x.data;
     });
-
-    // this.adService.loadRoommates().pipe(
-    //   take(1)
-    // ).subscribe(x => {
-    //   this.roommates = x.data;
-    // });
   }
 
 }
