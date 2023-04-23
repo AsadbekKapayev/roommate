@@ -9,6 +9,7 @@ import {ToastService} from "../../../../services/core/toast.service";
 import {Item} from "../../../../models/commons/Item";
 import {take} from "rxjs";
 import {User} from "../../../../models/commons/user/User";
+import {TokenService} from "../../../../services/common/token.service";
 
 @Component({
   selector: 'app-profile-setting-modal',
@@ -31,21 +32,14 @@ export class ProfileSettingModalComponent implements OnInit {
 
   constructor(private modalService: ModalService,
               private cityService: CityService,
+              private tokenService: TokenService,
               private profileService: ProfileService,
               private toastService: ToastService,
               private imageService: ImageService) {
   }
 
   async ngOnInit() {
-    this.profile = this.profileService.getProfile();
-
-    console.log('56a4DgJQ :: ', this.profile)
-
-    this.name = this.profile?.name;
-    this.email = this.profile?.email;
-    this.selectedGender = {
-      id: this.profile?.gender_id
-    };
+    this.loadProfile();
 
     this.profileService.loadGenders().pipe(
       take(1)
@@ -73,9 +67,8 @@ export class ProfileSettingModalComponent implements OnInit {
   }
 
   async onClickSave() {
-
-    const response = await fetch(this.profileImage.data);
-    const blob = await response.blob();
+    const response = await fetch(this.profileImage?.data);
+    const blob = await response?.blob();
     this.subSink.sink = this.profileService.updateProfile(
       this.name,
       this.email,
@@ -84,7 +77,6 @@ export class ProfileSettingModalComponent implements OnInit {
     ).subscribe(
       (x) => {
         this.profile = x?.data?.user;
-        this.profileService.setProfile(this.profile);
         this.toastService.present('Ваши изменение сохранены')
       },
       (e) => {
@@ -103,6 +95,19 @@ export class ProfileSettingModalComponent implements OnInit {
 
   onClickGender(gender: Item) {
     this.selectedGender = gender;
+  }
+
+  loadProfile() {
+    this.profileService.loadUser().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.profile = x;
+      this.name = this.profile?.name;
+      this.email = this.profile?.email;
+      this.selectedGender = {
+        id: this.profile?.gender_id
+      };
+    });
   }
 
 }

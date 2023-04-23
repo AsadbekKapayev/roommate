@@ -75,8 +75,6 @@ export class SmsPage implements OnInit {
       take(1)
     ).subscribe(
       res => {
-        this.profileService.setProfile(res?.user);
-
         this.settingControllerService.setFillProfileModal().present().then(x => {
           if (x?.data) {
             this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {

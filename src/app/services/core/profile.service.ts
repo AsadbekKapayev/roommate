@@ -37,22 +37,12 @@ export class ProfileService {
     );
   }
 
-  updateProfile(name: string, email: string, genderId: number, photo: Blob) {
+  updateProfile(name: string, email: string, genderId: number, photo?: Blob) {
     return this.profileController.updateProfile(name, email, genderId, photo);
   }
 
-  getProfile() {
-    if (this.profile) {
-      return this.profile;
-    }
-
-    this.profile = JSON.parse(localStorage.getItem(StorageSecureKeyEnum.PROFILE));
-    return this.profile;
-  }
-
-  setProfile(profile: User) {
-    this.profile = profile;
-    localStorage.setItem(StorageSecureKeyEnum.PROFILE, JSON.stringify(profile));
+  loadUser() {
+    return this.profileController.loadUser();
   }
 
 }

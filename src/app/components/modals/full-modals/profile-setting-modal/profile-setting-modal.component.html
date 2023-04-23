@@ -54,11 +54,12 @@
     <div class="modal-button">
       <hr class="horizontal-divider">
 
-      <div
+      <button
         (click)="onClickSave()"
+        [disabled]="!isEmailValid || !selectedGender?.id || !name?.length"
         class="custom-button-primary"
       >Сохранить
-      </div>
+      </button>
     </div>
   </div>
 </ion-content>

@@ -48,7 +48,6 @@ export class LoginEmailPage implements OnInit {
       x => {
         this.tokenService.setToken(x?.token);
         this.navCtrl.navigateForward(ALL_URL.TAB_HOME).then();
-        this.profileService.setProfile(x?.user);
       },
       e => {
         if (e?.status === 422) {
