@@ -97,7 +97,8 @@ export class ImageService {
     const savedFile = await Filesystem.writeFile({
       directory: Directory.Data,
       path: `${IMAGE_DIR}/${fileName}`,
-      data: base64Data
+      data: base64Data,
+      recursive: true
     });
     console.log('h495qJfJ :: ', savedFile);
     this.loadFiles();
