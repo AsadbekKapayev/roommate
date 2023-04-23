@@ -8,6 +8,7 @@ import {Ad} from "../../../models/commons/ad/Ad";
 import {forkJoin, take} from "rxjs";
 import {Item} from "../../../models/commons/Item";
 import {ProfileService} from "../../../services/core/profile.service";
+import {IMAGES} from "../../../components/grids/room-grid/room-grid.component";
 
 @Component({
   selector: 'app-room-detail',
@@ -44,6 +45,7 @@ export class RoomDetailPage implements OnInit {
       ad: this.adService.loadRoomById(roomId),
       genders: this.profileService.loadGenders()
     }).subscribe(x => {
+      x.ad.media = this.shuffleArray(IMAGES);
       this.room = x.ad;
       this.genders = x.genders;
       this.gender = this.genders.find(g => g.id === this.gender?.id);
@@ -58,5 +60,18 @@ export class RoomDetailPage implements OnInit {
 
   onClickBackIcon() {
     this.navCtrl.back();
+  }
+
+  shuffleArray(array) {
+    let m = array.length, t, i;
+
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+
+    return array;
   }
 }

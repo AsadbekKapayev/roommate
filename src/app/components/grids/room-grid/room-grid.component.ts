@@ -4,6 +4,15 @@ import {ALL_URL} from "../../../shares/url-static";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
 
+export const IMAGES = [
+  'assets/images/house.jpg',
+  'assets/images/house2.jpg',
+  'assets/images/house3.jpg',
+  'assets/images/house4.jpg',
+  'assets/images/room1.jpg',
+  'assets/images/room2.jpg',
+];
+
 @Component({
   selector: 'app-room-grid',
   templateUrl: './room-grid.component.html',
@@ -11,9 +20,17 @@ import {Ad} from "../../../models/commons/ad/Ad";
 })
 export class RoomGridComponent implements OnInit {
 
-  @Input() rooms: Ad[];
+  @Input() set rooms(rooms: Ad[]) {
+    rooms?.forEach(x => {
+      const random = Math.floor(Math.random() * rooms?.length);
+      x.media.push(IMAGES[random])
+    });
+    this._rooms = rooms;
+  }
 
   @Output() likeClicked = new EventEmitter<Ad>();
+
+  _rooms: Ad[];
 
   constructor(private navCtrl: NavController,
               private adService: AdService) {
@@ -27,7 +44,7 @@ export class RoomGridComponent implements OnInit {
   }
 
   onClickLike(room: Ad) {
-    this.rooms.find(x => x.id === room.id).isLiked = !room.isLiked;
+    this._rooms.find(x => x.id === room.id).isLiked = !room.isLiked;
     this.likeClicked.emit(room);
   }
 }
