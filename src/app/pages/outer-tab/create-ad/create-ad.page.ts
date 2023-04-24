@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AdService} from "../../../services/common/ad.service";
 
 import ymaps from 'ymaps';
+import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-create-ad',
@@ -20,6 +21,7 @@ export class CreateAdPage implements OnInit {
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
+              private settingControllerService: SettingControllerService,
               private route: ActivatedRoute,
               private adService: AdService) {
   }
@@ -51,4 +53,10 @@ export class CreateAdPage implements OnInit {
   onClickSave() {
     this.navCtrl.back();
   }
+
+  onClick() {
+    this.settingControllerService.setSelectModal().presentSecondary().then();
+    console.log('V7T12Gdl :: ')
+  }
+
 }
