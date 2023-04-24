@@ -1,8 +1,6 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalService} from "../../../../services/controllers/modal.service";
+import {SettingControllerService} from "../../../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-filter-modal',
@@ -16,7 +14,8 @@ export class FilterModalComponent implements OnInit {
     '1', '2', '3', '4', '5+'
   ]
 
-  constructor(private modalService: ModalService) {
+  constructor(private modalService: ModalService,
+              private settingControllerService: SettingControllerService) {
   }
 
   async ngOnInit() {
@@ -28,5 +27,10 @@ export class FilterModalComponent implements OnInit {
 
   reset() {
 
+  }
+
+  onClick() {
+    this.settingControllerService.setSelectModal().presentSecondary().then();
+    console.log('V7T12Gdl :: ')
   }
 }

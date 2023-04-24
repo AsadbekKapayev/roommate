@@ -13,6 +13,7 @@ import {ToastService} from "../../services/core/toast.service";
 export class HeaderComponent implements OnInit {
 
   @Input() title: string = '';
+  @Input() showBackButtonDefault: boolean;
   @Input() showBackButton: boolean;
   @Input() showCloseButton: boolean;
   @Input() showResetButton: boolean;
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
   @Input() showSettingButton: boolean;
   @Input() showExitButton: boolean;
 
+  @Output() onBackClicked: EventEmitter<string> = new EventEmitter();
   @Output() onCloseClicked: EventEmitter<string> = new EventEmitter();
   @Output() onResetClicked: EventEmitter<string> = new EventEmitter();
 
@@ -33,6 +35,11 @@ export class HeaderComponent implements OnInit {
   }
 
   goBack() {
+    if (this.showBackButton) {
+      this.onBackClicked.emit();
+      return;
+    }
+
     this.navCtrl.pop();
   }
 

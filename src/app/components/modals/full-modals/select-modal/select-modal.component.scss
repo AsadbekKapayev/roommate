@@ -1,0 +1,19 @@
+.items {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-regular);
+}
+
+.selected-item {
+  background: #F8F8F8;
+}

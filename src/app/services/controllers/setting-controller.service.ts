@@ -12,8 +12,10 @@ import {
   CityAlmatyModalComponent
 } from "../../components/modals/bottom-modals/city-almaty-modal/city-almaty-modal.component";
 import {CityModalComponent} from "../../components/modals/full-modals/city-modal/city-modal.component";
-import {ProfileSettingModalComponent} from "../../components/modals/full-modals/profile-setting-modal/profile-setting-modal.component";
-import {SelectModalComponent} from "../../components/modals/bottom-modals/select-modal/select-modal.component";
+import {
+  ProfileSettingModalComponent
+} from "../../components/modals/full-modals/profile-setting-modal/profile-setting-modal.component";
+import {SelectModalComponent} from "../../components/modals/full-modals/select-modal/select-modal.component";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -45,8 +47,7 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: FillProfileModalComponent,
-        componentProps: {
-        },
+        componentProps: {},
         cssClass: 'bottom-modal-component auto-height',
         swipeToClose: true,
       };
@@ -57,9 +58,8 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: SelectModalComponent,
-        componentProps: {
-        },
-        cssClass: 'bottom-modal-component auto-height',
+        componentProps: {},
+        cssClass: 'full-modal-component',
         swipeToClose: true,
       };
     });
@@ -69,8 +69,7 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: CityAlmatyModalComponent,
-        componentProps: {
-        },
+        componentProps: {},
         cssClass: 'bottom-modal-component auto-height',
         swipeToClose: true,
       };
@@ -81,8 +80,7 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: FilterModalComponent,
-        componentProps: {
-        },
+        componentProps: {},
         cssClass: 'full-modal-component',
         swipeToClose: true,
       };
@@ -93,8 +91,7 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: CityModalComponent,
-        componentProps: {
-        },
+        componentProps: {},
         cssClass: 'full-modal-component',
         swipeToClose: true,
       };
@@ -105,8 +102,7 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: ProfileSettingModalComponent,
-        componentProps: {
-        },
+        componentProps: {},
         cssClass: 'full-modal-component',
         swipeToClose: true,
       };

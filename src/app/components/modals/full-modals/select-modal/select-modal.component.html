@@ -1,0 +1,24 @@
+<ion-header>
+  <app-header
+    [title]="title"
+    [showBackButton]="true"
+    (onBackClicked)="close()"
+  ></app-header>
+</ion-header>
+
+<div class="items">
+  <div
+    *ngFor="let item of values"
+    class="item"
+    [class.selected-item]="selectedValue?.id === item?.id"
+    (click)="onSelectItem(item)"
+  >
+    <div>{{item.name}}</div>
+
+    <img
+      *ngIf="selectedValue?.id === item?.id"
+      src="assets/icon/check-mark.svg"
+      alt="check-mark"
+    >
+  </div>
+</div>
