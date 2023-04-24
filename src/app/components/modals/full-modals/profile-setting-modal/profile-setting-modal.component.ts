@@ -89,9 +89,11 @@ export class ProfileSettingModalComponent implements OnInit {
   }
 
   onChangeEmail(email: string) {
-    const regExp = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$');
+    const regExp = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$');
     this.isEmailValid = regExp.test(email);
     this.email = email;
+    console.log('2qcARfq9 :: ', email)
+    console.log('2qcARfq9 :: reg exp :: ', regExp.test(email))
   }
 
   onClickGender(gender: Item) {
