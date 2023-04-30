@@ -1,12 +1,7 @@
 import {Injectable} from '@angular/core';
-import {StorageService} from "../../storages/storage.service";
-import {StorageSecureKeyEnum} from "../../shares/static";
-import {ALL_URL} from "../../shares/url-static";
 import {NavController} from "@ionic/angular";
-import {AuthController} from "../../controllers/AuthController";
 import {ProfileController} from "../../controllers/ProfileController";
-import {UserWithToken} from "../../models/commons/user/UserWithToken";
-import {BehaviorSubject, of, tap} from "rxjs";
+import {of, tap} from "rxjs";
 import {User} from "../../models/commons/user/User";
 import {Item} from "../../models/commons/Item";
 

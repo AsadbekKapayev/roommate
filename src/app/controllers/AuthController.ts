@@ -42,4 +42,9 @@ export class AuthController {
     }).pipe(map((value) => value.body.data as UserWithToken));
   }
 
+  logout(): Observable<any> {
+    return this.httpService.post('/logout', {})
+      .pipe(map((value) => value.body as any));
+  }
+
 }

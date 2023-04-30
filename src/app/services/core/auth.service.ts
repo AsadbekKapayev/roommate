@@ -44,6 +44,10 @@ export class AuthService {
     return this.authController.loginEmail(email, password);
   }
 
+  logout() {
+    return this.authController.logout();
+  }
+
   goToHome() {
     return this.navCtrl.navigateRoot([`${ALL_URL.TAB_HOME}`]);
   }

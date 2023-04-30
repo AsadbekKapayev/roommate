@@ -4,6 +4,7 @@ import {SettingControllerService} from "../../services/controllers/setting-contr
 import {ALL_URL} from "../../shares/url-static";
 import {TokenService} from "../../services/common/token.service";
 import {ToastService} from "../../services/core/toast.service";
+import {AuthService} from "../../services/core/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   @Output() onResetClicked: EventEmitter<string> = new EventEmitter();
 
   constructor(private navCtrl: NavController,
+              private authService: AuthService,
               private tokenService: TokenService,
               private toastService: ToastService,
               private settingControllerService: SettingControllerService) {
@@ -60,6 +62,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickExit() {
+    this.authService.logout().toPromise().then();
     this.tokenService.resetToken();
     this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
   }
