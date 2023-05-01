@@ -7,18 +7,23 @@
 </ion-header>
 
 <div class="items">
-  <div
-    *ngFor="let item of values"
-    class="item"
-    [class.selected-item]="selectedValue?.id === item?.id"
-    (click)="onSelectItem(item)"
+  <ng-container
+    *ngFor="let item of values; let l = last"
   >
-    <div>{{item.name}}</div>
-
-    <img
-      *ngIf="selectedValue?.id === item?.id"
-      src="assets/icon/check-mark.svg"
-      alt="check-mark"
+    <div
+      class="item"
+      [class.selected-item]="selectedValue?.id === item?.id"
+      (click)="onSelectItem(item)"
     >
-  </div>
+      <div>{{item.title}}</div>
+
+      <img
+        *ngIf="selectedValue?.id === item?.id"
+        src="assets/icon/check-mark.svg"
+        alt="check-mark"
+      >
+    </div>
+
+    <hr *ngIf="!l" class="horizontal-divider">
+  </ng-container>
 </div>

@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {ModalService} from "../../../../services/controllers/modal.service";
-import {CommonItem} from "../../../../models/commons/CommonItem";
 import {FilterService} from "../../../../services/common/filter.service";
+import {of, take} from "rxjs";
+import {Item} from "../../../../models/commons/Item";
 
 @Component({
   selector: 'app-select-modal',
@@ -11,10 +12,25 @@ import {FilterService} from "../../../../services/common/filter.service";
 })
 export class SelectModalComponent implements OnInit, AfterViewInit {
 
-  @Input() title: string = 'Город';
-  @Input() code: string;
-  @Input() selectedValue: CommonItem;
-  values: CommonItem[];
+  @Input() title: string;
+  @Input() selectedValue: Item;
+
+  @Input() set code(code: string) {
+    let values = of(undefined);
+
+    if (code === 'city') {
+      // @ts-ignore
+      values = this.filterService.loadCities();
+    }
+
+    values.pipe(
+      take(1),
+    ).subscribe(x => {
+      this.values = x;
+    })
+  }
+
+  values: Item[];
 
   constructor(private navCtrl: NavController,
               private modalService: ModalService,
@@ -22,11 +38,6 @@ export class SelectModalComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.values = this.filterService.getCities();
-  }
-
-  onClickItem(item: CommonItem) {
-    this.filterService.updateCityFilter(item);
   }
 
   close() {
@@ -37,7 +48,7 @@ export class SelectModalComponent implements OnInit, AfterViewInit {
     this.selectedValue = this.values[0];
   }
 
-  onSelectItem(item: CommonItem) {
+  onSelectItem(item: Item) {
     this.close();
   }
 }

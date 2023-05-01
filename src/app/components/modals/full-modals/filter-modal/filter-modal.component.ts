@@ -29,8 +29,8 @@ export class FilterModalComponent implements OnInit {
 
   }
 
-  onClick() {
-    this.settingControllerService.setSelectModal().presentSecondary().then();
+  onClick(title: string, code: string) {
+    this.settingControllerService.setSelectModal(title, code).presentSecondary().then();
     console.log('V7T12Gdl :: ')
   }
 }

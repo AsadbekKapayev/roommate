@@ -40,6 +40,8 @@ export class GuidePage implements OnInit {
   }
 
   ngOnInit() {
+    this.settingControllerService.setCityModal().present().then()
+
     this.initAds();
 
     // this.rooms = this.adService.loadRooms();

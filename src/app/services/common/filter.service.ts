@@ -1,26 +1,19 @@
-import {Injectable} from "@angular/core";
-import {CityService} from "./city.service";
-import {BehaviorSubject} from "rxjs";
-import {CommonItem} from "../../models/commons/CommonItem";
-import {Observable} from "rxjs/internal/Observable";
+import {Injectable} from '@angular/core';
+import {RoomItem} from "../../models/commons/ad/RoomItem";
+import {RoommateItem} from "../../models/commons/ad/RoommateItem";
+import {AdController} from "../../controllers/AdController";
+import {FilterController} from "../../controllers/FilterController";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
 
-  cityFiltersSubject: BehaviorSubject<CommonItem> = new BehaviorSubject<CommonItem>(null);
-  cityFilters$: Observable<CommonItem> = this.cityFiltersSubject.asObservable();
-
-  constructor(private cityService: CityService) {
+  constructor(private filterController: FilterController) {
   }
 
-  getCities() {
-    return this.cityService.loadCities();
-  }
-
-  updateCityFilter(city: CommonItem) {
-    this.cityFiltersSubject.next(city);
+  loadCities() {
+    return this.filterController.loadCities();
   }
 
 }

@@ -54,11 +54,14 @@ export class SettingControllerService extends AbstractSettingController {
     });
   }
 
-  public setSelectModal(): IonicControllerAbstract {
+  public setSelectModal(title: string, code: string): IonicControllerAbstract {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: SelectModalComponent,
-        componentProps: {},
+        componentProps: {
+          title: title,
+          code: code,
+        },
         cssClass: 'full-modal-component',
         swipeToClose: true,
       };

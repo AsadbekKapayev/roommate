@@ -51,7 +51,7 @@
           [class.custom-button-white-selected]="selectedRoomQuantity === room"
         >
           {{room}}
-        </div >
+        </div>
       </div>
 
       <hr class="horizontal-divider v-margin-12">
@@ -60,7 +60,7 @@
     <div>
       <app-filter-item
         [title]="'Город'"
-        (click)="onClick()"
+        (click)="onClick('Город', 'city')"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -68,7 +68,7 @@
     <div>
       <app-filter-item
         [title]="'Пол'"
-        (click)="onClick()"
+        (click)="onClick('', '')"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -76,7 +76,7 @@
     <div>
       <app-filter-item
         [title]="'Заселение возможно'"
-        (click)="onClick()"
+        (click)="onClick('', '')"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -84,7 +84,7 @@
     <div>
       <app-filter-item
         [title]="'Условия проживания'"
-        (click)="onClick()"
+        (click)="onClick('', '')"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -106,7 +106,7 @@
     <div>
       <app-filter-item
         [title]="'Параметры жилья'"
-        (click)="onClick()"
+        (click)="onClick('', '')"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>

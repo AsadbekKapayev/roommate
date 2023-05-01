@@ -54,8 +54,8 @@ export class CreateAdPage implements OnInit {
     this.navCtrl.back();
   }
 
-  onClick() {
-    this.settingControllerService.setSelectModal().presentSecondary().then();
+  onClick(title: string, code: string) {
+    this.settingControllerService.setSelectModal(title, code).presentSecondary().then();
     console.log('V7T12Gdl :: ')
   }
 
