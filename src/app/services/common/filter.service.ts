@@ -16,4 +16,8 @@ export class FilterService {
     return this.filterController.loadCities();
   }
 
+  loadGenderTypes() {
+    return this.filterController.loadGenderTypes();
+  }
+
 }

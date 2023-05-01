@@ -1,29 +1,33 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {ModalService} from "../../../../services/controllers/modal.service";
 import {FilterService} from "../../../../services/common/filter.service";
 import {of, take} from "rxjs";
 import {Item} from "../../../../models/commons/Item";
+import {FilterType} from "../../../../models/commons/ad/FilterType";
 
 @Component({
   selector: 'app-select-modal',
   templateUrl: './select-modal.component.html',
   styleUrls: ['./select-modal.component.scss'],
 })
-export class SelectModalComponent implements OnInit, AfterViewInit {
+export class SelectModalComponent implements OnInit {
 
   @Input() title: string;
   @Input() selectedValue: Item;
 
-  @Input() set code(code: string) {
-    let values = of(undefined);
+  @Input() set code(code: FilterType) {
+    let values;
 
-    if (code === 'city') {
-      // @ts-ignore
+    if (code === FilterType.CITY) {
       values = this.filterService.loadCities();
     }
 
-    values.pipe(
+    if (code === FilterType.GENDER_TYPE) {
+      values = this.filterService.loadGenderTypes();
+    }
+
+    values?.pipe(
       take(1),
     ).subscribe(x => {
       this.values = x;
@@ -44,11 +48,8 @@ export class SelectModalComponent implements OnInit, AfterViewInit {
     this.modalService.dismiss();
   }
 
-  ngAfterViewInit(): void {
-    this.selectedValue = this.values[0];
+  onSelectItem(item: Item) {
+    this.modalService.dismiss(item);
   }
 
-  onSelectItem(item: Item) {
-    this.close();
-  }
 }

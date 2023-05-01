@@ -6,6 +6,7 @@ import {AdService} from "../../../services/common/ad.service";
 
 import ymaps from 'ymaps';
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
+import {FilterType} from "../../../models/commons/ad/FilterType";
 
 @Component({
   selector: 'app-create-ad',
@@ -54,7 +55,7 @@ export class CreateAdPage implements OnInit {
     this.navCtrl.back();
   }
 
-  onClick(title: string, code: string) {
+  onClick(title?: string, code?: FilterType) {
     this.settingControllerService.setSelectModal(title, code).presentSecondary().then();
     console.log('V7T12Gdl :: ')
   }

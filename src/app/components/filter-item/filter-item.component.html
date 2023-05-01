@@ -4,7 +4,7 @@
   <div class="filter-item-left">
     <div class="custom-ellipses-1">
       <ng-container *ngIf="!selectedItems?.length">Не выбрано</ng-container>
-      <ng-container *ngFor="let item of selectedItems">{{item}}, </ng-container>
+      <ng-container *ngFor="let item of selectedItems">{{item?.title}}</ng-container>
     </div>
 
     <img

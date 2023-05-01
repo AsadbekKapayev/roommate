@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CommonItem} from "../../models/commons/CommonItem";
+import {Component, Input, OnInit} from '@angular/core';
+import {Item} from 'app/models/commons/Item';
 
 @Component({
   selector: 'app-filter-item',
@@ -9,8 +9,7 @@ import {CommonItem} from "../../models/commons/CommonItem";
 export class FilterItemComponent implements OnInit {
 
   @Input() title: string;
-  @Input() items: CommonItem[];
-  @Input() selectedItems: CommonItem[];
+  @Input() selectedItems: Item[];
 
   constructor() {
   }

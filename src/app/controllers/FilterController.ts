@@ -21,4 +21,9 @@ export class FilterController {
       .pipe(map((value) => value.body.data[0] as Item[]));
   }
 
+  loadGenderTypes(): Observable<Item[]> {
+    return this.httpService.get('/ad_gender_types', {})
+      .pipe(map((value) => value.body.data[0] as Item[]));
+  }
+
 }

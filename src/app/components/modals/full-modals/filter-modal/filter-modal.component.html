@@ -60,7 +60,8 @@
     <div>
       <app-filter-item
         [title]="'Город'"
-        (click)="onClick('Город', 'city')"
+        [selectedItems]="selectedCity"
+        (click)="onClick('Город', type.CITY)"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -68,7 +69,8 @@
     <div>
       <app-filter-item
         [title]="'Пол'"
-        (click)="onClick('', '')"
+        [selectedItems]="genderType"
+        (click)="onClick('Пол', type.GENDER_TYPE)"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -76,7 +78,7 @@
     <div>
       <app-filter-item
         [title]="'Заселение возможно'"
-        (click)="onClick('', '')"
+        (click)="onClick()"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -84,7 +86,7 @@
     <div>
       <app-filter-item
         [title]="'Условия проживания'"
-        (click)="onClick('', '')"
+        (click)="onClick()"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -106,7 +108,7 @@
     <div>
       <app-filter-item
         [title]="'Параметры жилья'"
-        (click)="onClick('', '')"
+        (click)="onClick()"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
