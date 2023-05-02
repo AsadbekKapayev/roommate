@@ -1,0 +1,28 @@
+.items {
+  display: flex;
+  flex-direction: column;
+  height: calc(100%);
+  overflow: auto;
+  margin-bottom: 16px;
+  background: white;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-regular);
+}
+
+.selected-item {
+  background: #F8F8F8;
+}
+
+.bottom-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+}

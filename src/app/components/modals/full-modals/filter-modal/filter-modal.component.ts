@@ -36,9 +36,11 @@ export class FilterModalComponent implements OnInit {
 
   }
 
-  onClick(title?: string, code?: FilterType) {
+  onClick(title?: string, code?: FilterType, isCheckboxModal?: boolean) {
+    const modal = isCheckboxModal ? this.settingControllerService.setCheckboxModal(title, code)
+      : this.settingControllerService.setSelectModal(title, code);
 
-    this.settingControllerService.setSelectModal(title, code).presentSecondary().then(x => {
+    modal.presentSecondary().then(x => {
       if (!x?.data || isEmpty(x?.data)) {
         return;
       }
@@ -50,8 +52,7 @@ export class FilterModalComponent implements OnInit {
       if (FilterType.GENDER_TYPE === code) {
         this.genderType = [x?.data];
       }
-    })
-
+    });
   }
 
 }

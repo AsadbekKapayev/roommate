@@ -6,14 +6,14 @@ import {Item} from "../../../../models/commons/Item";
 import {FilterType} from "../../../../models/commons/ad/FilterType";
 
 @Component({
-  selector: 'app-select-modal',
-  templateUrl: './select-modal.component.html',
-  styleUrls: ['./select-modal.component.scss'],
+  selector: 'app-checkbox-modal',
+  templateUrl: './checkbox-modal.component.html',
+  styleUrls: ['./checkbox-modal.component.scss'],
 })
-export class SelectModalComponent implements OnInit {
+export class CheckboxModalComponent implements OnInit {
 
   @Input() title: string;
-  @Input() selectedValue: Item;
+  @Input() selectedValues: Item[] = [];
 
   @Input() set code(code: FilterType) {
     if (code === FilterType.CITY) {
@@ -76,7 +76,12 @@ export class SelectModalComponent implements OnInit {
   }
 
   onSelectItem(item: Item) {
-    this.modalService.dismiss(item);
+    if (!this.selectedValues.includes(item)) {
+      this.selectedValues.push(item);
+      return;
+    }
+
+    this.selectedValues = this.selectedValues?.filter(x => x.id !== item.id);
   }
 
 }

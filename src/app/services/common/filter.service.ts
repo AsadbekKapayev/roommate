@@ -1,23 +1,65 @@
 import {Injectable} from '@angular/core';
-import {RoomItem} from "../../models/commons/ad/RoomItem";
-import {RoommateItem} from "../../models/commons/ad/RoommateItem";
-import {AdController} from "../../controllers/AdController";
 import {FilterController} from "../../controllers/FilterController";
+import {Relations} from "../../models/commons/Relations";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
 
+  relations: Relations;
+
   constructor(private filterController: FilterController) {
+    this.loadRelations();
   }
 
-  loadCities() {
-    return this.filterController.loadCities();
+  async loadRelations(): Promise<Relations> {
+    const relations = await this.filterController.loadRelations().toPromise();
+    return this.relations ?? relations;
   }
 
-  loadGenderTypes() {
-    return this.filterController.loadGenderTypes();
+  async loadCities() {
+    return (await this.loadRelations()).cities;
+  }
+
+  async loadGenderTypes() {
+    return (await this.loadRelations()).ad_gender_types;
+  }
+
+  async loadApartmentConditions() {
+    return (await this.loadRelations()).apartmentConditions;
+  }
+
+  async loadApartmentFurniture() {
+    return (await this.loadRelations()).apartmentFurniture;
+  }
+
+  async loadApartmentFacilities() {
+    return (await this.loadRelations()).apartmentFacilities;
+  }
+
+  async loadApartmentBathroomTypes() {
+    return (await this.loadRelations()).apartmentBathroomTypes;
+  }
+
+  async loadApartmentFurnitureStatuses() {
+    return (await this.loadRelations()).apartmentFurnitureStatuses;
+  }
+
+  async loadApartmentBathrooms() {
+    return (await this.loadRelations()).apartmentBathrooms;
+  }
+
+  async loadApartmentSecurities() {
+    return (await this.loadRelations()).apartmentSecurities;
+  }
+
+  async loadWindowDirections() {
+    return (await this.loadRelations()).windowDirections;
+  }
+
+  async loadApartmentFor() {
+    return (await this.loadRelations()).apartmentFor;
   }
 
 }

@@ -1,0 +1,34 @@
+<ion-header>
+  <app-header
+    [title]="title"
+    [showBackButton]="true"
+    (onBackClicked)="close()"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="items">
+    <ng-container
+      *ngFor="let item of values; let l = last"
+    >
+      <div
+        class="item"
+      >
+        <app-custom-checkbox
+          style="width: 100%"
+          [title]="'Не последний этаж'"
+          [checked]="selectedValues.includes(item)"
+          (checkedChange)="onSelectItem(item)"
+        ></app-custom-checkbox>
+      </div>
+
+      <hr *ngIf="!l" class="horizontal-divider">
+    </ng-container>
+  </div>
+
+  <div class="modal-button bottom-sticky">
+    <hr class="horizontal-divider">
+
+    <button class="custom-button-primary">Поиск</button>
+  </div>
+</ion-content>
