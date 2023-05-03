@@ -76,6 +76,10 @@ export class CheckboxModalComponent implements OnInit {
   }
 
   onSelectItem(item: Item) {
+    if (!this.selectedValues) {
+      this.selectedValues = [];
+    }
+
     if (!this.selectedValues.includes(item)) {
       this.selectedValues.push(item);
       return;
@@ -84,4 +88,7 @@ export class CheckboxModalComponent implements OnInit {
     this.selectedValues = this.selectedValues?.filter(x => x.id !== item.id);
   }
 
+  onClickButton() {
+    this.modalService.dismiss(this.selectedValues);
+  }
 }

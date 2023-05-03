@@ -16,8 +16,8 @@
       >
         <app-custom-checkbox
           style="width: 100%"
-          [title]="'Не последний этаж'"
-          [checked]="selectedValues.includes(item)"
+          [title]="item?.title"
+          [checked]="selectedValues?.includes(item)"
           (checkedChange)="onSelectItem(item)"
         ></app-custom-checkbox>
       </div>
@@ -29,6 +29,10 @@
   <div class="modal-button bottom-sticky">
     <hr class="horizontal-divider">
 
-    <button class="custom-button-primary">Поиск</button>
+    <button
+      class="custom-button-primary"
+      (click)="onClickButton()"
+    >Применить
+    </button>
   </div>
 </ion-content>

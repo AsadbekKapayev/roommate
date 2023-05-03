@@ -17,7 +17,16 @@ export class FilterModalComponent implements OnInit {
     '1', '2', '3', '4', '5+'
   ];
   selectedCity: Item[];
-  genderType: Item[];
+  selectedGenderType: Item[];
+  selectedApartmentConditions: Item[];
+  selectedApartmentFurniture: Item[];
+  selectedApartmentFacilities: Item[];
+  selectedApartmentBathroomTypes: Item[];
+  selectedApartmentFurnitureStatuses: Item[];
+  selectedApartmentBathrooms: Item[];
+  selectedApartmentSecurities: Item[];
+  selectedWindowDirections: Item[];
+  selectedApartmentFor: Item[];
 
   type = FilterType;
 
@@ -37,22 +46,91 @@ export class FilterModalComponent implements OnInit {
   }
 
   onClick(title?: string, code?: FilterType, isCheckboxModal?: boolean) {
-    const modal = isCheckboxModal ? this.settingControllerService.setCheckboxModal(title, code)
-      : this.settingControllerService.setSelectModal(title, code);
+    if (isCheckboxModal) {
+      this.settingControllerService.setCheckboxModal(title, code, this.getItemsByCode(code)).presentSecondary().then(x => {
+        if (!x?.data || isEmpty(x?.data)) {
+          return;
+        }
 
-    modal.presentSecondary().then(x => {
+        this.setItemsByCode(code, x.data);
+      });
+
+      return;
+    }
+
+    this.settingControllerService.setSelectModal(title, code, this.getItemsByCode(code)).presentSecondary().then(x => {
       if (!x?.data || isEmpty(x?.data)) {
         return;
       }
 
-      if (FilterType.CITY === code) {
-        this.selectedCity = [x?.data];
-      }
-
-      if (FilterType.GENDER_TYPE === code) {
-        this.genderType = [x?.data];
-      }
+      this.setItemsByCode(code, [x.data]);
     });
+
+  }
+
+  getItemsByCode(code: FilterType) {
+    switch (code) {
+      case FilterType.CITY:
+        return this.selectedCity;
+      case FilterType.GENDER_TYPE:
+        return this.selectedGenderType;
+      case FilterType.APARTMENT_CONDITIONS:
+        return this.selectedApartmentConditions;
+      case FilterType.APARTMENT_FURNITURE:
+        return this.selectedApartmentFurniture;
+      case FilterType.APARTMENT_FACILITIES:
+        return this.selectedApartmentFacilities;
+      case FilterType.APARTMENT_BATHROOM_TYPES:
+        return this.selectedApartmentBathroomTypes;
+      case FilterType.APARTMENT_FURNITURE_STATUSES:
+        return this.selectedApartmentFurnitureStatuses;
+      case FilterType.APARTMENT_BATHROOMS:
+        return this.selectedApartmentBathrooms;
+      case FilterType.APARTMENT_SECURITIES:
+        return this.selectedApartmentSecurities;
+      case FilterType.WINDOW_DIRECTIONS:
+        return this.selectedWindowDirections;
+      case FilterType.APARTMENT_FOR:
+        return this.selectedApartmentFor;
+    }
+  }
+
+  setItemsByCode(code: FilterType, values: Item[]) {
+    switch (code) {
+      case FilterType.CITY:
+        this.selectedCity = values;
+        return;
+      case FilterType.GENDER_TYPE:
+        this.selectedGenderType = values;
+        return;
+      case FilterType.APARTMENT_CONDITIONS:
+        this.selectedApartmentConditions = values;
+        return;
+      case FilterType.APARTMENT_FURNITURE:
+        this.selectedApartmentFurniture = values;
+        return;
+      case FilterType.APARTMENT_FACILITIES:
+        this.selectedApartmentFacilities = values;
+        return;
+      case FilterType.APARTMENT_BATHROOM_TYPES:
+        this.selectedApartmentBathroomTypes = values;
+        return;
+      case FilterType.APARTMENT_FURNITURE_STATUSES:
+        this.selectedApartmentFurnitureStatuses = values;
+        return;
+      case FilterType.APARTMENT_BATHROOMS:
+        this.selectedApartmentBathrooms = values;
+        return;
+      case FilterType.APARTMENT_SECURITIES:
+        this.selectedApartmentSecurities = values;
+        return;
+      case FilterType.WINDOW_DIRECTIONS:
+        this.selectedWindowDirections = values;
+        return;
+      case FilterType.APARTMENT_FOR:
+        this.selectedApartmentFor = values;
+        return;
+    }
   }
 
 }

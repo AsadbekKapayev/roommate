@@ -69,7 +69,7 @@
     <div>
       <app-filter-item
         [title]="'Пол'"
-        [selectedItems]="genderType"
+        [selectedItems]="selectedGenderType"
         (click)="onClick('Пол', type.GENDER_TYPE, true)"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
@@ -77,16 +77,18 @@
 
     <div>
       <app-filter-item
-        [title]="'Заселение возможно'"
-        (click)="onClick()"
+        [title]="'Условия проживания'"
+        [selectedItems]="selectedApartmentConditions"
+        (click)="onClick('Условия проживания', type.APARTMENT_CONDITIONS)"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
 
     <div>
       <app-filter-item
-        [title]="'Условия проживания'"
-        (click)="onClick()"
+        [title]="'Мебель в квартире'"
+        [selectedItems]="selectedApartmentFurniture"
+        (click)="onClick('Мебель в квартире', type.APARTMENT_FURNITURE, true)"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -107,8 +109,63 @@
 
     <div>
       <app-filter-item
-        [title]="'Параметры жилья'"
-        (click)="onClick()"
+        [title]="'Удобства в апартаментах'"
+        [selectedItems]="selectedApartmentFacilities"
+        (click)="onClick('Удобства в апартаментах', type.APARTMENT_FACILITIES, true)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Типы ванных комнат'"
+        [selectedItems]="selectedApartmentBathroomTypes"
+        (click)="onClick('Типы ванных комнат', type.APARTMENT_BATHROOM_TYPES, true)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Статусы мебели в квартире'"
+        [selectedItems]="selectedApartmentFurnitureStatuses"
+        (click)="onClick('Статусы мебели в квартире', type.APARTMENT_FURNITURE_STATUSES)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Ванные комнаты'"
+        [selectedItems]="selectedApartmentBathrooms"
+        (click)="onClick('Ванные комнаты', type.APARTMENT_BATHROOMS)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Ценные бумаги на квартиру'"
+        [selectedItems]="selectedApartmentSecurities"
+        (click)="onClick('Ценные бумаги на квартиру', type.APARTMENT_SECURITIES)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Указания по окну'"
+        [selectedItems]="selectedWindowDirections"
+        (click)="onClick('Указания по окну', type.WINDOW_DIRECTIONS, true)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Квартира для'"
+        [selectedItems]="selectedApartmentFor"
+        (click)="onClick('Квартира для', type.APARTMENT_FOR, true)"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
     </div>
