@@ -1,6 +1,7 @@
 .filter-modal {
   background: var(--custom-background-color-white);
   padding: 12px;
+  overflow: auto;
 }
 
 .title {
@@ -23,4 +24,10 @@
   font-size: var(--custom-font-size-5);
   font-weight: var(--custom-font-weight-medium);
   color: var(--custom-text-color-black);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

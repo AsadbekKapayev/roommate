@@ -26,3 +26,9 @@
   position: sticky;
   bottom: 0;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

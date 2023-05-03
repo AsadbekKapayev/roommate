@@ -27,6 +27,21 @@ export class FilterModalComponent implements OnInit {
   selectedApartmentSecurities: Item[];
   selectedWindowDirections: Item[];
   selectedApartmentFor: Item[];
+  price_from: number;
+  price_to: number;
+  roommate_count: number;
+  bathrooms_count: number;
+  balconies_count: number;
+  loggias_count: number;
+  rooms_count: number;
+  floor_from: number;
+  floor: number;
+  square_general: number;
+  square_living: number;
+  square_kitchen: number;
+  kitchen_studio: number;
+  ad_gender_type_id: number;
+  city_id: number;
 
   type = FilterType;
 
@@ -131,6 +146,9 @@ export class FilterModalComponent implements OnInit {
         this.selectedApartmentFor = values;
         return;
     }
+  }
+
+  onClickSearch() {
   }
 
 }

@@ -30,6 +30,7 @@ ion-modal.bottom-modal-component.auto-height {
   --min-height: 100%;
   --backdrop-opacity: 0;
   bottom: 0;
+
   :first-of-type {
     --backdrop-opacity: 30%;
   }
