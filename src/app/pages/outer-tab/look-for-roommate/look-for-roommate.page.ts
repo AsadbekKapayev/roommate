@@ -5,6 +5,9 @@ import {LoginService} from "../../../services/core/login.service";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {filter, take} from "rxjs";
+import {isEmpty} from "../../../shares/cores/util-method";
+import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
+import {FilterService} from "../../../services/common/filter.service";
 
 @Component({
   selector: 'app-look-for-roommate',
@@ -25,6 +28,8 @@ export class LookForRoommatePage implements OnInit {
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private route: ActivatedRoute,
+              private settingControllerService: SettingControllerService,
+              private filterService: FilterService,
               private adService: AdService) {
   }
 
@@ -60,4 +65,21 @@ export class LookForRoommatePage implements OnInit {
 
     this.adsInfiniteScroll?.complete().then();
   }
+
+  onFilterClicked() {
+    this.settingControllerService.setFilterModal().present().then(x => {
+      if (!x?.data || isEmpty(x?.data)) {
+        return;
+      }
+
+      this.adService.loadByFilter(this.filterService.filter).pipe(
+        take(1),
+      ).subscribe(x => {
+        this.roommates = x?.result?.data;
+        this.pageStart = 1;
+        this.pageEnd = x?.result?.last_page;
+      })
+    });
+  }
+
 }
