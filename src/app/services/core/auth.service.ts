@@ -5,6 +5,7 @@ import {ALL_URL} from "../../shares/url-static";
 import {NavController} from "@ionic/angular";
 import {AuthController} from "../../controllers/AuthController";
 import {TokenService} from "../common/token.service";
+import {Item} from "../../models/commons/Item";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
 
   otpCode: string;
   token: string;
+  city: Item;
 
   constructor(private navCtrl: NavController,
               private authController: AuthController,
@@ -26,6 +28,14 @@ export class AuthService {
 
   setPhoneNumber(value: string) {
     return this.storage.set(StorageSecureKeyEnum.PHONE_NUMBER, value);
+  }
+
+  getCity(): Item {
+    return JSON.parse(this.storage.get(StorageSecureKeyEnum.CITY));
+  }
+
+  setCity(city: Item) {
+    this.storage.set(StorageSecureKeyEnum.CITY, JSON.stringify(city));
   }
 
   sendOtpCode(phoneNumber: string) {

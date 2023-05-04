@@ -20,7 +20,6 @@ export class CityModalComponent implements OnInit {
 
   async ngOnInit() {
     this.cities = await this.filterService.loadCities();
-    console.log('uxG8OFBH :: ', this.cities)
   }
 
   close() {
@@ -28,6 +27,6 @@ export class CityModalComponent implements OnInit {
   }
 
   onClickCity(city: Item) {
-    this.modalService.dismiss();
+    this.modalService.dismiss(city);
   }
 }

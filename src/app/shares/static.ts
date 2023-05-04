@@ -6,6 +6,7 @@ export enum LocalStorage {
 }
 
 export enum StorageSecureKeyEnum {
+  CITY = 'city',
   PHONE_NUMBER = 'phone_number',
   PROFILE = 'profile',
   TOKEN = 'token',

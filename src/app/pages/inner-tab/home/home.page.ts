@@ -8,6 +8,8 @@ import {AdType} from "../../../models/commons/ad/AdType";
 import {SubSink} from "../../../shares/SubSink";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {forkJoin, take} from "rxjs";
+import {isEmpty} from "../../../shares/cores/util-method";
+import {AuthService} from "../../../services/core/auth.service";
 
 @Component({
   selector: 'app-home',
@@ -36,11 +38,20 @@ export class GuidePage implements OnInit {
 
   constructor(private navCtrl: NavController,
               private adService: AdService,
+              private authService: AuthService,
               private settingControllerService: SettingControllerService) {
   }
 
   ngOnInit() {
-    this.settingControllerService.setCityModal().present().then()
+    if (!this.authService.getCity()) {
+      this.settingControllerService.setCityModal().present().then(x => {
+        if (!x?.data || isEmpty(x?.data)) {
+          return;
+        }
+
+        this.authService.setCity(x?.data);
+      });
+    }
 
     this.initAds();
 
