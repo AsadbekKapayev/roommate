@@ -23,7 +23,7 @@ export class RoomGridComponent implements OnInit {
   @Input() set rooms(rooms: Ad[]) {
     rooms?.forEach(x => {
       const random = Math.floor(Math.random() * rooms?.length);
-      x.media.push(IMAGES[random])
+      x.media?.push(IMAGES[random])
     });
     this._rooms = rooms;
   }

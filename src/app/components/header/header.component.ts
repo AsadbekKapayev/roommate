@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   @Output() onBackClicked: EventEmitter<string> = new EventEmitter();
   @Output() onCloseClicked: EventEmitter<string> = new EventEmitter();
   @Output() onResetClicked: EventEmitter<string> = new EventEmitter();
+  @Output() onFilterClicked: EventEmitter<string> = new EventEmitter();
 
   constructor(private navCtrl: NavController,
               private authService: AuthService,
@@ -46,7 +47,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickFilter() {
-    this.settingControllerService.setFilterModal().present().then();
+    this.onFilterClicked.emit();
   }
 
   onClickClose() {

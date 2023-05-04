@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {RoomItem} from "../../models/commons/ad/RoomItem";
 import {RoommateItem} from "../../models/commons/ad/RoommateItem";
 import {AdController} from "../../controllers/AdController";
+import {Filter} from "../../models/commons/ad/Filter";
 
 @Injectable({
   providedIn: 'root'
@@ -172,6 +173,10 @@ export class AdService {
 
   loadRoommatesFavourites() {
     return this.roommates.filter(roommate => roommate.isLiked);
+  }
+
+  loadByFilter(filter: Filter) {
+    return this.adController.loadByFilter(filter);
   }
 
 }

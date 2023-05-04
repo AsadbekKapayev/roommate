@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {Ads} from "../models/commons/ad/Ads";
 import {Observable} from "rxjs/internal/Observable";
 import {Ad} from "../models/commons/ad/Ad";
+import {Filter} from "../models/commons/ad/Filter";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,14 @@ export class AdController {
   loadRoommateById(id: string): Observable<Ad> {
     return this.httpService.get('/ad_get/' + id, {})
       .pipe(map((value) => value.body.data[0] as Ad));
+  }
+
+  loadByFilter(filter: Filter): Observable<any> {
+    return this.httpService.get('/search/text', {
+      price_from: filter?.price_from,
+      price_to: filter?.price_to,
+    })
+      .pipe(map((value) => value.body.data[0] as any));
   }
 
 }

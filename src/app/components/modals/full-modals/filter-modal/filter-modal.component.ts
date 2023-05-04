@@ -4,6 +4,8 @@ import {SettingControllerService} from "../../../../services/controllers/setting
 import {Item} from "../../../../models/commons/Item";
 import {FilterType} from "../../../../models/commons/ad/FilterType";
 import {isEmpty} from "../../../../shares/cores/util-method";
+import {FilterService} from "../../../../services/common/filter.service";
+import {Filter} from "../../../../models/commons/ad/Filter";
 
 @Component({
   selector: 'app-filter-modal',
@@ -46,6 +48,7 @@ export class FilterModalComponent implements OnInit {
   type = FilterType;
 
   constructor(private modalService: ModalService,
+              private filterService: FilterService,
               private settingControllerService: SettingControllerService) {
   }
 
@@ -149,6 +152,14 @@ export class FilterModalComponent implements OnInit {
   }
 
   onClickSearch() {
+    this.filterService.filter = {
+      rooms_count: this.rooms_count,
+      price_from: this.price_from,
+      price_to: this.price_to,
+      floor_from: this.floor_from,
+    } as Filter;
+
+    this.modalService.dismiss('just').then();
   }
 
 }

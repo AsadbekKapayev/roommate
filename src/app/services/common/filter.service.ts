@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {FilterController} from "../../controllers/FilterController";
 import {Relations} from "../../models/commons/Relations";
+import {Filter} from "../../models/commons/ad/Filter";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
 
+  filter: Filter;
   relations: Relations;
 
   constructor(private filterController: FilterController) {
