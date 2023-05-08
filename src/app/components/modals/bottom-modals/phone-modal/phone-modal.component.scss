@@ -1,0 +1,11 @@
+::ng-deep.ion-page {
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.phone-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}

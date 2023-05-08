@@ -19,6 +19,7 @@ import {SelectModalComponent} from "../../components/modals/full-modals/select-m
 import {FilterType} from "../../models/commons/ad/FilterType";
 import {CheckboxModalComponent} from "../../components/modals/full-modals/checkbox-modal/checkbox-modal.component";
 import {Item} from "../../models/commons/Item";
+import {PhoneModalComponent} from "../../components/modals/bottom-modals/phone-modal/phone-modal.component";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -126,6 +127,19 @@ export class SettingControllerService extends AbstractSettingController {
         component: ProfileSettingModalComponent,
         componentProps: {},
         cssClass: 'full-modal-component',
+        swipeToClose: true,
+      };
+    });
+  }
+
+  public setPhoneModal(phone: string): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: PhoneModalComponent,
+        componentProps: {
+          phone: phone
+        },
+        cssClass: 'bottom-modal-component auto-height',
         swipeToClose: true,
       };
     });

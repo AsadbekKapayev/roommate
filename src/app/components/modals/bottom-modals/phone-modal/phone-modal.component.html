@@ -1,0 +1,18 @@
+<div class="bottom-modal-padding modal-content">
+  <div class="modal-title">Связаться с помощью</div>
+
+  <div class="phone-buttons">
+    <a
+      class="custom-button-primary"
+        href="https://api.whatsapp.com/send?phone={{phone}}"
+      (click)="onClickWhatsapp()"
+    >Whatsapp
+    </a>
+    <a
+      href="tel:{{phone}}"
+      class="custom-button-white-border"
+      (click)="onClickCall()"
+    >Позвонить
+    </a>
+  </div>
+</div>
