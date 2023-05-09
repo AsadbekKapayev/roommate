@@ -38,4 +38,12 @@ export class AdService {
     return this.adController.adLiked();
   }
 
+  userAds() {
+    return this.adController.userAds();
+  }
+
+  userSearchAds() {
+    return this.adController.userSearchAds();
+  }
+
 }

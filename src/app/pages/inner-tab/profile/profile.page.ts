@@ -5,7 +5,8 @@ import {IonicButton} from "../../../models/core/IonicButton";
 import {AdType} from "../../../models/commons/ad/AdType";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {take} from "rxjs";
+import {forkJoin, take} from "rxjs";
+import {SubSink} from "../../../shares/SubSink";
 
 @Component({
   selector: 'app-profile',
@@ -31,6 +32,8 @@ export class ProfilePage implements OnInit {
     },
   ];
 
+  subSink = new SubSink();
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private adService: AdService) {
@@ -49,16 +52,16 @@ export class ProfilePage implements OnInit {
   }
 
   initAds() {
-    this.adService.loadRooms(1).pipe(
+    this.subSink.sink = forkJoin([
+      this.adService.userAds(),
+      this.adService.userSearchAds()
+    ]).pipe(
       take(1)
     ).subscribe(x => {
-      this.rooms = x.data;
-    });
+      console.log('3YKVGcru :: ', x)
 
-    this.adService.loadRoommates(1).pipe(
-      take(1)
-    ).subscribe(x => {
-      this.roommates = x.data;
+      this.rooms = x[0].data;
+      this.roommates = x[1].data;
     });
   }
 

@@ -53,4 +53,14 @@ export class AdController {
       .pipe(map((value) => value.body.data[0].result as Ads));
   }
 
+  userAds(): Observable<Ads> {
+    return this.httpService.get('/user/get_ad', {})
+      .pipe(map((value) => value.body.data[0] as Ads));
+  }
+
+  userSearchAds(): Observable<Ads> {
+    return this.httpService.get('/user/search_ad', {})
+      .pipe(map((value) => value.body.data[0] as Ads));
+  }
+
 }
