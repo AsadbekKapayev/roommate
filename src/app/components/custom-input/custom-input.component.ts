@@ -16,6 +16,7 @@ export class CustomInputComponent implements OnInit {
   @Input() type: 'tel' | 'password' | 'text' | 'number' | 'email' | 'textarea';
   @Input() value: any;
   @Input() whiteBackground: boolean = false;
+  @Input() readonly: boolean = false;
   @Input() icon: 'currency';
 
   @Output() valueChange = new EventEmitter<any>();

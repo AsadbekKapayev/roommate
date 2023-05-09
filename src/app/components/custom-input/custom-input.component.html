@@ -8,7 +8,9 @@
            class="custom-input tel-input"
            id="input{{id}}"
            [mask]="'(000) 000 00 00'"
+           [readonly]="readonly"
            (ngModelChange)="valueChanged($event)"
+           type="tel"
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>
@@ -25,7 +27,9 @@
            class="custom-input"
            id="input{{id}}"
            [mask]="'000 000 000 000'"
+           [readonly]="readonly"
            (ngModelChange)="valueChanged($event)"
+           type="number"
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>
@@ -44,6 +48,7 @@
            [class.custom-input-filled]="value"
            class="custom-input"
            id="input{{id}}"
+           [readonly]="readonly"
            #input>
     <label for="input{{id}}">{{label}}</label>
   </app-error-message-form>

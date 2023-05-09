@@ -48,15 +48,6 @@
 
     <div>
       <app-filter-item
-        [title]="'Город'"
-        [selectedItems]="selectedCity"
-        (click)="onClick('Город', type.CITY)"
-      ></app-filter-item>
-      <hr class="horizontal-divider v-margin-12">
-    </div>
-
-    <div>
-      <app-filter-item
         [title]="'В квартире'"
         [selectedItems]="selectedGenderType"
         (click)="onClick('В квартире', type.GENDER_TYPE, true)"
@@ -209,7 +200,29 @@
           [label]="'До'"
         ></app-custom-input>
       </div>
+      <hr class="horizontal-divider v-margin-12">
     </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Город'"
+        [selectedItems]="selectedCity"
+        (click)="onClick('Город', type.CITY)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Расположение'"
+        [readonly]="true"
+        [error]="mapError"
+        [(value)]="mapValue"
+      ></app-custom-input>
+    </div>
+
+    <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
   </div>
 
   <div class="modal-button">
@@ -218,6 +231,7 @@
     <button
       class="custom-button-primary"
       (click)="onClickSave()"
-    >Сохранить</button>
+    >Сохранить
+    </button>
   </div>
 </ion-content>
