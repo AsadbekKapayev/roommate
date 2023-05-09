@@ -8,6 +8,7 @@ import {SettingControllerService} from "../../../services/controllers/setting-co
 import {FilterType} from "../../../models/commons/ad/FilterType";
 import {Item} from "../../../models/commons/Item";
 import {isEmpty} from "../../../shares/cores/util-method";
+import {AdStore} from 'app/models/commons/ad/AdStore';
 
 @Component({
   selector: 'app-create-ad',
@@ -16,13 +17,7 @@ import {isEmpty} from "../../../shares/cores/util-method";
 })
 export class CreateAdPage implements OnInit {
 
-  selectedRoomQuantity: string;
-  roomsQuantity: string[] = [
-    '1', '2', '3', '4', '5+'
-  ];
-
-  price_from: number;
-  price_to: number;
+  adStore: AdStore;
 
   selectedCity: Item[];
   selectedGenderType: Item[];
@@ -48,6 +43,7 @@ export class CreateAdPage implements OnInit {
   }
 
   ngOnInit() {
+    this.adStore = new AdStore();
     this.loadMap().then();
   }
 

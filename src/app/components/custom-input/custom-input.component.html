@@ -10,9 +10,14 @@
            [mask]="'(000) 000 00 00'"
            [readonly]="readonly"
            (ngModelChange)="valueChanged($event)"
-           type="tel"
+           [type]="type"
            #input>
-    <label for="input{{id}}">{{label}}</label>
+    <label for="input{{id}}">
+      <span>{{label}}</span>
+      <span *ngIf="asterisks"
+            class="asterisks"
+      >*</span>
+    </label>
   </app-error-message-form>
   <div *ngIf="focus || value" class="tel-prefix">+7</div>
 </div>
@@ -26,15 +31,24 @@
            [class.custom-input-filled]="value"
            class="custom-input"
            id="input{{id}}"
-           [mask]="'000 000 000 000'"
            [readonly]="readonly"
            (ngModelChange)="valueChanged($event)"
-           type="number"
+           [type]="type"
+           [max]="maxValue"
+           [min]="minValue"
            #input>
-    <label for="input{{id}}">{{label}}</label>
+    <label for="input{{id}}">
+      {{label}}
+      <div *ngIf="asterisks"
+           class="asterisks"
+      >
+        *
+      </div>
+    </label>
   </app-error-message-form>
 
   <img *ngIf="icon === 'currency'" class="suffix" src="assets/icon/currency.svg" alt="currency-icon">
+  <img *ngIf="icon === 'percent'" class="suffix" src="assets/icon/percent.svg" alt="percent-icon">
 </div>
 
 <div *ngIf="type !== 'tel' && type !== 'number'" class="input-form">
@@ -50,7 +64,14 @@
            id="input{{id}}"
            [readonly]="readonly"
            #input>
-    <label for="input{{id}}">{{label}}</label>
+    <label for="input{{id}}">
+      {{label}}
+      <div *ngIf="asterisks"
+           class="asterisks"
+      >
+        *
+      </div>
+    </label>
   </app-error-message-form>
 
   <div class="password-eye" *ngIf="isPassword">

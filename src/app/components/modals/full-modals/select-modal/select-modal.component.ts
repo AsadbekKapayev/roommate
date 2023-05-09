@@ -13,7 +13,16 @@ import {FilterType} from "../../../../models/commons/ad/FilterType";
 export class SelectModalComponent implements OnInit {
 
   @Input() title: string;
-  @Input() selectedValue: Item;
+
+  @Input() set selectedValues(selectedValues: Item[]) {
+    if (!selectedValues?.length) {
+      return;
+    }
+
+    this.selectedValue = selectedValues[0];
+  }
+
+  selectedValue: Item;
 
   @Input() set code(code: FilterType) {
     if (code === FilterType.CITY) {

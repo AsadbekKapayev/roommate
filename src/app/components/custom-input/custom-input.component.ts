@@ -15,9 +15,12 @@ export class CustomInputComponent implements OnInit {
   @Input() placeholder: string = '';
   @Input() type: 'tel' | 'password' | 'text' | 'number' | 'email' | 'textarea';
   @Input() value: any;
+  @Input() maxValue: any;
+  @Input() minValue: any;
   @Input() whiteBackground: boolean = false;
   @Input() readonly: boolean = false;
-  @Input() icon: 'currency';
+  @Input() asterisks: boolean = false;
+  @Input() icon: 'currency' | 'percent';
 
   @Output() valueChange = new EventEmitter<any>();
   @Output() enterPressed = new EventEmitter();

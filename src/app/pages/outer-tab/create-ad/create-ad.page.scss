@@ -5,7 +5,7 @@
 
 .title {
   font-size: var(--custom-font-size-4);
-  font-weight: var(--custom-font-weight-semibold);
+  font-weight: var(--custom-font-weight-medium);
   line-height: var(--custom-line-height);
   color: var(--custom-text-color-black);
 }
@@ -23,4 +23,14 @@
   font-size: var(--custom-font-size-5);
   font-weight: var(--custom-font-weight-medium);
   color: var(--custom-text-color-black);
+}
+
+.price-pledge {
+  margin-top: 12px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

@@ -9,6 +9,7 @@ import {Item} from 'app/models/commons/Item';
 export class FilterItemComponent implements OnInit {
 
   @Input() title: string;
+  @Input() asterisks: boolean;
   @Input() selectedItems: Item[];
 
   constructor() {

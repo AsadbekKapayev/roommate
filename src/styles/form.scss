@@ -149,6 +149,9 @@
   }
 
   & + label {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
     z-index: 1;
     position: absolute;
     left: 20px;

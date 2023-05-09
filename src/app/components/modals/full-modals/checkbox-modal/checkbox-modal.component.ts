@@ -13,7 +13,17 @@ import {FilterType} from "../../../../models/commons/ad/FilterType";
 export class CheckboxModalComponent implements OnInit {
 
   @Input() title: string;
-  @Input() selectedValues: Item[] = [];
+
+  @Input() set selectedValues(selectedValues: Item[]) {
+    if (!selectedValues?.length) {
+      return;
+    }
+
+    this._selectedValues = selectedValues;
+  }
+
+  _selectedValues: Item[];
+
 
   @Input() set code(code: FilterType) {
     if (code === FilterType.CITY) {
@@ -76,19 +86,26 @@ export class CheckboxModalComponent implements OnInit {
   }
 
   onSelectItem(item: Item) {
-    if (!this.selectedValues) {
-      this.selectedValues = [];
+    if (!this._selectedValues) {
+      this._selectedValues = [];
     }
 
-    if (!this.selectedValues.includes(item)) {
-      this.selectedValues.push(item);
+    if (!this._selectedValues.find(x => x?.id === item?.id)) {
+      this._selectedValues.push(item);
       return;
     }
 
-    this.selectedValues = this.selectedValues?.filter(x => x.id !== item.id);
+    this._selectedValues = this._selectedValues?.filter(x => x.id !== item.id);
   }
 
   onClickButton() {
-    this.modalService.dismiss(this.selectedValues);
+    this.modalService.dismiss(this._selectedValues);
   }
+
+  contains(item: Item) {
+    console.log('emFHgk5o :: ', this._selectedValues)
+
+    return Boolean(this._selectedValues?.find(x => x.id === item?.id));
+  }
+
 }
