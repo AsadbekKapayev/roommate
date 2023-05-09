@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {RoomItem} from "../../models/commons/ad/RoomItem";
-import {RoommateItem} from "../../models/commons/ad/RoommateItem";
 import {AdController} from "../../controllers/AdController";
 import {Filter} from "../../models/commons/ad/Filter";
 
@@ -9,137 +7,6 @@ import {Filter} from "../../models/commons/ad/Filter";
 })
 export class AdService {
 
-  rooms: RoomItem[] = [
-    {
-      id: '1',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: 'assets/images/house.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-    {
-      id: '2',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: '',
-      isLiked: false,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-    {
-      id: '3',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: 'assets/images/house2.jpg',
-      isLiked: true,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-    {
-      id: '4',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: 'assets/images/house3.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-    {
-      id: '5',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: 'assets/images/house4.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-    {
-      id: '6',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: 'assets/images/room1.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-    {
-      id: '7',
-      title: '1-комнатная квартира',
-      description: 'Алматы р-н, Нажимеденова',
-      price: 150000,
-      img: 'assets/images/room2.jpg',
-      isLiked: true,
-      publishedAt: new Date(),
-      viewCount: 150
-    },
-  ];
-
-  roommates: RoommateItem[] = [
-    {
-      id: '1',
-      surname: 'Tarasov',
-      name: 'Daniyar',
-      description: 'Казахи известны своими престижными и сложными фамилиями. ' +
-        'Для людей принято иметь хотя бы одно казахское имя, которое обычно является именем деда по материнской линии.',
-      price: 35000,
-      img: 'assets/images/human1.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-    },
-    {
-      id: '2',
-      surname: 'Ruslanov',
-      name: 'Serik',
-      description: 'Казахи известны своими престижными и сложными фамилиями. ' +
-        'Для людей принято иметь хотя бы одно казахское имя, которое обычно является именем деда по материнской линии.',
-      price: 30000,
-      img: 'assets/images/human2.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-    },
-    {
-      id: '3',
-      surname: 'Ayatev',
-      name: 'Ershat',
-      description: 'Казахи известны своими престижными и сложными фамилиями. ' +
-        'Для людей принято иметь хотя бы одно казахское имя, которое обычно является именем деда по материнской линии.',
-      price: 35000,
-      img: 'assets/images/human3.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-    },
-    {
-      id: '4',
-      surname: 'Maratov',
-      name: 'Yerzhan',
-      description: 'Казахи известны своими престижными и сложными фамилиями. ' +
-        'Для людей принято иметь хотя бы одно казахское имя, которое обычно является именем деда по материнской линии.',
-      price: 45000,
-      img: 'assets/images/human4.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-    },
-    {
-      id: '5',
-      surname: 'Daniyarev',
-      name: 'Alen',
-      description: 'Казахи известны своими престижными и сложными фамилиями. ' +
-        'Для людей принято  иметь хотя бы одно казахское имя, которое обычно является именем деда по материнской линии.',
-      price: 25000,
-      img: 'assets/images/human5.jpg',
-      isLiked: false,
-      publishedAt: new Date(),
-    },
-  ]
-
   constructor(private adController: AdController) {
   }
 
@@ -147,36 +14,28 @@ export class AdService {
     return this.adController.loadRooms(id);
   }
 
-  loadRoomsOther(id: string) {
-    return this.rooms.filter(room => room.id !== id);
-  }
-
   loadRoomById(id: string) {
     return this.adController.loadRoomById(id);
-  }
-
-  loadRoomsFavourites() {
-    return this.rooms.filter(room => room.isLiked);
   }
 
   loadRoommates(id: number) {
     return this.adController.loadRoommates(id);
   }
 
-  loadRoommatesOther(id: string) {
-    return this.roommates.filter(roommate => roommate.id !== id);
-  }
-
   loadRoommateById(id: string) {
     return this.adController.loadRoommateById(id);
   }
 
-  loadRoommatesFavourites() {
-    return this.roommates.filter(roommate => roommate.isLiked);
-  }
-
   loadByFilter(filter: Filter) {
     return this.adController.loadByFilter(filter);
+  }
+
+  adLike(adId: number) {
+    return this.adController.adLike(adId);
+  }
+
+  adLiked() {
+    return this.adController.adLiked();
   }
 
 }

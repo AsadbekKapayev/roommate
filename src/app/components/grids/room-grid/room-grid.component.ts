@@ -44,7 +44,7 @@ export class RoomGridComponent implements OnInit {
   }
 
   onClickLike(room: Ad) {
-    this._rooms.find(x => x.id === room.id).isLiked = !room.isLiked;
+    this._rooms.find(x => x.id === room.id).user_liked = !room.user_liked;
     this.likeClicked.emit(room);
   }
 }

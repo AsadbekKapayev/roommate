@@ -95,4 +95,10 @@ export class GuidePage implements OnInit {
     this.navCtrl.navigateForward([ALL_URL.LOOK_FOR_ROOMMATE]).then();
   }
 
+  onLikeClicked(ad: Ad) {
+    this.adService.adLike(ad.id).pipe(
+      take(1),
+    ).subscribe();
+  }
+
 }

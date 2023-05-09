@@ -5,8 +5,8 @@
     <div class="ad" (click)="onClickRoom(room)">
       <div class="ad-head">
         <div class="ad-price">{{room.price | priceCurrency}}</div>
-        <img [src]="room.isLiked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
-             [alt]="room.isLiked ? 'heart-filled' : 'heart'"
+        <img [src]="room.user_liked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
+             [alt]="room.user_liked ? 'heart-filled' : 'heart'"
              (click)="$event.stopPropagation(); onClickLike(room)"
         >
       </div>

@@ -28,7 +28,7 @@ export class RoommateGridComponent implements OnInit {
   }
 
   onClickLike(roommate: Ad) {
-    this.roommates.find(x => x.id === roommate.id).isLiked = !roommate.isLiked;
+    this.roommates.find(x => x.id === roommate.id).user_liked = !roommate.user_liked;
     this.likeClicked.emit(roommate);
   }
 }

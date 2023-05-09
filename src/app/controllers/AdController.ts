@@ -44,4 +44,13 @@ export class AdController {
       .pipe(map((value) => value.body.data[0] as any));
   }
 
+  adLike(adId: number) {
+    return this.httpService.get(`/ad/${adId}/like`, {});
+  }
+
+  adLiked(): Observable<Ads> {
+    return this.httpService.get('/user/liked', {})
+      .pipe(map((value) => value.body.data[0].result as Ads));
+  }
+
 }
