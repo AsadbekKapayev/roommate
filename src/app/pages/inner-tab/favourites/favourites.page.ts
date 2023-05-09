@@ -41,7 +41,7 @@ export class GuidePage implements OnInit {
         take(1),
       ).subscribe();
       return true;
-    }).then();
+    }, 2000).then();
   }
 
   initAds() {

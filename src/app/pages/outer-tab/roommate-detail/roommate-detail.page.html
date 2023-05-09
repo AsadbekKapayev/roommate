@@ -24,6 +24,7 @@
       <div>
         <div class="content-title">Расположение</div>
         <div class="content-info">{{roommate?.location}}</div>
+        <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
       </div>
 
       <div>
@@ -80,15 +81,28 @@
     <div class="flex-space-between">
       <div>
         <div class="author-title">Автор объявление</div>
-        <div class="author-name">Пример Примеров</div>
+        <div class="author-name">{{author?.name}}</div>
       </div>
 
-      <img class="author-profile-ic" src="assets/icon/profile.svg" alt="profile-white">
+      <div class="author-profile">
+        <img
+          *ngIf="author?.profile_photo_url"
+          [src]="author?.profile_photo_url">
+
+        <img
+          *ngIf="!author?.profile_photo_url"
+          src="assets/icon/profile.svg"
+          class="author-profile-ic"
+          alt="profile-white">
+      </div>
     </div>
 
     <div>
-      <div class="title">{{77477777777 | mask : '+0 (000) 000 00 00'}}</div>
-      <div class="content-info">primerPrimerov@gmail.com</div>
+      <div
+        class="phone-number"
+        (click)="onClickPhone()"
+      >{{author?.phone_number | mask : '+0 (000) 000 00 00'}}</div>
+      <div class="content-info">{{author?.email}}</div>
     </div>
   </div>
 </ng-template>

@@ -89,3 +89,16 @@
 .ad-others {
   margin-bottom: 32px;
 }
+
+.author-profile img {
+  object-fit: contain;
+  width: 64px;
+  height: 64px;
+}
+
+.phone-number {
+  font-size: var(--custom-font-size-4);
+  font-weight: var(--custom-font-weight-medium);
+  text-decoration: underline;
+  color: var(--custom-text-color-quaternary);
+}

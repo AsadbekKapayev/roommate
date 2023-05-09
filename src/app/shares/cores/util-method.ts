@@ -11,3 +11,11 @@ export function makeId(length: number) {
   }
   return result;
 }
+
+export function toArray(val: string, separator: string) {
+  if (!val) {
+    return [];
+  }
+
+  return val.split(separator);
+}
