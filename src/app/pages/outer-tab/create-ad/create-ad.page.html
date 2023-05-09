@@ -247,27 +247,33 @@
       <hr class="horizontal-divider v-margin-12">
     </div>
 
-    <div class="filter">
+    <div
+      *ngIf="user"
+      class="filter"
+    >
       <div class="title margin-12">Контактная информация</div>
 
       <div class="contact-info">
         <app-custom-input
           [type]="'text'"
           [label]="'Имя'"
-          [(value)]="adStore.contact_name"
+          [(value)]="user.name"
           [asterisks]="true"
+          [readonly]="true"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'tel'"
           [label]="'Телефон'"
-          [(value)]="adStore.phone_number"
+          [(value)]="user.phone_number"
+          [readonly]="true"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'text'"
           [label]="'Эл. почта'"
-          [(value)]="adStore.contact_email"
+          [(value)]="user.email"
+          [readonly]="true"
         ></app-custom-input>
       </div>
     </div>

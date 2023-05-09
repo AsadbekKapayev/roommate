@@ -103,8 +103,6 @@ export class CheckboxModalComponent implements OnInit {
   }
 
   contains(item: Item) {
-    console.log('emFHgk5o :: ', this._selectedValues)
-
     return Boolean(this._selectedValues?.find(x => x.id === item?.id));
   }
 

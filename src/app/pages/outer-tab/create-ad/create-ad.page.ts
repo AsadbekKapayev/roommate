@@ -9,6 +9,9 @@ import {FilterType} from "../../../models/commons/ad/FilterType";
 import {Item} from "../../../models/commons/Item";
 import {isEmpty} from "../../../shares/cores/util-method";
 import {AdStore} from 'app/models/commons/ad/AdStore';
+import {ProfileService} from "../../../services/core/profile.service";
+import {take} from 'rxjs';
+import {User} from "../../../models/commons/user/User";
 
 @Component({
   selector: 'app-create-ad',
@@ -18,6 +21,7 @@ import {AdStore} from 'app/models/commons/ad/AdStore';
 export class CreateAdPage implements OnInit {
 
   adStore: AdStore;
+  user: User;
 
   selectedCity: Item[];
   selectedGenderType: Item[];
@@ -38,6 +42,7 @@ export class CreateAdPage implements OnInit {
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private settingControllerService: SettingControllerService,
+              private profileService: ProfileService,
               private route: ActivatedRoute,
               private adService: AdService) {
   }
@@ -45,6 +50,14 @@ export class CreateAdPage implements OnInit {
   ngOnInit() {
     this.adStore = new AdStore();
     this.loadMap().then();
+
+    this.profileService.loadUser().pipe(
+      take(1)
+    ).subscribe(x => {
+
+      console.log('5QmA0A2B :: ', x)
+      this.user = x;
+    });
   }
 
   async loadMap() {
