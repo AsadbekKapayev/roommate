@@ -2,7 +2,7 @@ export class User {
   id: number;
   name: string;
   gender_id: number;
-  phone_number: string;
+  phone_number: number;
   email: string;
   email_verified_at: Date;
   two_factor_confirmed_at: Date;

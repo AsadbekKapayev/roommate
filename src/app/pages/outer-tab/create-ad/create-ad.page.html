@@ -247,6 +247,16 @@
       <hr class="horizontal-divider v-margin-12">
     </div>
 
+    <div>
+      <app-custom-input
+        [type]="'textarea'"
+        [label]="'Текст объявления'"
+        [(value)]="adStore.description"
+        [asterisks]="true"
+      ></app-custom-input>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
     <div
       *ngIf="user"
       class="filter"

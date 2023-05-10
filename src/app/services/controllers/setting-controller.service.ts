@@ -20,6 +20,7 @@ import {FilterType} from "../../models/commons/ad/FilterType";
 import {CheckboxModalComponent} from "../../components/modals/full-modals/checkbox-modal/checkbox-modal.component";
 import {Item} from "../../models/commons/Item";
 import {PhoneModalComponent} from "../../components/modals/bottom-modals/phone-modal/phone-modal.component";
+import {CreateAdModalComponent} from "../../components/modals/bottom-modals/create-ad-modal/create-ad-modal.component";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -51,6 +52,17 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: FillProfileModalComponent,
+        componentProps: {},
+        cssClass: 'bottom-modal-component auto-height',
+        swipeToClose: true,
+      };
+    });
+  }
+
+  public setCrateAdModal(): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: CreateAdModalComponent,
         componentProps: {},
         cssClass: 'bottom-modal-component auto-height',
         swipeToClose: true,
@@ -132,7 +144,7 @@ export class SettingControllerService extends AbstractSettingController {
     });
   }
 
-  public setPhoneModal(phone: string): IonicControllerAbstract {
+  public setPhoneModal(phone: number): IonicControllerAbstract {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: PhoneModalComponent,

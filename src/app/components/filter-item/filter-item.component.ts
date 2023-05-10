@@ -11,6 +11,7 @@ export class FilterItemComponent implements OnInit {
   @Input() title: string;
   @Input() asterisks: boolean;
   @Input() selectedItems: Item[];
+  @Input() error: string;
 
   constructor() {
   }

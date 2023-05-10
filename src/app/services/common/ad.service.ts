@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AdController} from "../../controllers/AdController";
 import {Filter} from "../../models/commons/ad/Filter";
+import {AdStore} from "../../models/commons/ad/AdStore";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,10 @@ export class AdService {
 
   userSearchAds() {
     return this.adController.userSearchAds();
+  }
+
+  getAdStore(adStore: AdStore) {
+    return this.adController.getAdStore(adStore);
   }
 
 }

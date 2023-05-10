@@ -18,6 +18,6 @@ export class AdStore {
   location: string;
   description: string;
   contact_name: string;
-  phone_number: string;
+  phone_number: number;
   contact_email: string;
 }

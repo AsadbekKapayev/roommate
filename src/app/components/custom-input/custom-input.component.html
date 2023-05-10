@@ -51,7 +51,32 @@
   <img *ngIf="icon === 'percent'" class="suffix" src="assets/icon/percent.svg" alt="percent-icon">
 </div>
 
-<div *ngIf="type !== 'tel' && type !== 'number'" class="input-form">
+<div *ngIf="type === 'textarea'" class="input-form text-area">
+  <app-error-message-form [setErrorMessage]="error">
+    <textarea
+      (focusin)="focus = true"
+      (focusout)="checkFocus()"
+      (keyup.enter)="enterPressed.emit()"
+      [(ngModel)]="value"
+      [class.custom-input-filled]="value"
+      class="custom-input"
+      id="input{{id}}"
+      [readonly]="readonly"
+      (ngModelChange)="valueChanged($event)"
+      #input></textarea>
+
+    <label for="input{{id}}">
+      {{label}}
+      <div *ngIf="asterisks"
+           class="asterisks"
+      >
+        *
+      </div>
+    </label>
+  </app-error-message-form>
+</div>
+
+<div *ngIf="type !== 'tel' && type !== 'number' && type !== 'textarea'" class="input-form">
   <app-error-message-form [setErrorMessage]="error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"

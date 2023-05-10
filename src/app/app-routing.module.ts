@@ -50,6 +50,10 @@ const routes: Routes = [
         path: 'create-ad',
         loadChildren: () => import('./pages/outer-tab/create-ad/create-ad.module').then(m => m.CreateAdModule)
       },
+      {
+        path: 'create-ad-room',
+        loadChildren: () => import('./pages/outer-tab/create-ad-room/create-ad-room.module').then(m => m.CreateAdRoomModule)
+      },
     ],
   },
   {

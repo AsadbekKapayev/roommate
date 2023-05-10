@@ -44,3 +44,10 @@
 .asterisks {
   color: red;
 }
+
+.text-area {
+  textarea {
+    height: 120px;
+    resize: vertical;
+  }
+}

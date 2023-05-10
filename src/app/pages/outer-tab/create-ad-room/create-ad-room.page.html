@@ -1,0 +1,150 @@
+<ion-header>
+  <app-header
+    [title]="'Подать объявление'"
+    [showBackButtonDefault]="true"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="filter-modal">
+    <div>
+      <app-custom-input
+        [type]="'number'"
+        [label]="'Количество комнат'"
+        [(value)]="adStore.rooms_count"
+        [asterisks]="true"
+        [minValue]="0"
+        [maxValue]="100"
+        [error]="saveButtonClicked && !adStore?.rooms_count && 'Надо заполнить'"
+      ></app-custom-input>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-custom-input
+        [type]="'number'"
+        [label]="'Количесвто сожителей в квартире'"
+        [(value)]="adStore.roommate_count"
+        [asterisks]="true"
+        [minValue]="0"
+        [maxValue]="100"
+        [error]="saveButtonClicked && !adStore?.roommate_count && 'Надо заполнить'"
+      ></app-custom-input>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="price-filter">
+      <div class="flex-row-16">
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Цена от'"
+          [(value)]="adStore.price_from"
+          [icon]="'currency'"
+          [error]="saveButtonClicked && !adStore?.price_from && 'Надо заполнить'"
+          [asterisks]="true"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Цена до'"
+          [(value)]="adStore.price"
+          [icon]="'currency'"
+          [error]="saveButtonClicked && !adStore?.price && 'Надо заполнить'"
+          [asterisks]="true"
+        ></app-custom-input>
+      </div>
+
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-custom-input
+        [type]="'textarea'"
+        [label]="'Текст объявления'"
+        [(value)]="adStore.description"
+        [asterisks]="true"
+        [error]="saveButtonClicked && !adStore?.description && 'Надо заполнить'"
+      ></app-custom-input>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div>
+      <app-filter-item
+        [title]="'Город'"
+        [selectedItems]="selectedCity"
+        (click)="onClick('Город', type.CITY)"
+        [asterisks]="true"
+        [error]="saveButtonClicked && !selectedCity?.length && 'Надо заполнить'"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="title margin-12">Обязательно укажите примерное расположение на карте</div>
+
+    <div>
+      <app-custom-input
+        [type]="'text'"
+        [label]="'Расположение'"
+        [readonly]="true"
+        [error]="mapError || (saveButtonClicked && !mapValue && 'Надо заполнить')"
+        [(value)]="mapValue"
+        [asterisks]="true"
+      ></app-custom-input>
+    </div>
+
+    <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
+    <hr class="horizontal-divider v-margin-12">
+
+    <div>
+      <app-filter-item
+        [title]="'В квартире'"
+        [selectedItems]="selectedGenderType"
+        (click)="onClick('В квартире', type.GENDER_TYPE)"
+      ></app-filter-item>
+      <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div
+      *ngIf="user"
+      class="filter"
+    >
+      <div class="title margin-12">Контактная информация</div>
+
+      <div class="contact-info">
+        <app-custom-input
+          [type]="'text'"
+          [label]="'Имя'"
+          [(value)]="user.name"
+          [asterisks]="true"
+          [readonly]="true"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'tel'"
+          [label]="'Телефон'"
+          [(value)]="user.phone_number"
+          [readonly]="true"
+          [asterisks]="true"
+        ></app-custom-input>
+
+        <app-custom-input
+          [type]="'text'"
+          [label]="'Эл. почта'"
+          [(value)]="user.email"
+          [readonly]="true"
+          [asterisks]="true"
+        ></app-custom-input>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-button">
+    <hr class="horizontal-divider">
+
+    <button
+      class="custom-button-primary"
+      (click)="onClickSave()"
+    >Сохранить
+    </button>
+  </div>
+</ion-content>

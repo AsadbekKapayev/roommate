@@ -1,23 +1,25 @@
-<div class="filter-item">
-  <div class="item-title custom-ellipses-1 flex-row-6">
-    <span>{{title}}</span>
-    <span *ngIf="asterisks"
-          class="asterisks"
-    >*</span>
-  </div>
-
-  <div class="filter-item-left">
-    <div class="custom-ellipses-1">
-      <ng-container *ngIf="!selectedItems?.length">Не выбрано</ng-container>
-      <ng-container *ngFor="let item of selectedItems; let l = last">
-        {{item?.title}}
-        <ng-container *ngIf="!l">,</ng-container>
-      </ng-container>
+<app-error-message-form [setErrorMessage]="error">
+  <div class="filter-item">
+    <div class="item-title custom-ellipses-1 flex-row-6">
+      <span>{{title}}</span>
+      <span *ngIf="asterisks"
+            class="asterisks"
+      >*</span>
     </div>
 
-    <img
-      src="../../../assets/icon/expand_right.svg"
-      alt="arrow-right-icon"
-    >
+    <div class="filter-item-left">
+      <div class="custom-ellipses-1">
+        <ng-container *ngIf="!selectedItems?.length">Не выбрано</ng-container>
+        <ng-container *ngFor="let item of selectedItems; let l = last">
+          {{item?.title}}
+          <ng-container *ngIf="!l">,</ng-container>
+        </ng-container>
+      </div>
+
+      <img
+        src="../../../assets/icon/expand_right.svg"
+        alt="arrow-right-icon"
+      >
+    </div>
   </div>
-</div>
+</app-error-message-form>

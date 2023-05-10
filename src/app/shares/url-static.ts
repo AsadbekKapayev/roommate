@@ -17,5 +17,6 @@ export const ALL_URL = {
   ROOMMATE_DETAIL: '/outer-tab/roommate-detail/', // add :id
   GUIDE_DETAIL: '/outer-tab/guide-detail/', // add :id
   CREATE_AD: '/outer-tab/create-ad',
+  CREATE_AD_ROOM: '/outer-tab/create-ad-room',
 
 }

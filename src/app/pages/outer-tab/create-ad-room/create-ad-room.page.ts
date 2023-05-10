@@ -12,13 +12,14 @@ import {AdStore} from 'app/models/commons/ad/AdStore';
 import {ProfileService} from "../../../services/core/profile.service";
 import {take} from 'rxjs';
 import {User} from "../../../models/commons/user/User";
+import {ToastService} from "../../../services/core/toast.service";
 
 @Component({
-  selector: 'app-create-ad',
-  templateUrl: './create-ad.page.html',
-  styleUrls: ['./create-ad.page.scss'],
+  selector: 'app-create-ad-room',
+  templateUrl: './create-ad-room.page.html',
+  styleUrls: ['./create-ad-room.page.scss'],
 })
-export class CreateAdPage implements OnInit {
+export class CreateAdRoomPage implements OnInit {
 
   adStore: AdStore;
   user: User;
@@ -40,10 +41,13 @@ export class CreateAdPage implements OnInit {
   mapValue: string;
   coords: string;
 
+  saveButtonClicked = false;
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private settingControllerService: SettingControllerService,
               private profileService: ProfileService,
+              private toastService: ToastService,
               private route: ActivatedRoute,
               private adService: AdService) {
   }
@@ -165,6 +169,12 @@ export class CreateAdPage implements OnInit {
   }
 
   onClickSave() {
+    this.saveButtonClicked = true;
+
+    if (!this.selectedCity?.length) {
+      return;
+    }
+
     this.adStore = {
       city_id: this.selectedCity[0]?.id,
       contact_email: this.user?.email,
@@ -181,9 +191,10 @@ export class CreateAdPage implements OnInit {
 
     this.adService.getAdStore(this.adStore).pipe(
       take(1),
-    ).subscribe();
-
-    this.navCtrl.back();
+    ).subscribe(x => {
+      this.toastService.present('Объявление сохранена')
+      this.navCtrl.back();
+    });
   }
 
   onClick(title?: string, code?: FilterType, isCheckboxModal?: boolean) {

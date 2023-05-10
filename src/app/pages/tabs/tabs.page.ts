@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicTab} from "../../models/core/IonicTab";
 import {NavController} from "@ionic/angular";
 import {ALL_URL} from "../../shares/url-static";
+import {SettingControllerService} from "../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-tabs',
@@ -52,7 +53,10 @@ export class TabsPage {
     },
   ]
 
-  constructor(private navCtrl: NavController) {}
+  constructor(
+    private navCtrl: NavController,
+    private settingControllerService: SettingControllerService,
+  ) {}
 
   ionTabsWillChange(event: any) {
     this.tabs.forEach((tab: IonicTab) => {
@@ -62,7 +66,7 @@ export class TabsPage {
 
   navigate(tab: IonicTab) {
     if (tab?.id === '3') {
-      this.navCtrl.navigateForward(ALL_URL.CREATE_AD);
+      this.settingControllerService.setCrateAdModal().present();
     }
   }
 }

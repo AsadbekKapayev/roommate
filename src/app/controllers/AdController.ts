@@ -6,6 +6,7 @@ import {Ads} from "../models/commons/ad/Ads";
 import {Observable} from "rxjs/internal/Observable";
 import {Ad} from "../models/commons/ad/Ad";
 import {Filter} from "../models/commons/ad/Filter";
+import {AdStore} from "../models/commons/ad/AdStore";
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,23 @@ export class AdController {
   userSearchAds(): Observable<Ads> {
     return this.httpService.get('/user/search_ad', {})
       .pipe(map((value) => value.body.data[0] as Ads));
+  }
+
+  getAdStore(adStore: AdStore): Observable<any> {
+    return this.httpService.postJson('/user/get_ad/store', {
+      city_id: adStore.city_id,
+      contact_email: adStore.contact_email,
+      contact_name: adStore.contact_name,
+      phone_number: adStore.phone_number,
+      coordinates: adStore.coordinates,
+      description: adStore.description,
+      location: adStore.location,
+      price: adStore.price,
+      price_from: adStore.price_from,
+      roommate_count: adStore.roommate_count,
+      rooms_count: adStore.rooms_count,
+    })
+      .pipe(map((value) => value.body as any));
   }
 
 }
