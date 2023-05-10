@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {ModalService} from "../../../../services/controllers/modal.service";
+import {ALL_URL} from "../../../../shares/url-static";
+import {SettingControllerService} from "../../../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-fill-profile-modal',
@@ -10,6 +12,7 @@ import {ModalService} from "../../../../services/controllers/modal.service";
 export class FillProfileModalComponent implements OnInit {
 
   constructor(private navCtrl: NavController,
+              private settingControllerService: SettingControllerService,
               private modalService: ModalService) {
   }
 
@@ -17,6 +20,13 @@ export class FillProfileModalComponent implements OnInit {
   }
 
   dismiss(value: boolean) {
-    this.modalService.dismiss(value);
+    this.modalService.dismiss();
+    if (value) {
+      this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {
+        this.settingControllerService.setSettingModal().presentSecondary().then();
+      });
+    }
+
+    this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
   }
 }

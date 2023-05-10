@@ -75,15 +75,7 @@ export class SmsPage implements OnInit {
       take(1)
     ).subscribe(
       res => {
-        this.settingControllerService.setFillProfileModal().present().then(x => {
-          if (x?.data) {
-            this.navCtrl.navigateRoot(ALL_URL.TAB_PROFILE).then(() => {
-              this.settingControllerService.setSettingModal().present().then();
-            });
-          }
-
-          this.navCtrl.navigateRoot(ALL_URL.TAB_HOME).then();
-        });
+        this.settingControllerService.setFillProfileModal().present().then();
 
         this.tokenService.setToken(res.token);
       },

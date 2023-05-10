@@ -4,6 +4,8 @@ import {ProfileController} from "../../controllers/ProfileController";
 import {of, tap} from "rxjs";
 import {User} from "../../models/commons/user/User";
 import {Item} from "../../models/commons/Item";
+import {StorageSecureKeyEnum} from "../../shares/static";
+import {StorageService} from "../../storages/storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +15,10 @@ export class ProfileService {
   otpCode: string;
   token: string;
 
-  profile: User;
-
   genders: Item[];
 
   constructor(private navCtrl: NavController,
+              private storage: StorageService,
               private profileController: ProfileController) {
   }
 
@@ -33,11 +34,20 @@ export class ProfileService {
   }
 
   updateProfile(name: string, email: string, genderId: number, photo?: Blob) {
-    return this.profileController.updateProfile(name, email, genderId, photo);
+    return this.profileController.updateProfile(name, email, genderId, photo).pipe(
+      tap(x => this.storage.set(StorageSecureKeyEnum.PROFILE, JSON.stringify(x?.data?.user)))
+    );
   }
 
   loadUser() {
-    return this.profileController.loadUser();
+    const profile = JSON.parse(this.storage.get(StorageSecureKeyEnum.PROFILE)) as User;
+
+    if (profile) {
+      return of(profile);
+    }
+
+    return this.profileController.loadUser()
+      .pipe(tap(x => this.storage.set(StorageSecureKeyEnum.PROFILE, JSON.stringify(x))));
   }
 
 }

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicTab} from "../../models/core/IonicTab";
 import {NavController} from "@ionic/angular";
 import {ALL_URL} from "../../shares/url-static";
 import {SettingControllerService} from "../../services/controllers/setting-controller.service";
+import {TokenService} from "../../services/common/token.service";
+import {ProfileService} from "../../services/core/profile.service";
 
 @Component({
   selector: 'app-tabs',
@@ -55,8 +57,11 @@ export class TabsPage {
 
   constructor(
     private navCtrl: NavController,
+    private tokenService: TokenService,
+    private profileService: ProfileService,
     private settingControllerService: SettingControllerService,
-  ) {}
+  ) {
+  }
 
   ionTabsWillChange(event: any) {
     this.tabs.forEach((tab: IonicTab) => {
@@ -64,8 +69,20 @@ export class TabsPage {
     });
   }
 
-  navigate(tab: IonicTab) {
+  async navigate(tab: IonicTab) {
     if (tab?.id === '3') {
+      if (!this.tokenService.token) {
+        this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
+        return;
+      }
+
+      const user = await this.profileService.loadUser().toPromise();
+
+      if (!user?.email || !user?.name || !user?.phone_number) {
+        this.settingControllerService.setFillProfileModal().present();
+        return;
+      }
+
       this.settingControllerService.setCrateAdModal().present();
     }
   }
