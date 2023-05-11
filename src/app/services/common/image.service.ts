@@ -166,6 +166,9 @@ export class ImageService {
 
   async deleteImage(file: LocalFile) {
     console.log('2ddxMXgE :: ')
+    this.images = this.images.filter(x => x.name !== file.name);
+    this.images$.next(this.images);
+
     await Filesystem.deleteFile({
       directory: Directory.Data,
       path: file.path

@@ -7,6 +7,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {Ad} from "../models/commons/ad/Ad";
 import {Filter} from "../models/commons/ad/Filter";
 import {AdStore} from "../models/commons/ad/AdStore";
+import {SearchAdStore} from "../models/commons/ad/SearchAdStore";
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,25 @@ export class AdController {
       price_from: adStore.price_from,
       roommate_count: adStore.roommate_count,
       rooms_count: adStore.rooms_count,
+    })
+      .pipe(map((value) => value.body as any));
+  }
+
+  searchAdStore(searchAdStore: SearchAdStore): Observable<any> {
+    return this.httpService.postMultipart('/user/search_ad/store', {
+      city_id: searchAdStore.city_id,
+      contact_email: searchAdStore.contact_email,
+      contact_name: searchAdStore.contact_name,
+      phone_number: searchAdStore.phone_number,
+      coordinates: searchAdStore.coordinates,
+      description: searchAdStore.description,
+      location: searchAdStore.location,
+      price: searchAdStore.price,
+      price_from: searchAdStore.price_from,
+      roommate_count: searchAdStore.roommate_count,
+      rooms_count: searchAdStore.rooms_count,
+      square_general: searchAdStore.square_general,
+      images: searchAdStore.images,
     })
       .pipe(map((value) => value.body as any));
   }

@@ -13,15 +13,16 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Цена'"
-          [(value)]="adStore.price"
+          [(value)]="searchAdStore.price"
           [icon]="'currency'"
+          [error]="saveButtonClicked && !searchAdStore.price && 'Надо заполнить'"
           [asterisks]="true"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'number'"
           [label]="'Ком. услуги'"
-          [(value)]="adStore.price_com"
+          [(value)]="searchAdStore.price_com"
           [icon]="'currency'"
         ></app-custom-input>
       </div>
@@ -30,7 +31,7 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Залог'"
-          [(value)]="adStore.price_pledge"
+          [(value)]="searchAdStore.price_pledge"
           [icon]="'percent'"
           [minValue]="0"
           [maxValue]="100"
@@ -44,7 +45,8 @@
       <app-custom-input
         [type]="'number'"
         [label]="'Количество комнат'"
-        [(value)]="adStore.rooms_count"
+        [(value)]="searchAdStore.rooms_count"
+        [error]="saveButtonClicked && !searchAdStore.rooms_count && 'Надо заполнить'"
         [asterisks]="true"
       ></app-custom-input>
       <hr class="horizontal-divider v-margin-12">
@@ -54,7 +56,8 @@
       <app-custom-input
         [type]="'number'"
         [label]="'Количесвто сожителей в квартире'"
-        [(value)]="adStore.roommate_count"
+        [(value)]="searchAdStore.roommate_count"
+        [error]="saveButtonClicked && !searchAdStore.roommate_count && 'Надо заполнить'"
         [asterisks]="true"
       ></app-custom-input>
       <hr class="horizontal-divider v-margin-12">
@@ -67,13 +70,13 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Этаж'"
-          [(value)]="adStore.floor"
+          [(value)]="searchAdStore.floor"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'number'"
           [label]="'Мах количество'"
-          [(value)]="adStore.floor_from"
+          [(value)]="searchAdStore.floor_from"
         ></app-custom-input>
       </div>
 
@@ -87,20 +90,21 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Общая'"
-          [(value)]="adStore.square_general"
+          [(value)]="searchAdStore.square_general"
+          [error]="saveButtonClicked && !searchAdStore.square_general && 'Надо заполнить'"
           [asterisks]="true"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'number'"
           [label]="'Жилая'"
-          [(value)]="adStore.square_living"
+          [(value)]="searchAdStore.square_living"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'number'"
           [label]="'Кухня'"
-          [(value)]="adStore.square_kitchen"
+          [(value)]="searchAdStore.square_kitchen"
         ></app-custom-input>
       </div>
 
@@ -121,6 +125,7 @@
         [title]="'Город'"
         [selectedItems]="selectedCity"
         (click)="onClick('Город', type.CITY)"
+        [error]="saveButtonClicked && !selectedCity?.length && 'Надо заполнить'"
         [asterisks]="true"
       ></app-filter-item>
       <hr class="horizontal-divider v-margin-12">
@@ -131,8 +136,9 @@
         [type]="'text'"
         [label]="'Расположение'"
         [readonly]="true"
-        [error]="mapError"
         [(value)]="mapValue"
+        [error]="mapError || (saveButtonClicked && !mapValue && 'Надо заполнить')"
+        [asterisks]="true"
       ></app-custom-input>
     </div>
 
@@ -188,7 +194,7 @@
       <app-custom-input
         [type]="'number'"
         [label]="'Количество санузлов'"
-        [(value)]="adStore.bathroom_count"
+        [(value)]="searchAdStore.bathroom_count"
       ></app-custom-input>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -215,7 +221,7 @@
       <app-custom-input
         [type]="'number'"
         [label]="'Балкон'"
-        [(value)]="adStore.bathroom_count"
+        [(value)]="searchAdStore.bathroom_count"
       ></app-custom-input>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -224,7 +230,7 @@
       <app-custom-input
         [type]="'number'"
         [label]="'Лоджия'"
-        [(value)]="adStore.loggias_count"
+        [(value)]="searchAdStore.loggias_count"
       ></app-custom-input>
       <hr class="horizontal-divider v-margin-12">
     </div>
@@ -251,10 +257,36 @@
       <app-custom-input
         [type]="'textarea'"
         [label]="'Текст объявления'"
-        [(value)]="adStore.description"
+        [(value)]="searchAdStore.description"
+        [error]="saveButtonClicked && !searchAdStore.description && 'Надо заполнить'"
         [asterisks]="true"
       ></app-custom-input>
       <hr class="horizontal-divider v-margin-12">
+    </div>
+
+    <div class="title margin-12">Фотографии</div>
+    <div class="images-container">
+      <div
+        *ngFor="let image of profileImages"
+        class="image-container"
+      >
+        <img
+          [src]="image?.data"
+          alt="setting-photo-holder">
+
+        <div
+          class="x-white-wrapper"
+          (click)="removeImage(image)"
+        >
+          <img src="assets/icon/x-white.svg">
+        </div>
+      </div>
+
+      <div
+        class="image-add"
+        (click)="onClickAddImage()"
+      >Добавить фото
+      </div>
     </div>
 
     <div

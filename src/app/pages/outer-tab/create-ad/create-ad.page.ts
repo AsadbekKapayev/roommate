@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
@@ -8,19 +8,22 @@ import {SettingControllerService} from "../../../services/controllers/setting-co
 import {FilterType} from "../../../models/commons/ad/FilterType";
 import {Item} from "../../../models/commons/Item";
 import {isEmpty} from "../../../shares/cores/util-method";
-import {AdStore} from 'app/models/commons/ad/AdStore';
 import {ProfileService} from "../../../services/core/profile.service";
 import {take} from 'rxjs';
 import {User} from "../../../models/commons/user/User";
+import {ToastService} from "../../../services/core/toast.service";
+import {SearchAdStore} from "../../../models/commons/ad/SearchAdStore";
+import {ImageService, LocalFile} from "../../../services/common/image.service";
+import {SubSink} from "../../../shares/SubSink";
 
 @Component({
   selector: 'app-create-ad',
   templateUrl: './create-ad.page.html',
   styleUrls: ['./create-ad.page.scss'],
 })
-export class CreateAdPage implements OnInit {
+export class CreateAdPage implements OnInit, OnDestroy {
 
-  adStore: AdStore;
+  searchAdStore: SearchAdStore;
   user: User;
 
   selectedCity: Item[];
@@ -40,16 +43,23 @@ export class CreateAdPage implements OnInit {
   mapValue: string;
   coords: string;
 
+  saveButtonClicked = false;
+  profileImages: LocalFile[] = [];
+
+  subSink = new SubSink();
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private settingControllerService: SettingControllerService,
               private profileService: ProfileService,
+              private toastService: ToastService,
               private route: ActivatedRoute,
+              private imageService: ImageService,
               private adService: AdService) {
   }
 
   ngOnInit() {
-    this.adStore = new AdStore();
+    this.searchAdStore = new SearchAdStore();
     this.loadMap().then();
 
     this.profileService.loadUser().pipe(
@@ -57,6 +67,15 @@ export class CreateAdPage implements OnInit {
     ).subscribe(x => {
       this.user = x;
     });
+
+    this.subSink.sink = this.imageService.images$.subscribe(x => {
+      this.profileImages = x;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.imageService.clearData();
+    this.subSink.unsubscribe();
   }
 
   async loadMap() {
@@ -164,26 +183,41 @@ export class CreateAdPage implements OnInit {
     this.navCtrl.back();
   }
 
-  onClickSave() {
-    this.adStore = {
+  onClickAddImage() {
+    this.imageService.selectImage();
+  }
+
+  async onClickSave() {
+    this.saveButtonClicked = true;
+
+    if (!this.selectedCity?.length) {
+      return;
+    }
+
+    const images = await this.getImagesBlob();
+
+    this.searchAdStore = {
       city_id: this.selectedCity[0]?.id,
       contact_email: this.user?.email,
       contact_name: this.user?.name,
       phone_number: this.user?.phone_number,
       coordinates: this.coords,
-      description: this.adStore?.description,
+      description: this.searchAdStore?.description,
       location: this.mapValue,
-      price: this.adStore?.price,
-      price_from: this.adStore?.price_from,
-      roommate_count: this.adStore?.roommate_count,
-      rooms_count: this.adStore?.rooms_count
-    } as AdStore;
+      price: this.searchAdStore?.price,
+      price_from: this.searchAdStore?.price_from,
+      roommate_count: this.searchAdStore?.roommate_count,
+      rooms_count: this.searchAdStore?.rooms_count,
+      square_general: this.searchAdStore?.square_general,
+      images: images,
+    } as SearchAdStore;
 
-    this.adService.getAdStore(this.adStore).pipe(
+    this.adService.searchAdStore(this.searchAdStore).pipe(
       take(1),
-    ).subscribe();
-
-    this.navCtrl.back();
+    ).subscribe(() => {
+      this.toastService.present('Объявление сохранена')
+      this.navCtrl.back();
+    });
   }
 
   onClick(title?: string, code?: FilterType, isCheckboxModal?: boolean) {
@@ -206,6 +240,19 @@ export class CreateAdPage implements OnInit {
 
       this.setItemsByCode(code, [x.data]);
     });
+  }
+
+  async getImagesBlob() {
+    const blobs: Blob[] = [];
+
+    for (const image of this.profileImages) {
+      const response = await fetch(image?.data);
+      const blob = await response?.blob();
+
+      blobs.push(blob);
+    }
+
+    return blobs;
   }
 
   getItemsByCode(code: FilterType) {
@@ -271,6 +318,10 @@ export class CreateAdPage implements OnInit {
         this.selectedApartmentFor = values;
         return;
     }
+  }
+
+  removeImage(image: LocalFile) {
+    this.imageService.deleteImage(image);
   }
 
 }

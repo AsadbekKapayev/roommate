@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ModalService} from "../../../../services/controllers/modal.service";
 import {CityService} from "../../../../services/common/city.service";
 import {CommonItem} from "../../../../models/commons/CommonItem";
@@ -16,7 +16,7 @@ import {TokenService} from "../../../../services/common/token.service";
   templateUrl: './profile-setting-modal.component.html',
   styleUrls: ['./profile-setting-modal.component.scss'],
 })
-export class ProfileSettingModalComponent implements OnInit {
+export class ProfileSettingModalComponent implements OnInit, OnDestroy {
 
   subSink = new SubSink();
 
@@ -48,10 +48,14 @@ export class ProfileSettingModalComponent implements OnInit {
       this.selectedGender = x[0];
     })
 
-    this.imageService.clearData();
     this.subSink.sink = this.imageService.images$.subscribe(x => {
       this.profileImage = x[x?.length - 1];
     })
+  }
+
+  ngOnDestroy(): void {
+    this.imageService.clearData();
+    this.subSink.unsubscribe();
   }
 
   close() {

@@ -191,7 +191,7 @@ export class CreateAdRoomPage implements OnInit {
 
     this.adService.getAdStore(this.adStore).pipe(
       take(1),
-    ).subscribe(x => {
+    ).subscribe(() => {
       this.toastService.present('Объявление сохранена')
       this.navCtrl.back();
     });
