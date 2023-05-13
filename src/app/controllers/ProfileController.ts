@@ -15,11 +15,12 @@ export class ProfileController {
     this.httpService = this.httpService.setPrefix(environment.url);
   }
 
-  updateProfile(name: string, email: string, genderId: number, photo?: Blob): Observable<any> {
+  updateProfile(profile: User, photo?: Blob): Observable<any> {
     return this.httpService.postMultipart('/user/profile/update', {
-      name: name,
-      email: email,
-      gender_id: genderId,
+      name: profile.name,
+      email: profile.email,
+      gender_id: profile.gender_id,
+      phone_number: profile.phone_number,
       photo: photo
     }).pipe(map((value) => value as any));
   }

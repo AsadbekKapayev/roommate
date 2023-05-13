@@ -34,7 +34,17 @@ export class ProfileService {
   }
 
   updateProfile(name: string, email: string, genderId: number, photo?: Blob) {
-    return this.profileController.updateProfile(name, email, genderId, photo).pipe(
+    let profile = JSON.parse(this.storage.get(StorageSecureKeyEnum.PROFILE)) as User;
+
+    if (!profile) {
+      profile = {} as User;
+    }
+
+    profile.name = name;
+    profile.email = email;
+    profile.gender_id = genderId;
+
+    return this.profileController.updateProfile(profile, photo).pipe(
       tap(x => this.storage.set(StorageSecureKeyEnum.PROFILE, JSON.stringify(x?.data?.user)))
     );
   }

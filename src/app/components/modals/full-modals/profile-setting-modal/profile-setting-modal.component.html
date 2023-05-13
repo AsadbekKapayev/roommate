@@ -22,10 +22,16 @@
       </div>
 
       <app-custom-input
-        [type]="'text'"s
+        [type]="'text'"
         [label]="'Имя'"
         [error]="!name?.length && 'Поле не должен быть пустым'"
         [(value)]="name"
+      ></app-custom-input>
+
+      <app-custom-input
+        [label]="'Номер телефона'"
+        [value]="profile?.phone_number"
+        [readonly]="true"
       ></app-custom-input>
 
       <app-custom-input
