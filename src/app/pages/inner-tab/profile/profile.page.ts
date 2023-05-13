@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NavController} from "@ionic/angular";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonRefresher, NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {IonicButton} from "../../../models/core/IonicButton";
 import {AdType} from "../../../models/commons/ad/AdType";
@@ -32,6 +32,8 @@ export class ProfilePage implements OnInit {
     },
   ];
 
+  @ViewChild('ionRefresher') ionRefresher: IonRefresher;
+
   subSink = new SubSink();
 
   constructor(private navCtrl: NavController,
@@ -58,11 +60,11 @@ export class ProfilePage implements OnInit {
     ]).pipe(
       take(1)
     ).subscribe(x => {
-      console.log('3YKVGcru :: ', x)
-
       this.rooms = x[0].data;
       this.roommates = x[1].data;
     });
+
+    this.ionRefresher?.complete().then();
   }
 
 }

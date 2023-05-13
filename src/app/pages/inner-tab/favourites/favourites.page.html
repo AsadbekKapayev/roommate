@@ -5,7 +5,25 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher #ionRefresher slot="fixed" (ionRefresh)="initAds()">
+    <ion-refresher-content [pullingIcon]="null" [refreshingSpinner]="'crescent'"></ion-refresher-content>
+  </ion-refresher>
+
   <div class="favourites">
+    <div class="h-margin-12">
+      <div class="profile-title">Мои объявления</div>
+
+      <div class="categories v-margin-12">
+        <button
+          *ngFor="let category of categories"
+          [ngClass]="{'custom-button-white': true, 'custom-button-white-selected': category.selected}"
+          (click)="onClickCategory(category)"
+        >
+          {{category.title}}
+        </button>
+      </div>
+    </div>
+
     <app-room-grid
       [rooms]="ads"
       (likeClicked)="onClickLike($event)"
