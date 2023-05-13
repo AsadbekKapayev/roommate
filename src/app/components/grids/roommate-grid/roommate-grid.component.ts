@@ -4,6 +4,7 @@ import {ALL_URL} from "../../../shares/url-static";
 import {AdService} from "../../../services/common/ad.service";
 import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 import {Ad} from "../../../models/commons/ad/Ad";
+import {TokenService} from "../../../services/common/token.service";
 
 @Component({
   selector: 'app-roommate-grid',
@@ -17,6 +18,7 @@ export class RoommateGridComponent implements OnInit {
   @Output() likeClicked = new EventEmitter<Ad>();
 
   constructor(private navCtrl: NavController,
+              private tokenService: TokenService,
               private adService: AdService) {
   }
 
@@ -28,6 +30,11 @@ export class RoommateGridComponent implements OnInit {
   }
 
   onClickLike(roommate: Ad) {
+    if (!this.tokenService.token) {
+      this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
+      return;
+    }
+
     this.roommates.find(x => x.id === roommate.id).user_liked = !roommate.user_liked;
     this.likeClicked.emit(roommate);
   }

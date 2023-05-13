@@ -48,6 +48,7 @@ export class GuidePage implements OnInit {
     this.adService.adLiked().pipe(
       take(1),
     ).subscribe(x => {
+      console.log('EgCUZPtQ :: ', x)
       this.ads = x.data;
     });
   }

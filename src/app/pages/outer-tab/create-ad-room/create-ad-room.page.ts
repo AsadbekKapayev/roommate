@@ -171,15 +171,29 @@ export class CreateAdRoomPage implements OnInit {
   onClickSave() {
     this.saveButtonClicked = true;
 
-    if (!this.selectedCity?.length) {
+    if (
+      !this.selectedCity?.length ||
+      !this.user ||
+      !this.user.email ||
+      !this.user.name ||
+      !this.user.phone_number ||
+      !this.coords ||
+      !this.adStore ||
+      !this.adStore.description ||
+      !this.adStore.price ||
+      !this.adStore.price_from ||
+      !this.adStore.roommate_count ||
+      !this.adStore.rooms_count ||
+      !this.mapValue
+    ) {
       return;
     }
 
     this.adStore = {
       city_id: this.selectedCity[0]?.id,
-      contact_email: this.user?.email,
-      contact_name: this.user?.name,
-      phone_number: this.user?.phone_number,
+      contact_email: this.user.email,
+      contact_name: this.user.name,
+      phone_number: this.user.phone_number,
       coordinates: this.coords,
       description: this.adStore?.description,
       location: this.mapValue,

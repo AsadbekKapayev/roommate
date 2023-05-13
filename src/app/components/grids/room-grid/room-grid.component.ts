@@ -3,6 +3,7 @@ import {NavController} from "@ionic/angular";
 import {ALL_URL} from "../../../shares/url-static";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
+import {TokenService} from "../../../services/common/token.service";
 
 export const IMAGES = [
   'assets/images/house.jpg',
@@ -33,6 +34,7 @@ export class RoomGridComponent implements OnInit {
   _rooms: Ad[];
 
   constructor(private navCtrl: NavController,
+              private tokenService: TokenService,
               private adService: AdService) {
   }
 
@@ -44,6 +46,11 @@ export class RoomGridComponent implements OnInit {
   }
 
   onClickLike(room: Ad) {
+    if (!this.tokenService.token) {
+      this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
+      return;
+    }
+
     this._rooms.find(x => x.id === room.id).user_liked = !room.user_liked;
     this.likeClicked.emit(room);
   }

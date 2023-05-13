@@ -20,5 +20,4 @@ export class SearchAdStore {
   contact_name: string;
   phone_number: number;
   contact_email: string;
-  images: Blob[];
 }

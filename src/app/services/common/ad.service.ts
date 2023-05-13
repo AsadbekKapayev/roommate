@@ -52,8 +52,8 @@ export class AdService {
     return this.adController.getAdStore(adStore);
   }
 
-  searchAdStore(searchAdStore: SearchAdStore) {
-    return this.adController.searchAdStore(searchAdStore);
+  searchAdStore(searchAdStore: SearchAdStore, files: File[]) {
+    return this.adController.searchAdStore(searchAdStore, files);
   }
 
 }

@@ -14,6 +14,7 @@ import {NgxMaskModule} from "ngx-mask";
 import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.module";
 import {FilterItemModule} from "../../../components/filter-item/filter-item.module";
 import {CustomCheckboxModule} from "../../../components/custom-checkbox/custom-checkbox.module";
+import {ErrorMessageFormModule} from "../../../components/error-messge-form/error-message-form.module";
 
 @NgModule({
   declarations: [CreateAdPage],
@@ -31,6 +32,7 @@ import {CustomCheckboxModule} from "../../../components/custom-checkbox/custom-c
     RoomGridModule,
     FilterItemModule,
     CustomCheckboxModule,
+    ErrorMessageFormModule,
   ]
 })
 export class CreateAdModule {

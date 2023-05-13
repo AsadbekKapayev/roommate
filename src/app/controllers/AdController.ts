@@ -82,8 +82,8 @@ export class AdController {
       .pipe(map((value) => value.body as any));
   }
 
-  searchAdStore(searchAdStore: SearchAdStore): Observable<any> {
-    return this.httpService.postMultipart('/user/search_ad/store', {
+  searchAdStore(searchAdStore: SearchAdStore, files: File[]): Observable<any> {
+    return this.httpService.postFiles('/user/search_ad/store', files, {
       city_id: searchAdStore.city_id,
       contact_email: searchAdStore.contact_email,
       contact_name: searchAdStore.contact_name,
@@ -96,9 +96,7 @@ export class AdController {
       roommate_count: searchAdStore.roommate_count,
       rooms_count: searchAdStore.rooms_count,
       square_general: searchAdStore.square_general,
-      images: searchAdStore.images,
-    })
-      .pipe(map((value) => value.body as any));
+    });
   }
 
 }

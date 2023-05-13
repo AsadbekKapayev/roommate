@@ -384,6 +384,18 @@ export class HttpService {
 
   }
 
+  public postFiles(urlSuffix: string, files: Blob[], keyValue?: { [key: string]: any }): Observable<HttpEvent<string>> {
+    const formData: FormData = new FormData();
+
+    keyValueAppender(keyValue, (key, value) => formData.append(key, value));
+
+    for (let file of files) {
+      formData.append('images', file);
+    }
+
+    return this.http.post<any>(this.url(urlSuffix), formData);
+  }
+
   public async getResource(urlSuffix: string, keyValue?: { [key: string]: string | number | boolean | null }): Promise<HttpResponse<Blob>> {
     const ob: OptionsBuilder = this.newOptionsBuilder();
 

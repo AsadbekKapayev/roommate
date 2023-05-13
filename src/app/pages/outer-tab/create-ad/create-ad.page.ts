@@ -45,6 +45,7 @@ export class CreateAdPage implements OnInit, OnDestroy {
 
   saveButtonClicked = false;
   profileImages: LocalFile[] = [];
+  images: File[];
 
   subSink = new SubSink();
 
@@ -59,6 +60,7 @@ export class CreateAdPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.imageService.clearData();
     this.searchAdStore = new SearchAdStore();
     this.loadMap().then();
 
@@ -189,12 +191,26 @@ export class CreateAdPage implements OnInit, OnDestroy {
 
   async onClickSave() {
     this.saveButtonClicked = true;
+    this.images = await this.getImagesFiles();
 
-    if (!this.selectedCity?.length) {
+    if (
+      !this.selectedCity?.length ||
+      !this.user ||
+      !this.user.email ||
+      !this.user.name ||
+      !this.user.phone_number ||
+      !this.coords ||
+      !this.searchAdStore ||
+      !this.searchAdStore.description ||
+      !this.searchAdStore.price ||
+      !this.searchAdStore.roommate_count ||
+      !this.searchAdStore.rooms_count ||
+      !this.searchAdStore.square_general ||
+      !this.mapValue ||
+      !this.images?.length
+    ) {
       return;
     }
-
-    const images = await this.getImagesBlob();
 
     this.searchAdStore = {
       city_id: this.selectedCity[0]?.id,
@@ -205,16 +221,14 @@ export class CreateAdPage implements OnInit, OnDestroy {
       description: this.searchAdStore?.description,
       location: this.mapValue,
       price: this.searchAdStore?.price,
-      price_from: this.searchAdStore?.price_from,
       roommate_count: this.searchAdStore?.roommate_count,
       rooms_count: this.searchAdStore?.rooms_count,
       square_general: this.searchAdStore?.square_general,
-      images: images,
     } as SearchAdStore;
 
-    this.adService.searchAdStore(this.searchAdStore).pipe(
+    this.adService.searchAdStore(this.searchAdStore, this.images).pipe(
       take(1),
-    ).subscribe(() => {
+    ).subscribe((x) => {
       this.toastService.present('Объявление сохранена')
       this.navCtrl.back();
     });
@@ -242,14 +256,17 @@ export class CreateAdPage implements OnInit, OnDestroy {
     });
   }
 
-  async getImagesBlob() {
-    const blobs: Blob[] = [];
+  async getImagesFiles() {
+    const blobs: File[] = [];
 
-    for (const image of this.profileImages) {
-      const response = await fetch(image?.data);
+    for (let i = 0; i < this.profileImages?.length; i++) {
+      const response = await fetch(this.profileImages[i]?.data);
       const blob = await response?.blob();
+      const file = new File([blob], (this.profileImages[i]?.name), {
+        type: blob.type,
+      });
 
-      blobs.push(blob);
+      blobs.push(file);
     }
 
     return blobs;

@@ -74,8 +74,13 @@ export class SmsPage implements OnInit {
     this.authService.verifyOtpCode(smsCode).pipe(
       take(1)
     ).subscribe(
-      res => {
-        this.settingControllerService.setFillProfileModal().present().then();
+      async res => {
+        const user = await this.profileService.loadUser().toPromise();
+
+        if (!user?.email || !user?.name || !user?.phone_number) {
+          this.settingControllerService.setFillProfileModal().present().then();
+          return;
+        }
 
         this.tokenService.setToken(res.token);
       },
