@@ -7,6 +7,8 @@ import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {forkJoin, take} from "rxjs";
 import {SubSink} from "../../../shares/SubSink";
+import {ProfileService} from "../../../services/core/profile.service";
+import {User} from "../../../models/commons/user/User";
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +19,7 @@ export class ProfilePage implements OnInit {
 
   rooms: Ad[];
   roommates: Ad[];
+  user: User;
 
   adType = AdType;
   selectedCategory: string = AdType.ROOMMATE;
@@ -38,11 +41,18 @@ export class ProfilePage implements OnInit {
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
+              private profileService: ProfileService,
               private adService: AdService) {
   }
 
   ngOnInit() {
     this.initAds();
+
+    this.profileService.loadUser().pipe(
+      take(1)
+    ).subscribe(x => {
+      this.user = x;
+    })
   }
 
   onClickCategory(category: IonicButton) {
@@ -60,8 +70,8 @@ export class ProfilePage implements OnInit {
     ]).pipe(
       take(1)
     ).subscribe(x => {
-      this.rooms = x[0].data;
-      this.roommates = x[1].data;
+      this.roommates = x[0].data;
+      this.rooms = x[1].data;
     });
 
     this.ionRefresher?.complete().then();

@@ -144,7 +144,7 @@ export class SettingControllerService extends AbstractSettingController {
     });
   }
 
-  public setPhoneModal(phone: number): IonicControllerAbstract {
+  public setPhoneModal(phone: string): IonicControllerAbstract {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: PhoneModalComponent,

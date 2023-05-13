@@ -75,12 +75,7 @@ export class SmsPage implements OnInit {
       take(1)
     ).subscribe(
       async res => {
-        const user = await this.profileService.loadUser().toPromise();
-
-        if (!user?.email || !user?.name || !user?.phone_number) {
-          this.settingControllerService.setFillProfileModal().present().then();
-          return;
-        }
+        this.settingControllerService.setFillProfileModal().present().then();
 
         this.tokenService.setToken(res.token);
       },

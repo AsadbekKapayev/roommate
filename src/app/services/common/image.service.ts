@@ -177,11 +177,12 @@ export class ImageService {
 
   async clearData() {
     this.images = [];
+    this.images$.next(this.images);
     await Filesystem.rmdir({
       directory: Directory.Data,
       path: IMAGE_DIR,
       recursive: true
-    })
+    });
   }
 
 }

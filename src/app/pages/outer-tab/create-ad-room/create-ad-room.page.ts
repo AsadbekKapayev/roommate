@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
@@ -19,7 +19,7 @@ import {ToastService} from "../../../services/core/toast.service";
   templateUrl: './create-ad-room.page.html',
   styleUrls: ['./create-ad-room.page.scss'],
 })
-export class CreateAdRoomPage implements OnInit {
+export class CreateAdRoomPage implements OnInit, OnDestroy {
 
   adStore: AdStore;
   user: User;
@@ -61,6 +61,9 @@ export class CreateAdRoomPage implements OnInit {
     ).subscribe(x => {
       this.user = x;
     });
+  }
+
+  ngOnDestroy(): void {
   }
 
   async loadMap() {

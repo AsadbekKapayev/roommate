@@ -85,7 +85,7 @@ export class RoomDetailPage implements OnInit {
   }
 
   onClickPhone() {
-    this.settingControllerService.setPhoneModal(this.author?.phone_number).present().then();
+    this.settingControllerService.setPhoneModal('+' + this.author?.phone_number).present().then();
   }
 
   async loadMap(coords, location) {
