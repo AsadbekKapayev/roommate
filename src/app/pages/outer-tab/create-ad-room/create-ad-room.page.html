@@ -92,7 +92,10 @@
       ></app-custom-input>
     </div>
 
-    <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
+    <app-error-message-form [setErrorMessage]="!mapValue ? 'Выберите дом на карта' : ''">
+      <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
+    </app-error-message-form>
+
     <hr class="horizontal-divider v-margin-12">
 
     <div>
