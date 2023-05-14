@@ -72,8 +72,8 @@ export class ProfilePage implements OnInit {
     ]).pipe(
       take(1)
     ).subscribe(x => {
-      this.rooms = x[0].data;
-      this.roommates = x[1].data;
+      this.rooms = x[1].data;
+      this.roommates = x[0].data;
     });
 
     this.ionRefresher?.complete().then();

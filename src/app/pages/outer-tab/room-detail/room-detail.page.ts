@@ -25,9 +25,6 @@ export class RoomDetailPage implements OnInit {
   gender: Item;
   genders: Item[];
 
-  utilChips: string[] = ['Мебель', 'Балкон', 'Газ', 'Интернет'] // todo
-  chips2: string[] = ['Можно держать животных', 'Можно курить']; // todo
-
   author: User;
 
   constructor(private navCtrl: NavController,

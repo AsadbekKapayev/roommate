@@ -47,6 +47,7 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
 
   author: User;
   roommate: Ad;
+  adId: string;
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
@@ -59,11 +60,11 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const adId = this.route.snapshot?.params?.id;
+    this.adId = this.route.snapshot?.params?.id;
     this.adStore = new AdStore();
 
-    if (adId) {
-      this.initAdDetail(adId);
+    if (this.adId) {
+      this.initAdDetail(this.adId);
     } else {
       this.loadMap(toArray('43.237163,76.945627', ','), '').then();
     }
@@ -88,6 +89,8 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
         return;
       }
 
+      this.coords = x?.coordinates;
+      this.mapValue = x?.location;
       this.adStore.price = x.price;
       this.adStore.price_from = x.price_from;
       this.adStore.rooms_count = x.rooms_count;
@@ -118,6 +121,11 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
         });
 
         let myPlacemark;
+
+        if (this.adId) {
+          myPlacemark = this.createPlacemark(maps, location, coords);
+          map.geoObjects.add(myPlacemark);
+        }
 
         map.events.add('click', (e) => {
           const coords = e.get('coords');
@@ -228,6 +236,7 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
     }
 
     this.adStore = {
+      adId: this.adId,
       city_id: this.selectedCity[0]?.id,
       contact_email: this.user.email,
       contact_name: this.user.name,
@@ -241,7 +250,10 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
       rooms_count: this.adStore?.rooms_count
     } as AdStore;
 
-    this.adService.getAdStore(this.adStore).pipe(
+    const obs$ = this.adId ? this.adService.getAdUpdate(this.adStore) :
+      this.adService.getAdStore(this.adStore);
+
+    obs$.pipe(
       take(1),
     ).subscribe(() => {
       this.toastService.present('Объявление сохранена')

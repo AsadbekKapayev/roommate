@@ -64,6 +64,10 @@ export class AdService {
     return this.adController.getAdStore(adStore);
   }
 
+  getAdUpdate(adStore: AdStore) {
+    return this.adController.getAdUpdate(adStore);
+  }
+
   searchAdStore(searchAdStore: SearchAdStore, files: File[]) {
     return this.adController.searchAdStore(searchAdStore, files);
   }

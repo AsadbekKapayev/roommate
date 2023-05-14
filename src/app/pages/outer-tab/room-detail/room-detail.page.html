@@ -6,60 +6,108 @@
 </ion-header>
 
 <ion-content>
-  <div class="ad-detail">
+  <div *ngIf="room; else noDate" class="ad-detail">
     <div class="ad-detail-img-container ad-detail-img">
       <app-image-swiper-item
-        *ngIf="room?.media?.length"
-        [imageUrls]="room?.media"
+        *ngIf="room.media?.length"
+        [imageUrls]="room.media"
       ></app-image-swiper-item>
 
-      <img *ngIf="!room?.media?.length" src="assets/images/no-image.jpg" alt="guide-img">
+      <img *ngIf="!room.media?.length" src="assets/images/no-image.jpg" alt="guide-img">
     </div>
 
     <div class="ad-detail-content">
       <div class="flex-space-between">
         <div class="content-title">Ищу сожителя</div>
         <div class="price-container">
-          <div class="price">{{room?.price | priceCurrency}}</div>
-          <div class="content-info">Ком. услуги {{room?.price_com | priceCurrency}}</div>
-          <div class="content-info">Залог {{room?.price_pledge}}%</div>
+          <div class="price">{{room.price | priceCurrency}}</div>
+          <div
+            *ngIf="room.price_com"
+            class="content-info"
+          >Ком. услуги {{room.price_com | priceCurrency}}</div>
+          <div
+            *ngIf="room.price_pledge"
+            class="content-info"
+          >Залог {{room.price_pledge}}%
+          </div>
         </div>
       </div>
 
       <div>
         <div class="content-title">Расположение</div>
-        <div class="content-info">{{room?.location}}</div> <!-- todo -->
+        <div class="content-info">{{room.location}}</div> <!-- todo -->
         <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
       </div>
 
       <div>
         <div class="content-title">Параметры жилья</div>
-        <div class="content-info">Этаж {{room?.floor}}</div> <!-- todo -->
-        <div class="content-info">Площадь, {{room?.square_general}} м2</div> <!-- todo -->
-        <div class="content-info">Высота потолков, 2.2 м</div> <!-- todo -->
+        <div
+          *ngIf="room.floor || room.floor_from"
+          class="content-info"
+        >
+          Этаж: {{room.floor ?? '-'}}{{room.floor_from ? (' из ' + room.floor_from) : ''}}
+        </div>
+        <div
+          *ngIf="room.rooms_count"
+          class="content-info"
+        >
+          Количество комнат: {{room.rooms_count}}
+        </div>
+        <div
+          *ngIf="room.roommate_count"
+          class="content-info"
+        >
+          Количесвто сожителей в квартире: {{room.roommate_count}}
+        </div>
 
         <hr class="horizontal-divider v-margin-12"/>
 
-        <div class="flex-direction-row-10">
-          <div *ngFor="let chip of utilChips" class="custom-chip">
-            {{chip}}
-          </div>
+        <div
+          *ngIf="room.square_general"
+          class="content-info"
+        >Площадь общая: {{room.square_general}} м²
+        </div>
+        <div
+          *ngIf="room.square_kitchen"
+          class="content-info"
+        >Площадь кухни: {{room.square_kitchen}} м²
+        </div>
+        <div
+          *ngIf="room.square_living"
+          class="content-info"
+        >Площадь гостиной: {{room.square_living}} м²
         </div>
       </div>
 
       <div>
         <div class="content-title">Условия проживания</div>
-        <div class="flex-direction-row-10">
-          <div *ngFor="let chip of chips2" class="custom-chip">
-            {{chip}}
-          </div>
+        <div
+          *ngIf="room.apartment_condition"
+          class="content-info"
+        >Состояние квартиры: {{room.apartment_condition.title}}
         </div>
       </div>
 
       <div>
         <div class="content-title">Дополнительное информация</div>
-        <div class="content-info">Пол, {{gender?.title}}</div>
-        <div class="content-info">Заселение возможно, 24.02.2023</div>
+        <div
+          *ngIf="room.balconies_count"
+          class="content-info"
+        >
+          Количество балконов: {{room.balconies_count}}
+        </div>
+        <div
+          *ngIf="room.loggias_count"
+          class="content-info"
+        >
+          Количество лоджии: {{room.loggias_count}}
+        </div>
+        <div
+          *ngIf="room.bathrooms_count"
+          class="content-info"
+        >
+          Количество санузлов: {{room.bathrooms_count}}
+        </div>
       </div>
 
       <ng-container *ngTemplateOutlet="authorTemplate"></ng-container>
@@ -110,4 +158,8 @@
       <div class="content-info">{{author?.email}}</div>
     </div>
   </div>
+</ng-template>
+
+<ng-template #noDate>
+  Нет данных
 </ng-template>

@@ -26,11 +26,11 @@ export class AdEditModalComponent implements OnInit {
 
   onClickEdit() {
     if (this.adType === AdType.ROOM) {
-      this.navCtrl.navigateForward(ALL_URL.CREATE_AD_ROOM + this.adId).then();
+      this.navCtrl.navigateForward(ALL_URL.CREATE_AD + this.adId).then();
     }
 
     if (this.adType === AdType.ROOMMATE) {
-      this.navCtrl.navigateForward(ALL_URL.CREATE_AD + this.adId).then();
+      this.navCtrl.navigateForward(ALL_URL.CREATE_AD_ROOM + this.adId).then();
     }
 
     this.modalService.dismiss(true);
@@ -38,13 +38,13 @@ export class AdEditModalComponent implements OnInit {
 
   onClickDelete() {
     if (this.adType === AdType.ROOM) {
-      this.adService.deleteAd(this.adId).pipe(
+      this.adService.deleteSearchAd(this.adId).pipe(
         take(1)
       ).subscribe();
     }
 
     if (this.adType === AdType.ROOMMATE) {
-      this.adService.deleteSearchAd(this.adId).pipe(
+      this.adService.deleteAd(this.adId).pipe(
         take(1)
       ).subscribe();
     }
