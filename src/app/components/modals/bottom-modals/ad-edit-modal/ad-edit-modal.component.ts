@@ -4,6 +4,7 @@ import {ModalService} from "../../../../services/controllers/modal.service";
 import {AdType} from "../../../../models/commons/ad/AdType";
 import {AdService} from "../../../../services/common/ad.service";
 import {take} from "rxjs";
+import {ALL_URL} from "../../../../shares/url-static";
 
 @Component({
   selector: 'app-ad-edit-modal',
@@ -24,6 +25,14 @@ export class AdEditModalComponent implements OnInit {
   }
 
   onClickEdit() {
+    if (this.adType === AdType.ROOM) {
+      this.navCtrl.navigateForward(ALL_URL.CREATE_AD_ROOM + this.adId).then();
+    }
+
+    if (this.adType === AdType.ROOMMATE) {
+      this.navCtrl.navigateForward(ALL_URL.CREATE_AD + this.adId).then();
+    }
+
     this.modalService.dismiss(true);
   }
 

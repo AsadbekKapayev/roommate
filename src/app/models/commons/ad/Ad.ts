@@ -24,6 +24,7 @@ export class Ad {
   media: string[];
   phone_number: string;
   price: number;
+  price_from: number;
   price_com: number;
   price_pledge: number;
   roommate_count: number;

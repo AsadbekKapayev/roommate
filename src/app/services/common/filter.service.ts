@@ -24,8 +24,16 @@ export class FilterService {
     return (await this.loadRelations()).cities;
   }
 
+  async loadCityById(id: number) {
+    return (await this.loadRelations()).cities?.filter(x => x.id === id);
+  }
+
   async loadGenderTypes() {
     return (await this.loadRelations()).ad_gender_types;
+  }
+
+  async loadGenderTypeById(id: number) {
+    return (await this.loadRelations()).ad_gender_types?.filter(x => x.id === id);
   }
 
   async loadApartmentConditions() {

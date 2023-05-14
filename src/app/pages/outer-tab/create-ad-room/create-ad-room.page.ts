@@ -7,12 +7,14 @@ import ymaps from 'ymaps';
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {FilterType} from "../../../models/commons/ad/FilterType";
 import {Item} from "../../../models/commons/Item";
-import {isEmpty} from "../../../shares/cores/util-method";
+import {isEmpty, toArray} from "../../../shares/cores/util-method";
 import {AdStore} from 'app/models/commons/ad/AdStore';
 import {ProfileService} from "../../../services/core/profile.service";
 import {take} from 'rxjs';
 import {User} from "../../../models/commons/user/User";
 import {ToastService} from "../../../services/core/toast.service";
+import {Ad} from "../../../models/commons/ad/Ad";
+import {FilterService} from "../../../services/common/filter.service";
 
 @Component({
   selector: 'app-create-ad-room',
@@ -43,18 +45,28 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
 
   saveButtonClicked = false;
 
+  author: User;
+  roommate: Ad;
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private settingControllerService: SettingControllerService,
               private profileService: ProfileService,
               private toastService: ToastService,
               private route: ActivatedRoute,
+              private filterService: FilterService,
               private adService: AdService) {
   }
 
   ngOnInit() {
+    const adId = this.route.snapshot?.params?.id;
     this.adStore = new AdStore();
-    this.loadMap().then();
+
+    if (adId) {
+      this.initAdDetail(adId);
+    } else {
+      this.loadMap(toArray('43.237163,76.945627', ','), '').then();
+    }
 
     this.profileService.loadUser().pipe(
       take(1)
@@ -66,12 +78,35 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  async loadMap() {
+  initAdDetail(adId: string) {
+
+    this.adService.loadRoommateById(adId).pipe(
+      take(1)
+    ).subscribe(async x => {
+      this.loadMap(toArray(x?.coordinates, ','), x?.location).then();
+      if (!x) {
+        return;
+      }
+
+      this.adStore.price = x.price;
+      this.adStore.price_from = x.price_from;
+      this.adStore.rooms_count = x.rooms_count;
+      this.adStore.roommate_count = x.roommate_count;
+      this.adStore.description = x.description;
+      this.selectedCity = await this.filterService.loadCityById(x.city_id);
+      this.selectedGenderType = await this.filterService.loadGenderTypeById(x.ad_gender_type_id)
+
+      this.author = x.user;
+      this.roommate = x;
+    })
+  }
+
+  async loadMap(coords, location) {
     ymaps
       .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp&apikey=80cba268-81a1-44b3-a4fd-b15b982ed47d')
       .then(maps => {
         const map = new maps.Map('map', {
-          center: [43.237163, 76.945627],
+          center: coords,
           zoom: 12,
           controls: [
             'fullscreenControl',
@@ -90,7 +125,7 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
           if (myPlacemark) {
             myPlacemark.geometry.setCoordinates(coords);
           } else {
-            myPlacemark = this.createPlacemark(maps, coords);
+            myPlacemark = this.createPlacemark(maps, location, coords);
             map.geoObjects.add(myPlacemark);
             myPlacemark.events.add('dragend', function () {
               this.getAddress(maps, myPlacemark, coords);
@@ -102,9 +137,9 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
       .catch(error => console.log('Failed to load Yandex Maps', error));
   }
 
-  createPlacemark(maps, coords) {
+  createPlacemark(maps, location, coords) {
     return new maps.Placemark(coords, {
-      iconCaption: 'поиск...'
+      iconCaption: location ? location : 'поиск...'
     }, {
       preset: 'islands#violetDotIconWithCaption',
       draggable: true

@@ -47,11 +47,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/outer-tab/look-for-roommate/look-for-roommate.module').then(m => m.LookForRoommateModule)
       },
       {
-        path: 'create-ad',
+        path: 'create-ad/:id',
         loadChildren: () => import('./pages/outer-tab/create-ad/create-ad.module').then(m => m.CreateAdModule)
       },
       {
-        path: 'create-ad-room',
+        path: 'create-ad-room/:id',
         loadChildren: () => import('./pages/outer-tab/create-ad-room/create-ad-room.module').then(m => m.CreateAdRoomModule)
       },
     ],
