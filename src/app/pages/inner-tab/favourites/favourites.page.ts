@@ -16,8 +16,11 @@ import {AdType} from "../../../models/commons/ad/AdType";
 })
 export class GuidePage implements OnInit {
 
-  ads: Ad[];
+  rooms: Ad[];
+  roommates: Ad[];
+
   selectedCategory: string = AdType.ROOMMATE;
+  adType = AdType;
 
   categories: IonicButton[] = [
     {
@@ -44,22 +47,38 @@ export class GuidePage implements OnInit {
     this.initAds();
   }
 
-  onClickLike(ad: Ad) {
+  onClickLike(ad: Ad, adType: AdType) {
     const delayTime = 2000;
     let resetClicked = false;
+    let ad$;
+
+    if (adType === AdType.ROOM) {
+      this.rooms = this.rooms.filter(x => x.id !== ad.id);
+      ad$ = this.adService.adLike(ad.id);
+    }
+    if (adType === AdType.ROOMMATE) {
+      this.roommates = this.roommates.filter(x => x.id !== ad.id);
+      ad$ = this.adService.adGetLike(ad.id);
+    }
 
     this.toastService.presentButton('Объявление удалено из избранных', () => {
       resetClicked = true;
       ad.user_liked = true;
+
+      if (adType === AdType.ROOM) {
+        this.rooms.push(ad);
+      }
+
+      if (adType === AdType.ROOMMATE) {
+        this.roommates.push(ad);
+      }
     }, delayTime).then();
 
     interval(delayTime).pipe(
       take(1),
       filter(() => !resetClicked),
-      switchMap(() => this.adService.adLike(ad.id)),
-    ).subscribe(x => {
-      this.ads = this.ads.filter(x => x.id !== ad.id);
-    });
+      switchMap(() => ad$),
+    ).subscribe();
 
   }
 
@@ -67,7 +86,9 @@ export class GuidePage implements OnInit {
     this.adService.adLiked().pipe(
       take(1),
     ).subscribe(x => {
-      this.ads = x.data;
+      const ads = x.data;
+      this.rooms = ads.filter(ad => ad.model === 'App\\Models\\Ad')
+      this.roommates = ads.filter(ad => ad.model === 'App\\Models\\AdGet')
     });
 
     this.ionRefresher?.complete().then();

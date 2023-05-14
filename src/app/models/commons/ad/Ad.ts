@@ -49,5 +49,6 @@ export class Ad {
   apartment_condition: Item;
   gender_type: Item;
   liked_users: string[];
+  model: string;
   isLiked?: boolean;
 }

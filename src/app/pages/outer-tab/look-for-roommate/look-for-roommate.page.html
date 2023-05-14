@@ -15,6 +15,7 @@
   <div class="roommate">
     <app-roommate-grid
       [roommates]="roommates"
+      (likeClicked)="onAdGetLikeClicked($event)"
     ></app-roommate-grid>
 
     <ion-infinite-scroll

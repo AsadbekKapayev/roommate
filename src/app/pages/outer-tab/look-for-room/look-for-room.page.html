@@ -15,6 +15,7 @@
   <div class="room">
     <app-room-grid
       [rooms]="ads"
+      (likeClicked)="onLikeClicked($event)"
     ></app-room-grid>
 
     <ion-infinite-scroll

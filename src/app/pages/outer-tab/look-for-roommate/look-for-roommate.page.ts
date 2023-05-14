@@ -82,4 +82,10 @@ export class LookForRoommatePage implements OnInit {
     });
   }
 
+  onAdGetLikeClicked(ad: Ad) {
+    this.adService.adGetLike(ad.id).pipe(
+      take(1),
+    ).subscribe();
+  }
+
 }

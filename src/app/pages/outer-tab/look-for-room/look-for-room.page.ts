@@ -80,4 +80,11 @@ export class LookForRoomPage implements OnInit {
       })
     });
   }
+
+  onLikeClicked(ad: Ad) {
+    this.adService.adLike(ad.id).pipe(
+      take(1),
+    ).subscribe();
+  }
+
 }
