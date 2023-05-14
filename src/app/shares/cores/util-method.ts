@@ -1,3 +1,5 @@
+import {Item} from "../../models/commons/Item";
+
 export function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
@@ -18,4 +20,22 @@ export function toArray(val: string, separator: string) {
   }
 
   return val.split(separator);
+}
+
+export function getId(items: Item[]) {
+
+  if (!items?.length) {
+    return;
+  }
+
+  return items[0]?.id;
+}
+
+export function getIds(items: Item[]) {
+
+  if (!items?.length) {
+    return;
+  }
+
+  return items.map(i => i.id);
 }

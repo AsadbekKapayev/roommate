@@ -123,10 +123,21 @@ export class AdController {
       description: searchAdStore.description,
       location: searchAdStore.location,
       price: searchAdStore.price,
+      price_com: searchAdStore.price_com,
+      price_pledge: searchAdStore.price_pledge,
+      floor: searchAdStore.floor,
+      floor_from: searchAdStore.floor_from,
       price_from: searchAdStore.price_from,
       roommate_count: searchAdStore.roommate_count,
       rooms_count: searchAdStore.rooms_count,
       square_general: searchAdStore.square_general,
+      square_kitchen: searchAdStore.square_kitchen,
+      square_living: searchAdStore.square_living,
+      apartment_condition_id: searchAdStore.apartment_condition_id,
+      ad_gender_type_id: searchAdStore.gender_type,
+      apartmentFurniture: searchAdStore.apartmentFurniture,
+      apartmentFurnitureStatus: searchAdStore.apartmentFurnitureStatus,
+      apartmentFurnitureStatus_id: searchAdStore.apartmentFurnitureStatus,
     });
   }
 

@@ -10,6 +10,10 @@ export class SearchAdStore {
   square_general: number;
   bathroom_count: number;
   balconies_count: number;
+  apartment_condition_id: number;
+  gender_type: number;
+  apartmentFurniture: number[];
+  apartmentFurnitureStatus: number;
   loggias_count: number;
   price: number;
   price_from: number;

@@ -7,7 +7,7 @@ import ymaps from 'ymaps';
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {FilterType} from "../../../models/commons/ad/FilterType";
 import {Item} from "../../../models/commons/Item";
-import {isEmpty} from "../../../shares/cores/util-method";
+import {getId, getIds, isEmpty} from "../../../shares/cores/util-method";
 import {ProfileService} from "../../../services/core/profile.service";
 import {take} from 'rxjs';
 import {User} from "../../../models/commons/user/User";
@@ -216,7 +216,11 @@ export class CreateAdPage implements OnInit, OnDestroy {
     }
 
     this.searchAdStore = {
-      city_id: this.selectedCity[0]?.id,
+      city_id: getId(this.selectedCity),
+      price_com: this.searchAdStore.price_com,
+      price_pledge: this.searchAdStore.price_pledge,
+      floor: this.searchAdStore.floor,
+      floor_from: this.searchAdStore.floor_from,
       contact_email: this.user?.email,
       contact_name: this.user?.name,
       phone_number: this.user?.phone_number,
@@ -227,6 +231,11 @@ export class CreateAdPage implements OnInit, OnDestroy {
       roommate_count: this.searchAdStore?.roommate_count,
       rooms_count: this.searchAdStore?.rooms_count,
       square_general: this.searchAdStore?.square_general,
+      square_kitchen: this.searchAdStore?.square_kitchen,
+      apartment_condition_id: getId(this.selectedApartmentConditions),
+      gender_type: getId(this.selectedGenderType),
+      apartmentFurnitureStatus: getId(this.selectedApartmentFurnitureStatuses),
+      apartmentFurniture: getIds(this.selectedApartmentFurniture),
     } as SearchAdStore;
 
     this.adService.searchAdStore(this.searchAdStore, this.images).pipe(

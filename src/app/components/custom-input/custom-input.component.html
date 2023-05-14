@@ -1,9 +1,9 @@
 <div *ngIf="type === 'tel'" class="input-form">
-  <app-error-message-form [setErrorMessage]="error">
+  <app-error-message-form [setErrorMessage]="innerError ?? error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"
            (keyup.enter)="enterPressed.emit()"
-           [(ngModel)]="value"
+           [ngModel]="value"
            [class.custom-input-filled]="value"
            class="custom-input tel-input"
            id="input{{id}}"
@@ -23,11 +23,11 @@
 </div>
 
 <div *ngIf="type === 'number'" class="input-form">
-  <app-error-message-form [setErrorMessage]="error">
+  <app-error-message-form [setErrorMessage]="innerError ?? error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"
            (keyup.enter)="enterPressed.emit()"
-           [(ngModel)]="value"
+           [ngModel]="value"
            [class.custom-input-filled]="value"
            class="custom-input"
            id="input{{id}}"
@@ -52,12 +52,12 @@
 </div>
 
 <div *ngIf="type === 'textarea'" class="input-form text-area">
-  <app-error-message-form [setErrorMessage]="error">
+  <app-error-message-form [setErrorMessage]="innerError ?? error">
     <textarea
       (focusin)="focus = true"
       (focusout)="checkFocus()"
       (keyup.enter)="enterPressed.emit()"
-      [(ngModel)]="value"
+      [ngModel]="value"
       [class.custom-input-filled]="value"
       class="custom-input"
       id="input{{id}}"
@@ -77,13 +77,13 @@
 </div>
 
 <div *ngIf="type !== 'tel' && type !== 'number' && type !== 'textarea'" class="input-form">
-  <app-error-message-form [setErrorMessage]="error">
+  <app-error-message-form [setErrorMessage]="innerError ?? error">
     <input (focusin)="focus = true"
            (focusout)="checkFocus()"
            [type]="type"
            (keyup.enter)="enterPressed.emit()"
            (ngModelChange)="valueChanged($event)"
-           [(ngModel)]="value"
+           [ngModel]="value"
            [class.custom-input-filled]="value"
            class="custom-input"
            id="input{{id}}"

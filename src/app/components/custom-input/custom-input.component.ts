@@ -33,6 +33,7 @@ export class CustomInputComponent implements OnInit {
 
   id = makeId(10);
   focus: boolean = false;
+  innerError: string;
 
   constructor() {
   }
@@ -45,6 +46,14 @@ export class CustomInputComponent implements OnInit {
     if (val != null && val !== '') {
       this.focus = true;
     }
+
+    if (Number(val) > this.maxValue || Number(val) < this.minValue) {
+      this.innerError = 'Значение не должен быть меньше ' + this.minValue + ' и больше ' + this.maxValue;
+      return;
+    }
+
+    this.innerError = null;
+    this.value = val;
     this.valueChange.emit(val);
   }
 

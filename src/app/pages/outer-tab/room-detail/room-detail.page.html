@@ -79,10 +79,11 @@
         </div>
       </div>
 
-      <div>
+      <div
+        *ngIf="room.apartment_condition"
+      >
         <div class="content-title">Условия проживания</div>
         <div
-          *ngIf="room.apartment_condition"
           class="content-info"
         >Состояние квартиры: {{room.apartment_condition.title}}
         </div>
