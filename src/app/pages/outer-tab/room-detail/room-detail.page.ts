@@ -7,7 +7,6 @@ import {Ad} from "../../../models/commons/ad/Ad";
 import {forkJoin, take} from "rxjs";
 import {Item} from "../../../models/commons/Item";
 import {ProfileService} from "../../../services/core/profile.service";
-import {IMAGES} from "../../../components/grids/room-grid/room-grid.component";
 import {User} from "../../../models/commons/user/User";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import ymaps from 'ymaps';
@@ -50,8 +49,6 @@ export class RoomDetailPage implements OnInit {
       ad: this.adService.loadRoomById(roomId),
       genders: this.profileService.loadGenders()
     }).subscribe(x => {
-      x.ad.media = this.shuffleArray(IMAGES);
-
       this.loadMap(toArray(x.ad?.coordinates, ','), x.ad?.location);
 
       this.author = x.ad?.user;

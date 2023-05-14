@@ -1,5 +1,6 @@
 import {User} from "../user/User";
 import {Item} from "../Item";
+import {Media} from "./Media";
 
 export class Ad {
   id: number;
@@ -21,7 +22,7 @@ export class Ad {
   kitchen_studio: number;
   location: string;
   loggias_count: string;
-  media: string[];
+  media: Media[];
   phone_number: string;
   price: number;
   price_from: number;

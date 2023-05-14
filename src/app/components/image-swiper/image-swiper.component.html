@@ -5,7 +5,7 @@
   <ng-container *ngFor="let image of imageUrls">
     <ng-template swiperSlide>
       <div class="image-wrapper">
-        <img [src]="image" alt="image">
+        <img [src]="image.original_url" alt="image">
       </div>
     </ng-template>
   </ng-container>

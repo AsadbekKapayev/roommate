@@ -5,16 +5,6 @@ import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {TokenService} from "../../../services/common/token.service";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
-import {AdType} from "../../../models/commons/ad/AdType";
-
-export const IMAGES = [
-  'assets/images/house.jpg',
-  'assets/images/house2.jpg',
-  'assets/images/house3.jpg',
-  'assets/images/house4.jpg',
-  'assets/images/room1.jpg',
-  'assets/images/room2.jpg',
-];
 
 @Component({
   selector: 'app-room-grid',
@@ -24,10 +14,6 @@ export const IMAGES = [
 export class RoomGridComponent implements OnInit {
 
   @Input() set rooms(rooms: Ad[]) {
-    rooms?.forEach(x => {
-      const random = Math.floor(Math.random() * rooms?.length);
-      x.media?.push(IMAGES[random])
-    });
     this._rooms = rooms;
   }
 

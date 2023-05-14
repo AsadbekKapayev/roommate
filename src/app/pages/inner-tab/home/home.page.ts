@@ -54,13 +54,6 @@ export class GuidePage implements OnInit {
     }
 
     this.initAds();
-
-    // this.rooms = this.adService.loadRooms();
-    // this.roommates = this.adService.loadRoommates();
-
-    // this.testController.loadGenders().toPromise().then(x => {
-    //   console.log('GsCX6LWF :: ', x)
-    // })
   }
 
   initAds() {
@@ -70,6 +63,8 @@ export class GuidePage implements OnInit {
     ]).pipe(
       take(1),
     ).subscribe(x => {
+      console.log('Ndg0SKe6 :: ', x)
+
       this.rooms = x[0]?.data;
       this.roommates = x[1]?.data;
     });

@@ -1,6 +1,7 @@
 import {AfterContentChecked, Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import SwiperCore, {Pagination} from "swiper";
 import {SwiperComponent} from "swiper/angular";
+import {Media} from "../../models/commons/ad/Media";
 
 SwiperCore.use([
   Pagination,
@@ -14,7 +15,7 @@ SwiperCore.use([
 })
 export class ImageSwiperComponent implements OnInit, AfterContentChecked {
 
-  @Input() imageUrls: string[];
+  @Input() imageUrls: Media[];
 
   @ViewChild('swiper') swiper: SwiperComponent;
 
