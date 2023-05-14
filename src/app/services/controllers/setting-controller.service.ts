@@ -21,6 +21,8 @@ import {CheckboxModalComponent} from "../../components/modals/full-modals/checkb
 import {Item} from "../../models/commons/Item";
 import {PhoneModalComponent} from "../../components/modals/bottom-modals/phone-modal/phone-modal.component";
 import {CreateAdModalComponent} from "../../components/modals/bottom-modals/create-ad-modal/create-ad-modal.component";
+import {AdEditModalComponent} from "../../components/modals/bottom-modals/ad-edit-modal/ad-edit-modal.component";
+import {AdType} from "../../models/commons/ad/AdType";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -105,6 +107,20 @@ export class SettingControllerService extends AbstractSettingController {
       return {
         component: CityAlmatyModalComponent,
         componentProps: {},
+        cssClass: 'bottom-modal-component auto-height',
+        swipeToClose: true,
+      };
+    });
+  }
+
+  public setAdEditModal(id: number, adType: AdType): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: AdEditModalComponent,
+        componentProps: {
+          adId: id,
+          adType: adType
+        },
         cssClass: 'bottom-modal-component auto-height',
         swipeToClose: true,
       };

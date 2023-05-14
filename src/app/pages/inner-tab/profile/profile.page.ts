@@ -9,6 +9,7 @@ import {forkJoin, take} from "rxjs";
 import {SubSink} from "../../../shares/SubSink";
 import {ProfileService} from "../../../services/core/profile.service";
 import {User} from "../../../models/commons/user/User";
+import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-profile',
@@ -42,6 +43,7 @@ export class ProfilePage implements OnInit {
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private profileService: ProfileService,
+              private settingControllerService: SettingControllerService,
               private adService: AdService) {
   }
 
@@ -70,11 +72,17 @@ export class ProfilePage implements OnInit {
     ]).pipe(
       take(1)
     ).subscribe(x => {
-      this.roommates = x[0].data;
-      this.rooms = x[1].data;
+      this.rooms = x[0].data;
+      this.roommates = x[1].data;
     });
 
     this.ionRefresher?.complete().then();
+  }
+
+  onEditClicked(ad: Ad, adType: AdType) {
+    this.settingControllerService.setAdEditModal(ad?.id, adType).present().then(() => {
+      this.initAds();
+    });
   }
 
 }

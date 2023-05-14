@@ -29,11 +29,15 @@
     <app-room-grid
       *ngIf="selectedCategory === adType.ROOM"
       [rooms]="rooms"
+      [showEditIcon]="true"
+      (categoryClicked)="onEditClicked($event, adType.ROOM)"
     ></app-room-grid>
 
     <app-roommate-grid
       *ngIf="selectedCategory === adType.ROOMMATE"
       [roommates]="roommates"
+      [showEditIcon]="true"
+      (categoryClicked)="onEditClicked($event, adType.ROOMMATE)"
     ></app-roommate-grid>
   </div>
 </ion-content>

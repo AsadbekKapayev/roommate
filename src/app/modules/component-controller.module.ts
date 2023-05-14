@@ -11,6 +11,7 @@ import {SelectModalModule} from "../components/modals/full-modals/select-modal/s
 import {CheckboxModalModule} from "../components/modals/full-modals/checkbox-modal/checkbox-modal.module";
 import {PhoneModalModule} from "../components/modals/bottom-modals/phone-modal/phone-modal.module";
 import {CreateAdModalModule} from "../components/modals/bottom-modals/create-ad-modal/create-ad-modal.module";
+import {AdEditModalModule} from "../components/modals/bottom-modals/ad-edit-modal/ad-edit-modal.module";
 
 const CONTROLLER_MODULES = [
   FillProfileModalModule,
@@ -18,6 +19,7 @@ const CONTROLLER_MODULES = [
   SelectModalModule,
   CheckboxModalModule,
   CityAlmatyModalModule,
+  AdEditModalModule,
   CityModalModule,
   ProfileSettingModalModule,
   PhoneModalModule,

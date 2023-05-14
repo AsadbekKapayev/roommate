@@ -5,9 +5,18 @@
     <div class="ad" (click)="onClickRoom(room)">
       <div class="ad-head">
         <div class="ad-price">{{room.price | priceCurrency}}</div>
-        <img [src]="room.user_liked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
-             [alt]="room.user_liked ? 'heart-filled' : 'heart'"
-             (click)="$event.stopPropagation(); onClickLike(room)"
+
+        <img
+          *ngIf="!showEditIcon"
+          [src]="room.user_liked ? 'assets/icon/heart-filled.svg' : 'assets/icon/heart.svg'"
+          [alt]="room.user_liked ? 'heart-filled' : 'heart'"
+          (click)="$event.stopPropagation(); onClickLike(room)"
+        >
+
+        <img
+          *ngIf="showEditIcon"
+          src="assets/icon/dots-vertical.svg"
+          (click)="$event.stopPropagation(); onClickEdit(room)"
         >
       </div>
 

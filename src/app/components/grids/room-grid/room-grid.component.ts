@@ -4,6 +4,8 @@ import {ALL_URL} from "../../../shares/url-static";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {TokenService} from "../../../services/common/token.service";
+import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
+import {AdType} from "../../../models/commons/ad/AdType";
 
 export const IMAGES = [
   'assets/images/house.jpg',
@@ -29,12 +31,16 @@ export class RoomGridComponent implements OnInit {
     this._rooms = rooms;
   }
 
+  @Input() showEditIcon: boolean;
+
   @Output() likeClicked = new EventEmitter<Ad>();
+  @Output() categoryClicked = new EventEmitter<Ad>();
 
   _rooms: Ad[];
 
   constructor(private navCtrl: NavController,
               private tokenService: TokenService,
+              private settingControllerService: SettingControllerService,
               private adService: AdService) {
   }
 
@@ -54,4 +60,9 @@ export class RoomGridComponent implements OnInit {
     this._rooms.find(x => x.id === room.id).user_liked = !room.user_liked;
     this.likeClicked.emit(room);
   }
+
+  onClickEdit(ad: Ad) {
+    this.categoryClicked.emit(ad);
+  }
+
 }

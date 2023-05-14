@@ -86,6 +86,16 @@ export class AdController {
       .pipe(map((value) => value.body as any));
   }
 
+  deleteSearchAd(adId: number): Observable<any> {
+    return this.httpService.postJson('/user/search_ad/' + adId + '/delete', {})
+      .pipe(map((value) => value.body as any));
+  }
+
+  deleteAd(adId: number): Observable<any> {
+    return this.httpService.postJson('/user/get_ad/' + adId + '/delete', {})
+      .pipe(map((value) => value.body as any));
+  }
+
   searchAdStore(searchAdStore: SearchAdStore, files: File[]): Observable<any> {
     return this.httpService.postFiles('/user/search_ad/store', files, {
       city_id: searchAdStore.city_id,

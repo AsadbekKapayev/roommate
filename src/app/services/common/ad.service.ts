@@ -52,6 +52,14 @@ export class AdService {
     return this.adController.userSearchAds();
   }
 
+  deleteSearchAd(adId: number) {
+    return this.adController.deleteSearchAd(adId);
+  }
+
+  deleteAd(adId: number) {
+    return this.adController.deleteAd(adId);
+  }
+
   getAdStore(adStore: AdStore) {
     return this.adController.getAdStore(adStore);
   }

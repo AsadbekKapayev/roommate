@@ -2,9 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {ALL_URL} from "../../../shares/url-static";
 import {AdService} from "../../../services/common/ad.service";
-import {RoommateItem} from "../../../models/commons/ad/RoommateItem";
 import {Ad} from "../../../models/commons/ad/Ad";
 import {TokenService} from "../../../services/common/token.service";
+import {AdType} from "../../../models/commons/ad/AdType";
+import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 
 @Component({
   selector: 'app-roommate-grid',
@@ -14,11 +15,14 @@ import {TokenService} from "../../../services/common/token.service";
 export class RoommateGridComponent implements OnInit {
 
   @Input() roommates: Ad[];
+  @Input() showEditIcon: boolean;
 
   @Output() likeClicked = new EventEmitter<Ad>();
+  @Output() categoryClicked = new EventEmitter<Ad>();
 
   constructor(private navCtrl: NavController,
               private tokenService: TokenService,
+              private settingControllerService: SettingControllerService,
               private adService: AdService) {
   }
 
@@ -38,4 +42,9 @@ export class RoommateGridComponent implements OnInit {
     this.roommates.find(x => x.id === roommate.id).user_liked = !roommate.user_liked;
     this.likeClicked.emit(roommate);
   }
+
+  onClickEdit(ad: Ad) {
+    this.categoryClicked.emit(ad);
+  }
+
 }
