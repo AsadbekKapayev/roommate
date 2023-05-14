@@ -35,7 +35,7 @@
     <div *ngIf="roommates?.length" class="home-title margin-12 page-padding-top-20px">Ищут комнату</div>
     <app-roommate-grid
       [roommates]="roommates"
-      (likeClicked)="onLikeClicked($event)"
+      (likeClicked)="onAdGetLikeClicked($event)"
     ></app-roommate-grid>
     <button
       class="show-more-button margin-top-12px"

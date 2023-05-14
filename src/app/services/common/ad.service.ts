@@ -36,6 +36,10 @@ export class AdService {
     return this.adController.adLike(adId);
   }
 
+  adGetLike(adId: number) {
+    return this.adController.adGetLike(adId);
+  }
+
   adLiked() {
     return this.adController.adLiked();
   }

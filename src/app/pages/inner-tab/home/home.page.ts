@@ -101,4 +101,10 @@ export class GuidePage implements OnInit {
     ).subscribe();
   }
 
+  onAdGetLikeClicked(ad: Ad) {
+    this.adService.adGetLike(ad.id).pipe(
+      take(1),
+    ).subscribe();
+  }
+
 }
