@@ -6,55 +6,95 @@
 </ion-header>
 
 <ion-content>
-  <div class="ad-detail">
+  <div *ngIf="roommate; else noDate" class="ad-detail">
     <div class="ad-detail-img-container ad-detail-img">
       <img [src]="roommate?.user?.profile_photo_url ?? 'assets/images/no-image.jpg'" alt="ad-holder">
     </div>
 
     <div class="ad-detail-content">
       <div class="flex-space-between">
-        <div class="content-title">Ищу сожителя</div>
+        <div class="content-title">Ищу комнату</div>
         <div class="price-container">
-          <div class="price">{{roommate?.price | priceCurrency}}</div>
-          <div class="content-info">Ком. услуги {{roommate?.price_com | priceCurrency}}</div>
-          <div class="content-info">Залог {{roommate?.price_pledge}}%</div>
+          <div class="price">{{roommate.price + ' - ' + roommate.price_from + ' ₸'}}</div>
         </div>
       </div>
 
       <div>
         <div class="content-title">Расположение</div>
-        <div class="content-info">{{roommate?.location}}</div>
+        <div class="content-info">{{roommate.location}}</div> <!-- todo -->
         <div id="map" style="width: 100%; height: 200px; margin-top: 20px"></div>
       </div>
 
       <div>
         <div class="content-title">Параметры жилья</div>
-        <div class="content-info">Этаж 2</div> <!-- todo -->
-        <div class="content-info">Площадь, 20 м2</div> <!-- todo -->
-        <div class="content-info">Высота потолков, 2.2 м</div> <!-- todo -->
+        <div
+          *ngIf="roommate.floor || roommate.floor_from"
+          class="content-info"
+        >
+          Этаж: {{roommate.floor ?? '-'}}{{roommate.floor_from ? (' из ' + roommate.floor_from) : ''}}
+        </div>
+        <div
+          *ngIf="roommate.rooms_count"
+          class="content-info"
+        >
+          Количество комнат: {{roommate.rooms_count}}
+        </div>
+        <div
+          *ngIf="roommate.roommate_count"
+          class="content-info"
+        >
+          Количесвто сожителей в квартире: {{roommate.roommate_count}}
+        </div>
 
         <hr class="horizontal-divider v-margin-12"/>
 
-        <div class="flex-direction-row-10">
-          <div *ngFor="let chip of utilChips" class="custom-chip">
-            {{chip}}
-          </div>
+        <div
+          *ngIf="roommate.square_general"
+          class="content-info"
+        >Площадь общая: {{roommate.square_general}} м²
+        </div>
+        <div
+          *ngIf="roommate.square_kitchen"
+          class="content-info"
+        >Площадь кухни: {{roommate.square_kitchen}} м²
+        </div>
+        <div
+          *ngIf="roommate.square_living"
+          class="content-info"
+        >Площадь гостиной: {{roommate.square_living}} м²
         </div>
       </div>
 
-      <div>
+      <div
+        *ngIf="roommate.apartment_condition"
+      >
         <div class="content-title">Условия проживания</div>
-        <div class="flex-direction-row-10">
-          <div *ngFor="let chip of chips2" class="custom-chip">
-            {{chip}}
-          </div>
+        <div
+          class="content-info"
+        >Состояние квартиры: {{roommate.apartment_condition.title}}
         </div>
       </div>
 
       <div>
         <div class="content-title">Дополнительное информация</div>
-        <div class="content-info">Пол, женский</div>
-        <div class="content-info">Заселение возможно, 24.02.2023</div>
+        <div
+          *ngIf="roommate.balconies_count"
+          class="content-info"
+        >
+          Количество балконов: {{roommate.balconies_count}}
+        </div>
+        <div
+          *ngIf="roommate.loggias_count"
+          class="content-info"
+        >
+          Количество лоджии: {{roommate.loggias_count}}
+        </div>
+        <div
+          *ngIf="roommate.bathrooms_count"
+          class="content-info"
+        >
+          Количество санузлов: {{roommate.bathrooms_count}}
+        </div>
       </div>
 
       <ng-container *ngTemplateOutlet="authorTemplate"></ng-container>
@@ -105,4 +145,8 @@
       <div class="content-info">{{author?.email}}</div>
     </div>
   </div>
+</ng-template>
+
+<ng-template #noDate>
+  Нет данных
 </ng-template>
