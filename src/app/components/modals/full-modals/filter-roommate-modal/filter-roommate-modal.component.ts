@@ -8,11 +8,11 @@ import {FilterService} from "../../../../services/common/filter.service";
 import {Filter} from "../../../../models/commons/ad/Filter";
 
 @Component({
-  selector: 'app-filter-modal',
-  templateUrl: './filter-modal.component.html',
-  styleUrls: ['./filter-modal.component.scss'],
+  selector: 'app-filter-roommate-modal',
+  templateUrl: './filter-roommate-modal.component.html',
+  styleUrls: ['./filter-roommate-modal.component.scss'],
 })
-export class FilterModalComponent implements OnInit {
+export class FilterRoommateModalComponent implements OnInit {
 
   selectedRoomQuantity: string;
   roomsQuantity: string[] = [
@@ -60,7 +60,6 @@ export class FilterModalComponent implements OnInit {
   }
 
   reset() {
-
 
   }
 

@@ -43,15 +43,6 @@
         <hr class="horizontal-divider v-margin-12">
       </div>
 
-      <div>
-        <app-filter-item
-          [title]="'Город'"
-          [selectedItems]="selectedCity"
-          (click)="onClick('Город', type.CITY)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-      
       <div class="rooms-filter">
         <div class="title margin-12">Количество комнат</div>
 
@@ -66,6 +57,15 @@
           </div>
         </div>
 
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-filter-item
+          [title]="'Город'"
+          [selectedItems]="selectedCity"
+          (click)="onClick('Город', type.CITY)"
+        ></app-filter-item>
         <hr class="horizontal-divider v-margin-12">
       </div>
 
@@ -93,6 +93,20 @@
           [selectedItems]="selectedApartmentFurniture"
           (click)="onClick('Мебель в квартире', type.APARTMENT_FURNITURE, true)"
         ></app-filter-item>
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-custom-checkbox
+          [title]="'Не первый этаж'"
+        ></app-custom-checkbox>
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-custom-checkbox
+          [title]="'Не последний этаж'"
+        ></app-custom-checkbox>
         <hr class="horizontal-divider v-margin-12">
       </div>
 
