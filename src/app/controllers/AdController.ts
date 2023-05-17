@@ -135,9 +135,17 @@ export class AdController {
       square_living: searchAdStore.square_living,
       apartment_condition_id: searchAdStore.apartment_condition_id,
       ad_gender_type_id: searchAdStore.gender_type,
-      apartmentFurniture: searchAdStore.apartmentFurniture,
-      apartmentFurnitureStatus: searchAdStore.apartmentFurnitureStatus,
-      apartmentFurnitureStatus_id: searchAdStore.apartmentFurnitureStatus,
+      'apartmentFurniture_ids[]': searchAdStore.apartmentFurniture,
+      apartment_furniture_status_id: searchAdStore.apartmentFurnitureStatus,
+      'apartmentFacilities_ids[]': searchAdStore.apartmentFacilities_ids,
+      'apartmentBathroomTypes_ids[]': searchAdStore.apartmentBathroomTypes_ids,
+      'apartmentSecurities_ids[]': searchAdStore.apartmentSecurities_ids,
+      bathrooms_count: searchAdStore.bathroom_count,
+      'apartmentBathrooms_ids[]': searchAdStore.apartmentBathrooms_ids,
+      balconies_count: searchAdStore.balconies_count,
+      'windowDirections[]': searchAdStore.windowDirections,
+      'apartmentFor_ids[]': searchAdStore.apartmentFor_ids,
+      loggias_count: searchAdStore.loggias_count,
     });
   }
 

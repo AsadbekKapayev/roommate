@@ -14,6 +14,8 @@ export class SearchAdStore {
   gender_type: number;
   apartmentFurniture: number[];
   apartmentFurnitureStatus: number;
+  apartmentBathroomTypes_ids: number[];
+  apartmentFacilities_ids: number[];
   loggias_count: number;
   price: number;
   price_from: number;
@@ -24,4 +26,8 @@ export class SearchAdStore {
   contact_name: string;
   phone_number: number;
   contact_email: string;
+  apartmentBathrooms_ids: number[];
+  apartmentSecurities_ids: number[];
+  windowDirections: number[];
+  apartmentFor_ids: number[];
 }

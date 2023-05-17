@@ -10,7 +10,9 @@ import {ProfileService} from "../../../services/core/profile.service";
 import {User} from "../../../models/commons/user/User";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import ymaps from 'ymaps';
-import {toArray} from "../../../shares/cores/util-method";
+import {itemsToStr, toArray} from "../../../shares/cores/util-method";
+import {FilterType} from "../../../models/commons/ad/FilterType";
+import {FilterService} from "../../../services/common/filter.service";
 
 @Component({
   selector: 'app-room-detail',
@@ -27,11 +29,22 @@ export class RoomDetailPage implements OnInit {
 
   author: User;
 
+  apartment_condition: string;
+  ad_gender_type_id: string;
+  apartmentFurniture_ids: string;
+  apartmentFacilities_ids: string;
+  apartmentBathroomTypes_ids: string;
+  apartmentSecurities_ids: string;
+  apartmentBathrooms_ids: string;
+  windowDirections: string;
+  apartmentFor_ids: string;
+
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
               private route: ActivatedRoute,
               private settingControllerService: SettingControllerService,
               private profileService: ProfileService,
+              private filterService: FilterService,
               private adService: AdService) {
   }
 
@@ -52,6 +65,33 @@ export class RoomDetailPage implements OnInit {
       this.room = x.ad;
       this.genders = x.genders;
       this.gender = this.genders.find(g => g.id === this.gender?.id);
+
+      this.getDetailByCode(FilterType.APARTMENT_CONDITIONS, this.room?.apartment_condition_id).then(x => {
+        this.apartment_condition = x;
+      });
+
+      this.getDetailByCode(FilterType.APARTMENT_FURNITURE, this.room?.apartment_furniture).then(x => {
+        this.apartmentFurniture_ids = x;
+      })
+
+      this.getDetailByCode(FilterType.APARTMENT_FACILITIES, this.room?.apartment_facilities).then(x => {
+        this.apartmentFacilities_ids = x;
+      })
+      this.getDetailByCode(FilterType.APARTMENT_BATHROOM_TYPES, this.room?.apartment_bathrooms_types).then(x => {
+        this.apartmentBathroomTypes_ids = x;
+      })
+      this.getDetailByCode(FilterType.APARTMENT_SECURITIES, this.room?.apartment_securities).then(x => {
+        this.apartmentSecurities_ids = x;
+      })
+      this.getDetailByCode(FilterType.APARTMENT_BATHROOMS, this.room?.apartment_bathrooms).then(x => {
+        this.apartmentBathrooms_ids = x;
+      })
+      this.getDetailByCode(FilterType.WINDOW_DIRECTIONS, this.room?.window_directions).then(x => {
+        this.windowDirections = x;
+      })
+      this.getDetailByCode(FilterType.APARTMENT_FOR, this.room?.apartment_for).then(x => {
+        this.apartmentFor_ids = x;
+      })
     })
 
     this.adService.loadRooms(1).pipe(
@@ -111,6 +151,48 @@ export class RoomDetailPage implements OnInit {
       preset: 'islands#violetDotIconWithCaption',
       draggable: true
     });
+  }
+
+  async getDetailByCode(code: FilterType, value: number | Item[]) {
+
+    if (code === FilterType.APARTMENT_CONDITIONS) {
+      const filter = await this.filterService.loadApartmentConditionBy(value as number);
+      return filter.title;
+    }
+    if (code === FilterType.GENDER_TYPE) {
+      const filter = await this.filterService.loadGenderTypeById(value as number);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.APARTMENT_FURNITURE) {
+      const filter = await this.filterService.loadApartmentFurnitureIds(value as Item[]);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.APARTMENT_FACILITIES) {
+      const filter = await this.filterService.loadApartmentFacilitiesByIds(value as Item[]);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.APARTMENT_BATHROOM_TYPES) {
+      const filter = await this.filterService.loadApartmentBathroomTypesByIds(value as Item[]);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.APARTMENT_SECURITIES) {
+      const filter = await this.filterService.loadApartmentSecuritiesByIds(value as Item[]);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.APARTMENT_BATHROOMS) {
+      const filter = await this.filterService.loadApartmentBathroomsByIds(value as Item[]);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.WINDOW_DIRECTIONS) {
+      const filter = await this.filterService.loadWindowDirectionsByIds(value as Item[]);
+      return itemsToStr(filter);
+    }
+    if (code === FilterType.APARTMENT_FOR) {
+      const filter = await this.filterService.loadApartmentForById(value as Item[]);
+      return itemsToStr(filter);
+    }
+
+    return '';
   }
 
 }

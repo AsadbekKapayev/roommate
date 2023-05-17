@@ -46,7 +46,6 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
   saveButtonClicked = false;
 
   author: User;
-  roommate: Ad;
   adId: string;
 
   constructor(private navCtrl: NavController,
@@ -100,7 +99,6 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
       this.selectedGenderType = await this.filterService.loadGenderTypeById(x.ad_gender_type_id)
 
       this.author = x.user;
-      this.roommate = x;
     })
   }
 

@@ -39,3 +39,11 @@ export function getIds(items: Item[]) {
 
   return items.map(i => i.id);
 }
+
+export function itemsToStr(items: Item[]) {
+  if (!items?.length) {
+    return;
+  }
+
+  return items.map(i => i.title).join(', ');
+}

@@ -85,6 +85,11 @@ export class SelectModalComponent implements OnInit {
   }
 
   onSelectItem(item: Item) {
+    if (this.selectedValue?.id === item?.id) {
+      this.modalService.dismiss();
+      return;
+    }
+
     this.modalService.dismiss(item);
   }
 

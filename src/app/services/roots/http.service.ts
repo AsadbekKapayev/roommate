@@ -121,7 +121,11 @@ const keyValueAppender = (keyValue: { [p: string]: any }, appendFunc: (key: stri
       continue;
     }
 
-    if (typeof value === 'string') {
+    if (value instanceof Array) {
+      for (let v of value) {
+        appendFunc(key, v);
+      }
+    } else if (typeof value === 'string') {
       appendFunc(key, value as string);
     } else if (typeof value === 'number' || typeof value === 'boolean') {
       appendFunc(key, '' + value);

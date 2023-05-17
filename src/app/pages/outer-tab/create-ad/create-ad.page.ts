@@ -7,7 +7,7 @@ import ymaps from 'ymaps';
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {FilterType} from "../../../models/commons/ad/FilterType";
 import {Item} from "../../../models/commons/Item";
-import {getId, getIds, isEmpty} from "../../../shares/cores/util-method";
+import {getId, getIds, isEmpty, toArray} from "../../../shares/cores/util-method";
 import {ProfileService} from "../../../services/core/profile.service";
 import {take} from 'rxjs';
 import {User} from "../../../models/commons/user/User";
@@ -15,6 +15,7 @@ import {ToastService} from "../../../services/core/toast.service";
 import {SearchAdStore} from "../../../models/commons/ad/SearchAdStore";
 import {ImageService, LocalFile} from "../../../services/common/image.service";
 import {SubSink} from "../../../shares/SubSink";
+import {FilterService} from "../../../services/common/filter.service";
 
 @Component({
   selector: 'app-create-ad',
@@ -48,6 +49,7 @@ export class CreateAdPage implements OnInit, OnDestroy {
   images: File[];
 
   subSink = new SubSink();
+  adId: string;
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
@@ -55,17 +57,21 @@ export class CreateAdPage implements OnInit, OnDestroy {
               private profileService: ProfileService,
               private toastService: ToastService,
               private route: ActivatedRoute,
+              private filterService: FilterService,
               private imageService: ImageService,
               private adService: AdService) {
   }
 
   ngOnInit() {
-    const roomId = this.route.snapshot?.params?.id;
-    console.log('bWlp4ieJ :: ', roomId)
-
+    this.adId = this.route.snapshot?.params?.id;
     this.imageService.clearData();
     this.searchAdStore = new SearchAdStore();
-    this.loadMap().then();
+
+    if (this.adId) {
+      this.initAdDetail(this.adId);
+    } else {
+      this.loadMap(toArray('43.237163,76.945627', ','), '').then();
+    }
 
     this.profileService.loadUser().pipe(
       take(1)
@@ -83,12 +89,13 @@ export class CreateAdPage implements OnInit, OnDestroy {
     this.subSink.unsubscribe();
   }
 
-  async loadMap() {
+
+  async loadMap(coords, location) {
     ymaps
       .load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp&apikey=80cba268-81a1-44b3-a4fd-b15b982ed47d')
       .then(maps => {
         const map = new maps.Map('map', {
-          center: [43.237163, 76.945627],
+          center: coords,
           zoom: 12,
           controls: [
             'fullscreenControl',
@@ -101,13 +108,18 @@ export class CreateAdPage implements OnInit, OnDestroy {
 
         let myPlacemark;
 
+        if (this.adId) {
+          myPlacemark = this.createPlacemark(maps, location, coords);
+          map.geoObjects.add(myPlacemark);
+        }
+
         map.events.add('click', (e) => {
           const coords = e.get('coords');
 
           if (myPlacemark) {
             myPlacemark.geometry.setCoordinates(coords);
           } else {
-            myPlacemark = this.createPlacemark(maps, coords);
+            myPlacemark = this.createPlacemark(maps, location, coords);
             map.geoObjects.add(myPlacemark);
             myPlacemark.events.add('dragend', function () {
               this.getAddress(maps, myPlacemark, coords);
@@ -119,9 +131,9 @@ export class CreateAdPage implements OnInit, OnDestroy {
       .catch(error => console.log('Failed to load Yandex Maps', error));
   }
 
-  createPlacemark(maps, coords) {
+  createPlacemark(maps, location, coords) {
     return new maps.Placemark(coords, {
-      iconCaption: 'поиск...'
+      iconCaption: location ? location : 'поиск...'
     }, {
       preset: 'islands#violetDotIconWithCaption',
       draggable: true
@@ -228,6 +240,9 @@ export class CreateAdPage implements OnInit, OnDestroy {
       description: this.searchAdStore?.description,
       location: this.mapValue,
       price: this.searchAdStore?.price,
+      balconies_count: this.searchAdStore?.balconies_count,
+      bathroom_count: this.searchAdStore?.bathroom_count,
+      loggias_count: this.searchAdStore?.loggias_count,
       roommate_count: this.searchAdStore?.roommate_count,
       rooms_count: this.searchAdStore?.rooms_count,
       square_general: this.searchAdStore?.square_general,
@@ -236,6 +251,12 @@ export class CreateAdPage implements OnInit, OnDestroy {
       gender_type: getId(this.selectedGenderType),
       apartmentFurnitureStatus: getId(this.selectedApartmentFurnitureStatuses),
       apartmentFurniture: getIds(this.selectedApartmentFurniture),
+      apartmentFacilities_ids: getIds(this.selectedApartmentFacilities),
+      apartmentBathrooms_ids: getIds(this.selectedApartmentBathrooms),
+      apartmentBathroomTypes_ids: getIds(this.selectedApartmentBathroomTypes),
+      apartmentSecurities_ids: getIds(this.selectedApartmentSecurities),
+      windowDirections: getIds(this.selectedWindowDirections),
+      apartmentFor_ids: getIds(this.selectedApartmentFor),
     } as SearchAdStore;
 
     this.adService.searchAdStore(this.searchAdStore, this.images).pipe(
@@ -246,21 +267,41 @@ export class CreateAdPage implements OnInit, OnDestroy {
     });
   }
 
+  initAdDetail(adId: string) {
+
+    this.adService.loadRoomById(adId).pipe(
+      take(1)
+    ).subscribe(async x => {
+      this.loadMap(toArray(x?.coordinates, ','), x?.location).then();
+      if (!x) {
+        return;
+      }
+
+      this.coords = x?.coordinates;
+      this.mapValue = x?.location;
+      this.searchAdStore.price = x.price;
+      this.searchAdStore.price_from = x.price_from;
+      this.searchAdStore.rooms_count = x.rooms_count;
+      this.searchAdStore.roommate_count = x.roommate_count;
+      this.searchAdStore.description = x.description;
+      this.selectedCity = await this.filterService.loadCityById(x.city_id);
+      this.selectedGenderType = await this.filterService.loadGenderTypeById(x.ad_gender_type_id)
+
+      this.user = x.user;
+    })
+  }
+
   onClick(title?: string, code?: FilterType, isCheckboxModal?: boolean) {
     if (isCheckboxModal) {
       this.settingControllerService.setCheckboxModal(title, code, this.getItemsByCode(code)).presentSecondary().then(x => {
-        if (!x?.data || isEmpty(x?.data)) {
-          return;
-        }
-
         this.setItemsByCode(code, x.data);
       });
-
       return;
     }
 
     this.settingControllerService.setSelectModal(title, code, this.getItemsByCode(code)).presentSecondary().then(x => {
-      if (!x?.data || isEmpty(x?.data)) {
+      if (isEmpty(x.data)) {
+        this.setItemsByCode(code, []);
         return;
       }
 
