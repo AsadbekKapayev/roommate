@@ -16,7 +16,7 @@ import {AuthService} from "../../../services/core/auth.service";
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class GuidePage implements OnInit {
+export class HomePage implements OnInit {
 
   subSink = new SubSink();
 

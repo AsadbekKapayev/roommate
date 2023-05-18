@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {HomeRoutingModule} from './home-routing.module';
-import {GuidePage} from "./home.page";
+import {HomePage} from "./home.page";
 import {IonicModule} from "@ionic/angular";
 import {ThrottleClickModule} from "../../../directives/cores/throttle-click/throttle-click.module";
 import {MatInputModule} from "@angular/material/input";
@@ -13,7 +13,7 @@ import {RoomGridModule} from "../../../components/grids/room-grid/room-grid.modu
 import {RoommateGridModule} from "../../../components/grids/roommate-grid/roommate-grid.module";
 
 @NgModule({
-  declarations: [GuidePage],
+  declarations: [HomePage],
   imports: [
     CommonModule,
     HomeRoutingModule,

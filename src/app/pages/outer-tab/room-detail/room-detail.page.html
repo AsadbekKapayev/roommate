@@ -113,12 +113,6 @@
         <hr class="horizontal-divider v-margin-12"/>
 
         <div
-          *ngIf="room.apartment_condition_id"
-          class="content-info"
-        >
-          Состояние квартиры: {{apartment_condition}}
-        </div>
-        <div
           *ngIf="room.apartment_furniture"
           class="content-info"
         >
@@ -130,6 +124,9 @@
         >
           Удобства в апартаментах: {{apartmentFacilities_ids}}
         </div>
+
+        <hr class="horizontal-divider v-margin-12"/>
+
         <div
           *ngIf="room.apartment_bathrooms_types"
           class="content-info"
@@ -137,17 +134,23 @@
           Санузел: {{apartmentBathroomTypes_ids}}
         </div>
         <div
-          *ngIf="room.apartment_securities"
-          class="content-info"
-        >
-          Безопасность: {{apartmentSecurities_ids}}
-        </div>
-        <div
           *ngIf="room.apartment_bathrooms"
           class="content-info"
         >
           Ванная комната: {{apartmentBathrooms_ids}}
         </div>
+
+        <hr class="horizontal-divider v-margin-12"/>
+
+        <div
+          *ngIf="room.apartment_securities"
+          class="content-info"
+        >
+          Безопасность: {{apartmentSecurities_ids}}
+        </div>
+
+        <hr class="horizontal-divider v-margin-12"/>
+
         <div
           *ngIf="room.window_directions"
           class="content-info"

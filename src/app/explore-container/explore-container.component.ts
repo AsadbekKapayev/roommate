@@ -16,7 +16,6 @@ export class ExploreContainerComponent {
   phoneNumber: any = '';
 
   navigate() {
-    this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
   }
 
   goToSms() {
