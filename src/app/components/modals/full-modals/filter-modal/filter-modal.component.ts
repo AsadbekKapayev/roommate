@@ -5,7 +5,8 @@ import {Item} from "../../../../models/commons/Item";
 import {FilterType} from "../../../../models/commons/ad/FilterType";
 import {isEmpty} from "../../../../shares/cores/util-method";
 import {FilterService} from "../../../../services/common/filter.service";
-import {Filter} from "../../../../models/commons/ad/Filter";
+import {User} from "../../../../models/commons/user/User";
+import {SearchAdStore} from "../../../../models/commons/ad/SearchAdStore";
 
 @Component({
   selector: 'app-filter-modal',
@@ -14,10 +15,9 @@ import {Filter} from "../../../../models/commons/ad/Filter";
 })
 export class FilterModalComponent implements OnInit {
 
-  selectedRoomQuantity: string;
-  roomsQuantity: string[] = [
-    '1', '2', '3', '4', '5+'
-  ];
+  searchAdStore: SearchAdStore;
+  user: User;
+
   selectedCity: Item[];
   selectedGenderType: Item[];
   selectedApartmentConditions: Item[];
@@ -29,23 +29,12 @@ export class FilterModalComponent implements OnInit {
   selectedApartmentSecurities: Item[];
   selectedWindowDirections: Item[];
   selectedApartmentFor: Item[];
-  price_from: number;
-  price_to: number;
-  roommate_count: number;
-  bathrooms_count: number;
-  balconies_count: number;
-  loggias_count: number;
-  rooms_count: number;
-  floor_from: number;
-  floor: number;
-  square_general: number;
-  square_living: number;
-  square_kitchen: number;
-  kitchen_studio: number;
-  ad_gender_type_id: number;
-  city_id: number;
 
   type = FilterType;
+  saveButtonClicked = false;
+
+  author: User;
+  adId: string;
 
   constructor(private modalService: ModalService,
               private filterService: FilterService,
@@ -53,6 +42,7 @@ export class FilterModalComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.searchAdStore = new SearchAdStore();
   }
 
   close() {
@@ -153,14 +143,7 @@ export class FilterModalComponent implements OnInit {
   }
 
   onClickSearch() {
-    this.filterService.filter = {
-      rooms_count: this.rooms_count,
-      price_from: this.price_from,
-      price_to: this.price_to,
-      floor_from: this.floor_from,
-    } as Filter;
-
-    this.modalService.dismiss('just').then();
+    this.modalService.dismiss().then();
   }
 
 }

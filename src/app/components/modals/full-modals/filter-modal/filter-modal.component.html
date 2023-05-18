@@ -22,21 +22,21 @@
       </div>
 
       <div class="price-filter">
-        <div class="title margin-12">Цена</div>
-
         <div class="flex-row-16">
           <app-custom-input
             [type]="'number'"
-            [label]="'От'"
+            [label]="'Цена от'"
+            [(value)]="searchAdStore.price_from"
             [icon]="'currency'"
-            [(value)]="price_from"
+            [asterisks]="true"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
-            [label]="'До'"
-            [(value)]="price_to"
+            [label]="'Цена до'"
+            [(value)]="searchAdStore.price"
             [icon]="'currency'"
+            [asterisks]="true"
           ></app-custom-input>
         </div>
 
@@ -48,114 +48,20 @@
           [title]="'Город'"
           [selectedItems]="selectedCity"
           (click)="onClick('Город', type.CITY)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-      
-      <div class="rooms-filter">
-        <div class="title margin-12">Количество комнат</div>
-
-        <div class="rooms-filter-content">
-          <div
-            *ngFor="let room of roomsQuantity"
-            (click)="selectedRoomQuantity = room"
-            class="room-filter"
-            [class.custom-button-white-selected]="selectedRoomQuantity === room"
-          >
-            {{room}}
-          </div>
-        </div>
-
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'В квартире'"
-          [selectedItems]="selectedGenderType"
-          (click)="onClick('В квартире', type.GENDER_TYPE, true)"
+          [asterisks]="true"
         ></app-filter-item>
         <hr class="horizontal-divider v-margin-12">
       </div>
 
       <div>
-        <app-filter-item
-          [title]="'Условия проживания'"
-          [selectedItems]="selectedApartmentConditions"
-          (click)="onClick('Условия проживания', type.APARTMENT_CONDITIONS)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Мебель в квартире'"
-          [selectedItems]="selectedApartmentFurniture"
-          (click)="onClick('Мебель в квартире', type.APARTMENT_FURNITURE, true)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Удобства в апартаментах'"
-          [selectedItems]="selectedApartmentFacilities"
-          (click)="onClick('Удобства в апартаментах', type.APARTMENT_FACILITIES, true)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Типы ванных комнат'"
-          [selectedItems]="selectedApartmentBathroomTypes"
-          (click)="onClick('Типы ванных комнат', type.APARTMENT_BATHROOM_TYPES, true)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Статусы мебели в квартире'"
-          [selectedItems]="selectedApartmentFurnitureStatuses"
-          (click)="onClick('Статусы мебели в квартире', type.APARTMENT_FURNITURE_STATUSES)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Ванные комнаты'"
-          [selectedItems]="selectedApartmentBathrooms"
-          (click)="onClick('Ванные комнаты', type.APARTMENT_BATHROOMS)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Ценные бумаги на квартиру'"
-          [selectedItems]="selectedApartmentSecurities"
-          (click)="onClick('Ценные бумаги на квартиру', type.APARTMENT_SECURITIES)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Указания по окну'"
-          [selectedItems]="selectedWindowDirections"
-          (click)="onClick('Указания по окну', type.WINDOW_DIRECTIONS, true)"
-        ></app-filter-item>
-        <hr class="horizontal-divider v-margin-12">
-      </div>
-
-      <div>
-        <app-filter-item
-          [title]="'Квартира для'"
-          [selectedItems]="selectedApartmentFor"
-          (click)="onClick('Квартира для', type.APARTMENT_FOR, true)"
-        ></app-filter-item>
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Количество комнат'"
+          [(value)]="searchAdStore.rooms_count"
+          [asterisks]="true"
+          [minValue]="0"
+          [maxValue]="100"
+        ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
 
@@ -165,51 +71,96 @@
         <div class="flex-row-16">
           <app-custom-input
             [type]="'number'"
-            [label]="'От'"
+            [label]="'Этаж'"
+            [(value)]="searchAdStore.floor"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
-            [label]="'До'"
+            [label]="'Мах количество'"
+            [(value)]="searchAdStore.floor_from"
           ></app-custom-input>
         </div>
 
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Количесвто сожителей в квартире'"
+          [(value)]="searchAdStore.roommate_count"
+          [asterisks]="true"
+          [minValue]="0"
+          [maxValue]="100"
+        ></app-custom-input>
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Количество санузлов'"
+          [(value)]="searchAdStore.bathroom_count"
+        ></app-custom-input>
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Балкон'"
+          [(value)]="searchAdStore.balconies_count"
+        ></app-custom-input>
+        <hr class="horizontal-divider v-margin-12">
+      </div>
+
+      <div>
+        <app-custom-input
+          [type]="'number'"
+          [label]="'Лоджия'"
+          [(value)]="searchAdStore.loggias_count"
+        ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
 
       <div class="square-filter">
-        <div class="title margin-12">Площадь</div>
+        <div class="title margin-12">Площадь, м²</div>
 
         <div class="flex-row-16">
           <app-custom-input
             [type]="'number'"
-            [label]="'От'"
+            [label]="'Общая'"
+            [(value)]="searchAdStore.square_general"
+            [error]="saveButtonClicked && !searchAdStore.square_general && 'Надо заполнить'"
+            [asterisks]="true"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
-            [label]="'До'"
+            [label]="'Жилая'"
+            [(value)]="searchAdStore.square_living"
+          ></app-custom-input>
+
+          <app-custom-input
+            [type]="'number'"
+            [label]="'Кухня'"
+            [(value)]="searchAdStore.square_kitchen"
           ></app-custom-input>
         </div>
 
         <hr class="horizontal-divider v-margin-12">
       </div>
 
-      <div class="ceil-filter">
-        <div class="title margin-12">Выстота потолков</div>
-
-        <div class="flex-row-16">
-          <app-custom-input
-            [type]="'number'"
-            [label]="'От'"
-          ></app-custom-input>
-
-          <app-custom-input
-            [type]="'number'"
-            [label]="'До'"
-          ></app-custom-input>
-        </div>
+      <div>
+        <app-filter-item
+          [title]="'В квартире'"
+          [selectedItems]="selectedGenderType"
+          (click)="onClick('В квартире', type.GENDER_TYPE)"
+        ></app-filter-item>
+        <hr class="horizontal-divider v-margin-12">
       </div>
+
     </div>
 
     <div class="modal-button">

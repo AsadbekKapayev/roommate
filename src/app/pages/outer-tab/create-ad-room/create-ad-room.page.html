@@ -85,7 +85,7 @@
       <app-custom-input
         [type]="'text'"
         [label]="'Расположение'"
-        [readonly]="true"
+        [disabled]="true"
         [error]="mapError || (saveButtonClicked && !mapValue && 'Надо заполнить')"
         [(value)]="mapValue"
         [asterisks]="true"
@@ -119,14 +119,14 @@
           [label]="'Имя'"
           [(value)]="user.name"
           [asterisks]="true"
-          [readonly]="true"
+          [disabled]="true"
         ></app-custom-input>
 
         <app-custom-input
           [type]="'tel'"
           [label]="'Телефон'"
           [(value)]="user.phone_number"
-          [readonly]="true"
+          [disabled]="true"
           [asterisks]="true"
         ></app-custom-input>
 
@@ -134,7 +134,7 @@
           [type]="'text'"
           [label]="'Эл. почта'"
           [(value)]="user.email"
-          [readonly]="true"
+          [disabled]="true"
           [asterisks]="true"
         ></app-custom-input>
       </div>

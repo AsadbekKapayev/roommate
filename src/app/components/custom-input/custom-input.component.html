@@ -8,7 +8,7 @@
            class="custom-input tel-input"
            id="input{{id}}"
            [mask]="'(000) 000 00 00'"
-           [readonly]="readonly"
+           [disabled]="disabled"
            (ngModelChange)="valueChanged($event)"
            [type]="type"
            #input>
@@ -31,7 +31,7 @@
            [class.custom-input-filled]="value"
            class="custom-input"
            id="input{{id}}"
-           [readonly]="readonly"
+           [disabled]="disabled"
            (ngModelChange)="valueChanged($event)"
            [type]="type"
            [max]="maxValue"
@@ -61,7 +61,7 @@
       [class.custom-input-filled]="value"
       class="custom-input"
       id="input{{id}}"
-      [readonly]="readonly"
+      [disabled]="disabled"
       (ngModelChange)="valueChanged($event)"
       #input></textarea>
 
@@ -87,7 +87,7 @@
            [class.custom-input-filled]="value"
            class="custom-input"
            id="input{{id}}"
-           [readonly]="readonly"
+           [disabled]="disabled"
            #input>
     <label for="input{{id}}">
       {{label}}

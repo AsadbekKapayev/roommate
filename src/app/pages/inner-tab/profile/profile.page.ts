@@ -88,7 +88,6 @@ export class ProfilePage implements OnInit {
         this.initAds();
       });
 
-
     });
   }
 

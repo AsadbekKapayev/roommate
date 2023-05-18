@@ -18,7 +18,7 @@ export class CustomInputComponent implements OnInit {
   @Input() maxValue: any;
   @Input() minValue: any;
   @Input() whiteBackground: boolean = false;
-  @Input() readonly: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() asterisks: boolean = false;
   @Input() icon: 'currency' | 'percent';
 
