@@ -3,8 +3,9 @@ import {NavController} from "@ionic/angular";
 import {ModalService} from "../../../../services/controllers/modal.service";
 import {AdType} from "../../../../models/commons/ad/AdType";
 import {AdService} from "../../../../services/common/ad.service";
-import {take} from "rxjs";
+import {filter, interval, switchMap, take} from "rxjs";
 import {ALL_URL} from "../../../../shares/url-static";
+import {ToastService} from "../../../../services/core/toast.service";
 
 @Component({
   selector: 'app-ad-edit-modal',
@@ -18,6 +19,7 @@ export class AdEditModalComponent implements OnInit {
 
   constructor(private navCtrl: NavController,
               private adService: AdService,
+              private toastService: ToastService,
               private modalService: ModalService) {
   }
 
@@ -37,19 +39,29 @@ export class AdEditModalComponent implements OnInit {
   }
 
   onClickDelete() {
+    const delayTime = 2000;
+    let resetClicked = false;
+    let ad$;
+
+    this.toastService.presentButton('Объявление удалено', () => {
+      resetClicked = true;
+    }, delayTime).then()
+
     if (this.adType === AdType.ROOM) {
-      this.adService.deleteSearchAd(this.adId).pipe(
-        take(1)
-      ).subscribe();
+      ad$ = this.adService.deleteSearchAd(this.adId);
     }
 
     if (this.adType === AdType.ROOMMATE) {
-      this.adService.deleteAd(this.adId).pipe(
-        take(1)
-      ).subscribe();
+      ad$ = this.adService.deleteAd(this.adId);
     }
 
-    this.modalService.dismiss(true);
+    interval(delayTime).pipe(
+      take(1),
+      filter(() => !resetClicked),
+      switchMap(() => ad$),
+    ).subscribe();
+
+    this.modalService.dismiss();
   }
 
 }

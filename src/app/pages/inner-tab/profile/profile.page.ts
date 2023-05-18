@@ -5,7 +5,7 @@ import {IonicButton} from "../../../models/core/IonicButton";
 import {AdType} from "../../../models/commons/ad/AdType";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {forkJoin, take} from "rxjs";
+import {forkJoin, interval, take} from "rxjs";
 import {SubSink} from "../../../shares/SubSink";
 import {ProfileService} from "../../../services/core/profile.service";
 import {User} from "../../../models/commons/user/User";
@@ -80,8 +80,15 @@ export class ProfilePage implements OnInit {
   }
 
   onEditClicked(ad: Ad, adType: AdType) {
-    this.settingControllerService.setAdEditModal(ad?.id, adType).present().then(() => {
-      this.initAds();
+    this.settingControllerService.setAdEditModal(ad?.id, adType).present().then((x) => {
+
+      interval(2000).pipe(
+        take(1)
+      ).subscribe(() => {
+        this.initAds();
+      });
+
+
     });
   }
 
