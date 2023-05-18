@@ -79,6 +79,10 @@ export class FilterService {
     return (await this.loadRelations()).apartmentFurnitureStatuses;
   }
 
+  async loadApartmentFurnitureStatusesById(id: number) {
+    return (await this.loadRelations()).apartmentFurnitureStatuses?.find(x => x.id === id);
+  }
+
   async loadApartmentBathrooms() {
     return (await this.loadRelations()).apartmentBathrooms;
   }

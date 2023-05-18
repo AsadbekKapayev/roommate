@@ -21,7 +21,7 @@ export class Ad {
   floor_from: number;
   kitchen_studio: number;
   location: string;
-  loggias_count: string;
+  loggias_count: number;
   media: Media[];
   phone_number: string;
   price: number;

@@ -38,6 +38,7 @@ export class RoomDetailPage implements OnInit {
   apartmentBathrooms_ids: string;
   windowDirections: string;
   apartmentFor_ids: string;
+  apartment_furniture_status_id: string;
 
   constructor(private navCtrl: NavController,
               private loginService: LoginService,
@@ -91,6 +92,9 @@ export class RoomDetailPage implements OnInit {
       })
       this.getDetailByCode(FilterType.APARTMENT_FOR, this.room?.apartment_for).then(x => {
         this.apartmentFor_ids = x;
+      })
+      this.getDetailByCode(FilterType.APARTMENT_FURNITURE_STATUSES, this.room?.apartment_furniture_status_id).then(x => {
+        this.apartment_furniture_status_id = x;
       })
     })
 
@@ -187,9 +191,9 @@ export class RoomDetailPage implements OnInit {
       const filter = await this.filterService.loadWindowDirectionsByIds(value as Item[]);
       return itemsToStr(filter);
     }
-    if (code === FilterType.APARTMENT_FOR) {
-      const filter = await this.filterService.loadApartmentForById(value as Item[]);
-      return itemsToStr(filter);
+    if (code === FilterType.APARTMENT_FURNITURE_STATUSES) {
+      const filter = await this.filterService.loadApartmentConditionBy(value as number);
+      return filter.title;
     }
 
     return '';

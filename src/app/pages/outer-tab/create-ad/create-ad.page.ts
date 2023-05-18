@@ -247,6 +247,7 @@ export class CreateAdPage implements OnInit, OnDestroy {
       rooms_count: this.searchAdStore?.rooms_count,
       square_general: this.searchAdStore?.square_general,
       square_kitchen: this.searchAdStore?.square_kitchen,
+      square_living: this.searchAdStore?.square_living,
       apartment_condition_id: getId(this.selectedApartmentConditions),
       gender_type: getId(this.selectedGenderType),
       apartmentFurnitureStatus: getId(this.selectedApartmentFurnitureStatuses),
@@ -277,15 +278,33 @@ export class CreateAdPage implements OnInit, OnDestroy {
         return;
       }
 
+      this.selectedCity = await this.filterService.loadCityById(x.city_id);
       this.coords = x?.coordinates;
       this.mapValue = x?.location;
       this.searchAdStore.price = x.price;
-      this.searchAdStore.price_from = x.price_from;
+      this.searchAdStore.price_com = x.price_com;
+      this.searchAdStore.price_pledge = x.price_pledge;
+      this.searchAdStore.floor = x.floor;
+      this.searchAdStore.floor_from = x.floor_from;
       this.searchAdStore.rooms_count = x.rooms_count;
       this.searchAdStore.roommate_count = x.roommate_count;
       this.searchAdStore.description = x.description;
-      this.selectedCity = await this.filterService.loadCityById(x.city_id);
-      this.selectedGenderType = await this.filterService.loadGenderTypeById(x.ad_gender_type_id)
+      this.searchAdStore.square_general = x.square_general;
+      this.searchAdStore.square_kitchen = x.square_kitchen;
+      this.searchAdStore.square_living = x.square_living;
+      this.searchAdStore.bathroom_count = x.bathrooms_count;
+      this.searchAdStore.balconies_count = x.balconies_count;
+      this.searchAdStore.loggias_count = x.loggias_count;
+      this.selectedGenderType = await this.filterService.loadGenderTypeById(x.ad_gender_type_id);
+      this.selectedApartmentConditions = [await this.filterService.loadApartmentConditionBy(x.apartment_condition_id)];
+      this.selectedApartmentFurniture = await this.filterService.loadApartmentFurnitureIds(x.apartment_furniture);
+      this.selectedApartmentFurnitureStatuses = [await this.filterService.loadApartmentFurnitureStatusesById(x.apartment_furniture_status_id)];
+      this.selectedApartmentFacilities = await this.filterService.loadApartmentFacilitiesByIds(x.apartment_facilities);
+      this.selectedApartmentBathroomTypes = await this.filterService.loadApartmentBathroomTypesByIds(x.apartment_bathrooms_types);
+      this.selectedApartmentSecurities = await this.filterService.loadApartmentSecuritiesByIds(x.apartment_securities);
+      this.selectedApartmentBathrooms = await this.filterService.loadApartmentBathroomsByIds(x.apartment_bathrooms);
+      this.selectedWindowDirections = await this.filterService.loadWindowDirectionsByIds(x.window_directions);
+      this.selectedApartmentFor = await this.filterService.loadApartmentForById(x.apartment_for);
 
       this.user = x.user;
     })
