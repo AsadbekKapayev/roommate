@@ -228,6 +228,7 @@ export class CreateAdPage implements OnInit, OnDestroy {
     }
 
     this.searchAdStore = {
+      adId: this.adId,
       city_id: getId(this.selectedCity),
       price_com: this.searchAdStore.price_com,
       price_pledge: this.searchAdStore.price_pledge,
@@ -260,7 +261,10 @@ export class CreateAdPage implements OnInit, OnDestroy {
       apartmentFor_ids: getIds(this.selectedApartmentFor),
     } as SearchAdStore;
 
-    this.adService.searchAdStore(this.searchAdStore, this.images).pipe(
+    const obs$ = this.adId ? this.adService.searchAdUpdate(this.searchAdStore, this.images) :
+      this.adService.searchAdStore(this.searchAdStore, this.images);
+
+    obs$.pipe(
       take(1),
     ).subscribe((x) => {
       this.toastService.present('Объявление сохранена')

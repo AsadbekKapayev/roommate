@@ -1,4 +1,5 @@
 export class SearchAdStore {
+  adId: string;
   rooms_count: number;
   price_com: number;
   price_pledge: number;

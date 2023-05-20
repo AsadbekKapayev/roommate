@@ -149,4 +149,40 @@ export class AdController {
     });
   }
 
+  searchAdUpdate(searchAdStore: SearchAdStore, files: File[]): Observable<any> {
+    return this.httpService.postFiles('/user/search_ad/' + searchAdStore.adId + '/update', files, {
+      city_id: searchAdStore.city_id,
+      contact_email: searchAdStore.contact_email,
+      contact_name: searchAdStore.contact_name,
+      phone_number: searchAdStore.phone_number,
+      coordinates: searchAdStore.coordinates,
+      description: searchAdStore.description,
+      location: searchAdStore.location,
+      price: searchAdStore.price,
+      price_com: searchAdStore.price_com,
+      price_pledge: searchAdStore.price_pledge,
+      floor: searchAdStore.floor,
+      floor_from: searchAdStore.floor_from,
+      price_from: searchAdStore.price_from,
+      roommate_count: searchAdStore.roommate_count,
+      rooms_count: searchAdStore.rooms_count,
+      square_general: searchAdStore.square_general,
+      square_kitchen: searchAdStore.square_kitchen,
+      square_living: searchAdStore.square_living,
+      apartment_condition_id: searchAdStore.apartment_condition_id,
+      ad_gender_type_id: searchAdStore.gender_type,
+      'apartmentFurniture_ids[]': searchAdStore.apartmentFurniture,
+      apartment_furniture_status_id: searchAdStore.apartmentFurnitureStatus,
+      'apartmentFacilities_ids[]': searchAdStore.apartmentFacilities_ids,
+      'apartmentBathroomTypes_ids[]': searchAdStore.apartmentBathroomTypes_ids,
+      'apartmentSecurities_ids[]': searchAdStore.apartmentSecurities_ids,
+      bathrooms_count: searchAdStore.bathroom_count,
+      'apartmentBathrooms_ids[]': searchAdStore.apartmentBathrooms_ids,
+      balconies_count: searchAdStore.balconies_count,
+      'windowDirections[]': searchAdStore.windowDirections,
+      'apartmentFor_ids[]': searchAdStore.apartmentFor_ids,
+      loggias_count: searchAdStore.loggias_count,
+    });
+  }
+
 }
