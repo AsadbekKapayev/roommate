@@ -110,55 +110,51 @@
           Количество санузлов: {{room.bathrooms_count}}
         </div>
 
-        <hr class="horizontal-divider v-margin-12"/>
-
         <div
-          *ngIf="room.apartment_furniture"
+          *ngIf="room.apartment_furniture?.length"
           class="content-info"
         >
+          <hr class="horizontal-divider v-margin-12"/>
           Мебель в квартире: {{apartmentFurniture_ids}}
         </div>
         <div
-          *ngIf="room.apartment_facilities"
+          *ngIf="room.apartment_facilities?.length"
           class="content-info"
         >
           Удобства в апартаментах: {{apartmentFacilities_ids}}
         </div>
 
-        <hr class="horizontal-divider v-margin-12"/>
-
         <div
-          *ngIf="room.apartment_bathrooms_types"
+          *ngIf="room.apartment_bathrooms_types?.length"
           class="content-info"
         >
+          <hr class="horizontal-divider v-margin-12"/>
           Санузел: {{apartmentBathroomTypes_ids}}
         </div>
         <div
-          *ngIf="room.apartment_bathrooms"
+          *ngIf="room.apartment_bathrooms?.length"
           class="content-info"
         >
           Ванная комната: {{apartmentBathrooms_ids}}
         </div>
 
-        <hr class="horizontal-divider v-margin-12"/>
-
         <div
-          *ngIf="room.apartment_securities"
+          *ngIf="room.apartment_securities?.length"
           class="content-info"
         >
+          <hr class="horizontal-divider v-margin-12"/>
           Безопасность: {{apartmentSecurities_ids}}
         </div>
 
-        <hr class="horizontal-divider v-margin-12"/>
-
         <div
-          *ngIf="room.window_directions"
+          *ngIf="room.window_directions?.length"
           class="content-info"
         >
+          <hr class="horizontal-divider v-margin-12"/>
           Окна: {{windowDirections}}
         </div>
         <div
-          *ngIf="room.apartment_for"
+          *ngIf="room.apartment_for?.length"
           class="content-info"
         >
           Кому подойдет квартира: {{apartmentFor_ids}}

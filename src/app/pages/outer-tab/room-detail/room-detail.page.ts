@@ -153,7 +153,6 @@ export class RoomDetailPage implements OnInit {
       iconCaption: location
     }, {
       preset: 'islands#violetDotIconWithCaption',
-      draggable: true
     });
   }
 
@@ -161,7 +160,7 @@ export class RoomDetailPage implements OnInit {
 
     if (code === FilterType.APARTMENT_CONDITIONS) {
       const filter = await this.filterService.loadApartmentConditionBy(value as number);
-      return filter.title;
+      return filter?.title;
     }
     if (code === FilterType.GENDER_TYPE) {
       const filter = await this.filterService.loadGenderTypeById(value as number);
@@ -193,7 +192,7 @@ export class RoomDetailPage implements OnInit {
     }
     if (code === FilterType.APARTMENT_FURNITURE_STATUSES) {
       const filter = await this.filterService.loadApartmentConditionBy(value as number);
-      return filter.title;
+      return filter?.title;
     }
 
     return '';

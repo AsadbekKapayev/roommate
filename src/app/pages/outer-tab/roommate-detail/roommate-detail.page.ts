@@ -100,7 +100,6 @@ export class RoommateDetailPage implements OnInit {
       iconCaption: location
     }, {
       preset: 'islands#violetDotIconWithCaption',
-      draggable: true
     });
   }
 
