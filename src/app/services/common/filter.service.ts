@@ -3,13 +3,13 @@ import {FilterController} from "../../controllers/FilterController";
 import {Relations} from "../../models/commons/Relations";
 import {Filter} from "../../models/commons/ad/Filter";
 import {Item} from "../../models/commons/Item";
+import {AdStore} from "../../models/commons/ad/AdStore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
 
-  filter: Filter;
   relations: Relations;
 
   constructor(private filterController: FilterController) {

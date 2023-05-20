@@ -4,10 +4,12 @@ import {ActivatedRoute} from "@angular/router";
 import {LoginService} from "../../../services/core/login.service";
 import {AdService} from "../../../services/common/ad.service";
 import {Ad} from "../../../models/commons/ad/Ad";
-import {filter, take} from "rxjs";
+import {combineLatest, filter, switchMap, take} from "rxjs";
 import {isEmpty} from "../../../shares/cores/util-method";
 import {SettingControllerService} from "../../../services/controllers/setting-controller.service";
 import {FilterService} from "../../../services/common/filter.service";
+import {Filter} from "../../../models/commons/ad/Filter";
+import {FilterGetAdService} from "../../../services/common/filter-get-ad.service";
 
 @Component({
   selector: 'app-look-for-roommate',
@@ -30,6 +32,7 @@ export class LookForRoommatePage implements OnInit {
               private route: ActivatedRoute,
               private settingControllerService: SettingControllerService,
               private filterService: FilterService,
+              private filterGetAdService: FilterGetAdService,
               private adService: AdService) {
   }
 
@@ -67,18 +70,53 @@ export class LookForRoommatePage implements OnInit {
   }
 
   onFilterClicked() {
-    this.settingControllerService.setFilterModal().present().then(x => {
+    this.settingControllerService.setFilterRoommateModal().present().then(x => {
       if (!x?.data || isEmpty(x?.data)) {
         return;
       }
 
-      this.adService.loadByFilter(this.filterService.filter).pipe(
+      combineLatest([
+        this.filterGetAdService.searchText$,
+        this.filterGetAdService.city$,
+        this.filterGetAdService.priceTo$,
+        this.filterGetAdService.priceFrom$,
+        this.filterGetAdService.roomsCount$,
+        this.filterGetAdService.roommatesCount$,
+        this.filterGetAdService.bathroomsCount$,
+        this.filterGetAdService.balconiesCount$,
+        this.filterGetAdService.loggiasCount$,
+        this.filterGetAdService.floor$,
+        this.filterGetAdService.floorFrom$,
+        this.filterGetAdService.squareGeneral$,
+        this.filterGetAdService.squareKitchen$,
+        this.filterGetAdService.squareLiving$,
+        this.filterGetAdService.adGenderType$,
+      ]).pipe(
         take(1),
+        switchMap(x => {
+          return this.adService.loadGetAdByFilter({
+            search_text: x[0],
+            city_id: x[1],
+            price_to: x[2],
+            price_from: x[3],
+            rooms_count: x[4],
+            roommate_count: x[5],
+            bathrooms_count: x[6],
+            balconies_count: x[7],
+            loggias_count: x[8],
+            floor: x[9],
+            floor_from: x[10],
+            square_general: x[11],
+            square_kitchen: x[12],
+            square_living: x[13],
+            ad_gender_type_id: x[14],
+          } as Filter);
+        })
       ).subscribe(x => {
         this.roommates = x?.result?.data;
         this.pageStart = 1;
         this.pageEnd = x?.result?.last_page;
-      })
+      });
     });
   }
 

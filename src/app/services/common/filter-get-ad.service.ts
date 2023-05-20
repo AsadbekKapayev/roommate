@@ -4,7 +4,7 @@ import {BehaviorSubject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class FilterSearchAdService {
+export class FilterGetAdService {
 
   searchText$: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   city$: BehaviorSubject<number> = new BehaviorSubject<number>(null);

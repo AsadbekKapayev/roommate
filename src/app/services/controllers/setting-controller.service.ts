@@ -23,6 +23,9 @@ import {PhoneModalComponent} from "../../components/modals/bottom-modals/phone-m
 import {CreateAdModalComponent} from "../../components/modals/bottom-modals/create-ad-modal/create-ad-modal.component";
 import {AdEditModalComponent} from "../../components/modals/bottom-modals/ad-edit-modal/ad-edit-modal.component";
 import {AdType} from "../../models/commons/ad/AdType";
+import {
+  FilterRoommateModalComponent
+} from "../../components/modals/full-modals/filter-roommate-modal/filter-roommate-modal.component";
 
 /*
 * Use only with Option, if you want use specific ionic controller use other service
@@ -131,6 +134,17 @@ export class SettingControllerService extends AbstractSettingController {
     return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
       return {
         component: FilterModalComponent,
+        componentProps: {},
+        cssClass: 'full-modal-component',
+        swipeToClose: true,
+      };
+    });
+  }
+
+  public setFilterRoommateModal(): IonicControllerAbstract {
+    return this.setExtraOption(this.modalService, (ionicController): IonicControllerOptionType => {
+      return {
+        component: FilterRoommateModalComponent,
         componentProps: {},
         cssClass: 'full-modal-component',
         swipeToClose: true,

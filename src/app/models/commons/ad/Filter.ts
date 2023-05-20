@@ -1,4 +1,5 @@
 export class Filter {
+  search_text: string;
   roommate_count: number;
   bathrooms_count: number;
   balconies_count: number;

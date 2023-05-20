@@ -16,6 +16,8 @@
         <app-custom-input
           [type]="'text'"
           [label]="'Поиск'"
+          [(value)]="filter.search_text"
+          (valueChange)="onChangFilter('search_text', $event)"
         ></app-custom-input>
 
         <hr class="horizontal-divider v-margin-12">
@@ -26,17 +28,17 @@
           <app-custom-input
             [type]="'number'"
             [label]="'Цена от'"
-            [(value)]="searchAdStore.price_from"
+            [(value)]="filter.price_from"
+            (valueChange)="onChangFilter('price_from', $event)"
             [icon]="'currency'"
-            [asterisks]="true"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
             [label]="'Цена до'"
-            [(value)]="searchAdStore.price"
+            [(value)]="filter.price_to"
+            (valueChange)="onChangFilter('price_to', $event)"
             [icon]="'currency'"
-            [asterisks]="true"
           ></app-custom-input>
         </div>
 
@@ -48,7 +50,6 @@
           [title]="'Город'"
           [selectedItems]="selectedCity"
           (click)="onClick('Город', type.CITY)"
-          [asterisks]="true"
         ></app-filter-item>
         <hr class="horizontal-divider v-margin-12">
       </div>
@@ -57,10 +58,8 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Количество комнат'"
-          [(value)]="searchAdStore.rooms_count"
-          [asterisks]="true"
-          [minValue]="0"
-          [maxValue]="100"
+          [(value)]="filter.rooms_count"
+          (valueChange)="onChangFilter('rooms_count', $event)"
         ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
@@ -72,13 +71,15 @@
           <app-custom-input
             [type]="'number'"
             [label]="'Этаж'"
-            [(value)]="searchAdStore.floor"
+            [(value)]="filter.floor"
+            (valueChange)="onChangFilter('floor', $event)"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
             [label]="'Мах количество'"
-            [(value)]="searchAdStore.floor_from"
+            [(value)]="filter.floor_from"
+            (valueChange)="onChangFilter('floor_from', $event)"
           ></app-custom-input>
         </div>
 
@@ -89,10 +90,8 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Количесвто сожителей в квартире'"
-          [(value)]="searchAdStore.roommate_count"
-          [asterisks]="true"
-          [minValue]="0"
-          [maxValue]="100"
+          [(value)]="filter.roommate_count"
+          (valueChange)="onChangFilter('roommate_count', $event)"
         ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
@@ -101,7 +100,8 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Количество санузлов'"
-          [(value)]="searchAdStore.bathroom_count"
+          [(value)]="filter.bathrooms_count"
+          (valueChange)="onChangFilter('bathrooms_count', $event)"
         ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
@@ -110,7 +110,8 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Балкон'"
-          [(value)]="searchAdStore.balconies_count"
+          [(value)]="filter.balconies_count"
+          (valueChange)="onChangFilter('balconies_count', $event)"
         ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
@@ -119,7 +120,8 @@
         <app-custom-input
           [type]="'number'"
           [label]="'Лоджия'"
-          [(value)]="searchAdStore.loggias_count"
+          [(value)]="filter.loggias_count"
+          (valueChange)="onChangFilter('loggias_count', $event)"
         ></app-custom-input>
         <hr class="horizontal-divider v-margin-12">
       </div>
@@ -131,21 +133,22 @@
           <app-custom-input
             [type]="'number'"
             [label]="'Общая'"
-            [(value)]="searchAdStore.square_general"
-            [error]="saveButtonClicked && !searchAdStore.square_general && 'Надо заполнить'"
-            [asterisks]="true"
+            [(value)]="filter.square_general"
+            (valueChange)="onChangFilter('square_general', $event)"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
             [label]="'Жилая'"
-            [(value)]="searchAdStore.square_living"
+            (valueChange)="onChangFilter('square_living', $event)"
+            [(value)]="filter.square_living"
           ></app-custom-input>
 
           <app-custom-input
             [type]="'number'"
             [label]="'Кухня'"
-            [(value)]="searchAdStore.square_kitchen"
+            (valueChange)="onChangFilter('square_kitchen', $event)"
+            [(value)]="filter.square_kitchen"
           ></app-custom-input>
         </div>
 

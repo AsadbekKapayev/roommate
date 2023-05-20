@@ -12,10 +12,14 @@ import {CheckboxModalModule} from "../components/modals/full-modals/checkbox-mod
 import {PhoneModalModule} from "../components/modals/bottom-modals/phone-modal/phone-modal.module";
 import {CreateAdModalModule} from "../components/modals/bottom-modals/create-ad-modal/create-ad-modal.module";
 import {AdEditModalModule} from "../components/modals/bottom-modals/ad-edit-modal/ad-edit-modal.module";
+import {
+  FilterRoommateModalModule
+} from "../components/modals/full-modals/filter-roommate-modal/filter-roommate-modal.module";
 
 const CONTROLLER_MODULES = [
   FillProfileModalModule,
   FilterModalModule,
+  FilterRoommateModalModule,
   SelectModalModule,
   CheckboxModalModule,
   CityAlmatyModalModule,

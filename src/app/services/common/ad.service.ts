@@ -32,6 +32,10 @@ export class AdService {
     return this.adController.loadByFilter(filter);
   }
 
+  loadGetAdByFilter(filter: Filter) {
+    return this.adController.loadGetAdByFilter(filter);
+  }
+
   adLike(adId: number) {
     return this.adController.adLike(adId);
   }

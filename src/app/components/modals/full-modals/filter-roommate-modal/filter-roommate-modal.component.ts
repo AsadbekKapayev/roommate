@@ -3,9 +3,10 @@ import {ModalService} from "../../../../services/controllers/modal.service";
 import {SettingControllerService} from "../../../../services/controllers/setting-controller.service";
 import {Item} from "../../../../models/commons/Item";
 import {FilterType} from "../../../../models/commons/ad/FilterType";
-import {isEmpty} from "../../../../shares/cores/util-method";
+import {getId, isEmpty} from "../../../../shares/cores/util-method";
 import {FilterService} from "../../../../services/common/filter.service";
 import {Filter} from "../../../../models/commons/ad/Filter";
+import {FilterGetAdService} from "../../../../services/common/filter-get-ad.service";
 
 @Component({
   selector: 'app-filter-roommate-modal',
@@ -14,10 +15,8 @@ import {Filter} from "../../../../models/commons/ad/Filter";
 })
 export class FilterRoommateModalComponent implements OnInit {
 
-  selectedRoomQuantity: string;
-  roomsQuantity: string[] = [
-    '1', '2', '3', '4', '5+'
-  ];
+  filter: Filter;
+
   selectedCity: Item[];
   selectedGenderType: Item[];
   selectedApartmentConditions: Item[];
@@ -29,38 +28,47 @@ export class FilterRoommateModalComponent implements OnInit {
   selectedApartmentSecurities: Item[];
   selectedWindowDirections: Item[];
   selectedApartmentFor: Item[];
-  price_from: number;
-  price_to: number;
-  roommate_count: number;
-  bathrooms_count: number;
-  balconies_count: number;
-  loggias_count: number;
-  rooms_count: number;
-  floor_from: number;
-  floor: number;
-  square_general: number;
-  square_living: number;
-  square_kitchen: number;
-  kitchen_studio: number;
-  ad_gender_type_id: number;
-  city_id: number;
 
   type = FilterType;
 
   constructor(private modalService: ModalService,
               private filterService: FilterService,
+              private filterGetAdService: FilterGetAdService,
               private settingControllerService: SettingControllerService) {
   }
 
   async ngOnInit() {
+    this.setData().then();
   }
 
   close() {
     this.modalService.dismiss().then();
   }
 
-  reset() {
+  async setData() {
+    this.filter = new Filter();
 
+    this.filter.price_to = this.filterGetAdService.priceTo$.value;
+    this.filter.price_from = this.filterGetAdService.priceFrom$.value;
+    this.filter.search_text = this.filterGetAdService.searchText$.value;
+    this.filter.rooms_count = this.filterGetAdService.roomsCount$.value;
+    this.filter.roommate_count = this.filterGetAdService.roommatesCount$.value;
+    this.filter.bathrooms_count = this.filterGetAdService.bathroomsCount$.value;
+    this.filter.balconies_count = this.filterGetAdService.balconiesCount$.value;
+    this.filter.loggias_count = this.filterGetAdService.loggiasCount$.value;
+    this.filter.floor = this.filterGetAdService.floor$.value;
+    this.filter.floor_from = this.filterGetAdService.floorFrom$.value;
+    this.filter.square_general = this.filterGetAdService.squareGeneral$.value;
+    this.filter.square_kitchen = this.filterGetAdService.squareKitchen$.value;
+    this.filter.square_living = this.filterGetAdService.squareLiving$.value;
+
+    this.selectedCity = await this.filterService.loadCityById(this.filterGetAdService.city$.value);
+    this.selectedGenderType = await this.filterService.loadGenderTypeById(this.filterGetAdService.adGenderType$.value);
+  }
+
+  reset() {
+    this.filterGetAdService.reset();
+    this.setData().then();
   }
 
   onClick(title?: string, code?: FilterType, isCheckboxModal?: boolean) {
@@ -83,6 +91,50 @@ export class FilterRoommateModalComponent implements OnInit {
 
       this.setItemsByCode(code, [x.data]);
     });
+
+  }
+
+  onChangFilter(filter: string, value: number | string) {
+
+    if (filter === 'search_text') {
+      this.filterGetAdService.searchText$.next(value as string);
+    }
+    if (filter === 'price_to') {
+      this.filterGetAdService.priceTo$.next(value as number);
+    }
+    if (filter === 'price_from') {
+      this.filterGetAdService.priceFrom$.next(value as number);
+    }
+    if (filter === 'rooms_count') {
+      this.filterGetAdService.roomsCount$.next(value as number);
+    }
+    if (filter === 'roommate_count') {
+      this.filterGetAdService.roommatesCount$.next(value as number);
+    }
+    if (filter === 'floor') {
+      this.filterGetAdService.floor$.next(value as number);
+    }
+    if (filter === 'floor_from') {
+      this.filterGetAdService.floorFrom$.next(value as number);
+    }
+    if (filter === 'bathrooms_count') {
+      this.filterGetAdService.bathroomsCount$.next(value as number);
+    }
+    if (filter === 'balconies_count') {
+      this.filterGetAdService.balconiesCount$.next(value as number);
+    }
+    if (filter === 'loggias_count') {
+      this.filterGetAdService.loggiasCount$.next(value as number);
+    }
+    if (filter === 'square_general') {
+      this.filterGetAdService.squareGeneral$.next(value as number);
+    }
+    if (filter === 'square_living') {
+      this.filterGetAdService.squareLiving$.next(value as number);
+    }
+    if (filter === 'square_kitchen') {
+      this.filterGetAdService.squareKitchen$.next(value as number);
+    }
 
   }
 
@@ -117,9 +169,11 @@ export class FilterRoommateModalComponent implements OnInit {
     switch (code) {
       case FilterType.CITY:
         this.selectedCity = values;
+        this.filterGetAdService.city$.next(getId(values));
         return;
       case FilterType.GENDER_TYPE:
         this.selectedGenderType = values;
+        this.filterGetAdService.adGenderType$.next(getId(values));
         return;
       case FilterType.APARTMENT_CONDITIONS:
         this.selectedApartmentConditions = values;
@@ -152,14 +206,7 @@ export class FilterRoommateModalComponent implements OnInit {
   }
 
   onClickSearch() {
-    this.filterService.filter = {
-      rooms_count: this.rooms_count,
-      price_from: this.price_from,
-      price_to: this.price_to,
-      floor_from: this.floor_from,
-    } as Filter;
-
-    this.modalService.dismiss('just').then();
+    this.modalService.dismiss('search').then();
   }
 
 }

@@ -39,9 +39,43 @@ export class AdController {
   }
 
   loadByFilter(filter: Filter): Observable<any> {
-    return this.httpService.get('/search/text', {
+    return this.httpService.get('/search/' + filter.search_text, {
+      city_id: filter?.city_id,
       price_from: filter?.price_from,
       price_to: filter?.price_to,
+      rooms_count: filter?.rooms_count,
+      roommate_count: filter?.roommate_count,
+      bathrooms_count: filter?.bathrooms_count,
+      balconies_count: filter?.balconies_count,
+      loggias_count: filter?.loggias_count,
+      floor: filter?.floor,
+      floor_from: filter?.floor_from,
+      square_general: filter?.square_general,
+      square_kitchen: filter?.square_kitchen,
+      square_living: filter?.square_living,
+      ad_gender_type_id: filter?.ad_gender_type_id,
+      category: 'search_ad',
+    })
+      .pipe(map((value) => value.body.data[0] as any));
+  }
+
+  loadGetAdByFilter(filter: Filter): Observable<any> {
+    return this.httpService.get('/search/' + filter.search_text, {
+      city_id: filter?.city_id,
+      price_from: filter?.price_from,
+      price_to: filter?.price_to,
+      rooms_count: filter?.rooms_count,
+      roommate_count: filter?.roommate_count,
+      bathrooms_count: filter?.bathrooms_count,
+      balconies_count: filter?.balconies_count,
+      loggias_count: filter?.loggias_count,
+      floor: filter?.floor,
+      floor_from: filter?.floor_from,
+      square_general: filter?.square_general,
+      square_kitchen: filter?.square_kitchen,
+      square_living: filter?.square_living,
+      ad_gender_type_id: filter?.ad_gender_type_id,
+      category: 'get_ad',
     })
       .pipe(map((value) => value.body.data[0] as any));
   }
