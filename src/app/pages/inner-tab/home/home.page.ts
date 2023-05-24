@@ -43,16 +43,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.authService.getCity()) {
-      this.settingControllerService.setCityModal().present().then(x => {
-        if (!x?.data || isEmpty(x?.data)) {
-          return;
-        }
-
-        this.authService.setCity(x?.data);
-      });
-    }
-
     this.initAds();
   }
 
