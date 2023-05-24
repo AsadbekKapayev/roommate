@@ -63,6 +63,8 @@ export class CreateAdPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('3w88k82D :: init')
+
     this.adId = this.route.snapshot?.params?.id;
     this.imageService.clearData();
     this.searchAdStore = new SearchAdStore();

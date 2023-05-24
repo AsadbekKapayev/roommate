@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {LoginService} from "../../../services/core/login.service";
 import {ActivatedRoute} from "@angular/router";
@@ -59,7 +59,9 @@ export class RoomDetailPage implements OnInit {
     forkJoin({
       ad: this.adService.loadRoomById(roomId),
       genders: this.profileService.loadGenders()
-    }).subscribe(x => {
+    }).pipe(
+      take(1)
+    ).subscribe(x => {
       this.loadMap(toArray(x.ad?.coordinates, ','), x.ad?.location);
 
       this.author = x.ad?.user;
