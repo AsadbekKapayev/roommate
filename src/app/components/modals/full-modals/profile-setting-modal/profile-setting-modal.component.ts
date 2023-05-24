@@ -77,6 +77,7 @@ export class ProfileSettingModalComponent implements OnInit, OnDestroy {
       this.name,
       this.email,
       this.selectedGender?.id,
+      this.profile?.phone_number,
       blob
     ).subscribe(
       (x) => {
