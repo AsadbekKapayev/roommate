@@ -10,67 +10,30 @@ export class GuideService {
   guides: GuideItem[] = [
     {
       id: '1',
-      title: 'Guide 1',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      title: '6 лучших советов по безопасному поиску соседей по комнате для вашего дома',
+      description: 'Наличие соседа по комнате может изменить жизнь. Они ваша семья вдали от дома и никогда не позволят вам тосковать по дому. Соседи по комнате берут на себя роль вашей обеспокоенной мамы, веселятся с вами, как брат и сестра, а также ругают вас за ваши привычки тратить деньги, как ваш отец. И здесь вы думали, что бросаете свою семью!\n' +
+        'Эксцентричные времена требуют чрезвычайных мер! Вот 6 лучших советов, как безопасно и надежно найти соседей по комнате.\n' +
+        '1) Воспользуйтесь проверенным средством поиска соседей по комнате,\n' +
+        '2) Найдите комнату с существующим арендатором.,\n' +
+        '3) Спросите своего арендодателя/друзей,\n' +
+        '4) Ищите рекламу в социальных сетях,\n' +
+        '5) Сделать онлайн-рекламу,\n' +
+        '6) Закрепите его на доске объявлений в офисе.',
       img: 'assets/images/guide.jpg',
       category: GuideType.ADVICE,
     },
     {
       id: '2',
-      title: 'Guide 2',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+      title: 'Как найти соседа для совместной аренды жилья?',
+      description: 'Наверное, самое большое преимущество cовместной аренды жилья состоит в том, что ты можешь позволить себе снимать более просторную квартиру в хорошем районе за меньшие деньги. Однако это также может означать лишнюю головную боль, если серьезно не подойти к вопросу поиска подходящего соседа. Речь не идет о размещении объявления — это самое легкое. Гораздо важнее найти человека с близким тебе характером и привычками. Вот несколько советов, которые помогут тебе решить эту задачу.\n' +
+        '1. Не снимай жилье с друзьями, ' +
+        '2. Определи четкие критерии поиска' +
+        '3. Задай вопросы по телефону' +
+        '4. Не зацикливайся на мелочах' +
+        '5. Составь письменное соглашение',
       img: 'assets/images/guide1.jpg',
-      category: GuideType.ADVICE,
-    },
-    {
-      id: '3',
-      title: 'Guide 3',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      img: 'assets/images/guide2.jpg',
-      category: GuideType.ADVICE,
-    },
-    {
-      id: '4',
-      title: 'Guide 4',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      img: 'assets/images/guide3.jpg',
       category: GuideType.NEW,
-    },
-    {
-      id: '5',
-      title: 'Guide 5',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      img: 'assets/images/guide4.png',
-      category: GuideType.NEW,
-    },
-    {
-      id: '6',
-      title: 'Guide 6',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      img: 'assets/images/guide5.png',
-      category: GuideType.NEW,
-    },
-    {
-      id: '7',
-      title: 'Guide 7',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ' +
-        'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, ' +
-        'when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-      img: 'assets/images/guide6.jpg',
-      category: GuideType.ADVICE,
-    },
+    }
   ];
 
   constructor() {
