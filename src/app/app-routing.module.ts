@@ -54,6 +54,10 @@ const routes: Routes = [
         path: 'create-ad-room/:id',
         loadChildren: () => import('./pages/outer-tab/create-ad-room/create-ad-room.module').then(m => m.CreateAdRoomModule)
       },
+      {
+        path: 'confi',
+        loadChildren: () => import('./pages/outer-tab/confi/confi.module').then(m => m.ConfiModule)
+      },
     ],
   },
   {

@@ -19,4 +19,6 @@ export const ALL_URL = {
   CREATE_AD: '/outer-tab/create-ad/', // add :id
   CREATE_AD_ROOM: '/outer-tab/create-ad-room/', // add :id
 
+  CONFI: '/outer-tab/confi',
+
 }

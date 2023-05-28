@@ -89,4 +89,8 @@ export class RegisterPage implements OnInit {
     this.navCtrl.navigateForward(ALL_URL.LOGIN).then();
   }
 
+  onClickPolicy() {
+    this.navCtrl.navigateForward(ALL_URL.CONFI).then();
+  }
+
 }
