@@ -64,4 +64,8 @@ export class ProfileService {
       .pipe(tap(x => this.storage.set(StorageSecureKeyEnum.PROFILE, JSON.stringify(x))));
   }
 
+  loadNewUser() {
+    return this.profileController.loadUser();
+  }
+
 }

@@ -21,6 +21,10 @@ const routes: Routes = [
         path: 'login-email',
         loadChildren: () => import('./pages/main/login-email/login-email.module').then(m => m.LoginEmailModule)
       },
+      {
+        path: 'email-verification/:email',
+        loadChildren: () => import('./pages/main/email-verification/email-verification.module').then(m => m.EmailVerificationModule)
+      },
     ],
   },
   {

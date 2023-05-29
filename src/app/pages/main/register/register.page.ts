@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {AuthService} from "../../../services/core/auth.service";
-import {take} from "rxjs";
+import {filter, of, switchMap, take} from "rxjs";
 import {Item} from "../../../models/commons/Item";
 import {ToastService} from "../../../services/core/toast.service";
 import {TokenService} from "../../../services/common/token.service";
@@ -70,8 +70,8 @@ export class RegisterPage implements OnInit {
       take(1)
     ).subscribe(
       x => {
-        this.tokenService.setToken(x?.token);
-        this.navCtrl.navigateForward(ALL_URL.TAB_HOME).then();
+        this.tokenService.setTempToken(x?.token);
+        this.navCtrl.navigateForward(ALL_URL.EMAIL_VERIFICATION + this.email).then();
       },
       e => {
         if (e?.status === 422) {

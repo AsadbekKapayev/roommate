@@ -58,6 +58,10 @@ export class AuthService {
     return this.authController.logout();
   }
 
+  emailVerification() {
+    return this.authController.emailVerification();
+  }
+
   goToHome() {
     return this.navCtrl.navigateRoot([`${ALL_URL.TAB_HOME}`]);
   }
@@ -66,8 +70,16 @@ export class AuthService {
     return !!this.tokenService.token;
   }
 
+  hasTempSession(): boolean {
+    return !!this.tokenService.tempToken;
+  }
+
   getSession(): string {
     return this.tokenService.token;
+  }
+
+  getTempSession(): string {
+    return this.tokenService.tempToken;
   }
 
 }

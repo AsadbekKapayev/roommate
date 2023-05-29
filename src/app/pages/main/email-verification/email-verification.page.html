@@ -1,0 +1,35 @@
+<ion-header>
+  <app-header
+    [title]="'Подать объявление'"
+    [showBackButtonDefault]="true"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="register page-padding-24px">
+
+    <div class="email-wrapper">
+
+      <div>
+        На вашу почту отправлено сообщение, чтобы убедиться что почта принадлежит вам
+      </div>
+
+      <app-custom-input
+        [label]="'Ваша почта'"
+        [disabled]="true"
+        [value]="email"
+        [error]="!isUserVerified && 'Вы еще не подтвердили почту'"
+      ></app-custom-input>
+    </div>
+
+    <div class="register-footer">
+
+      <button appThrottleClick (throttleClick)="check()"
+              class="custom-button-primary">
+        Продолжить
+      </button>
+
+    </div>
+
+  </div>
+</ion-content>

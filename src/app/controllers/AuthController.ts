@@ -47,4 +47,9 @@ export class AuthController {
       .pipe(map((value) => value.body as any));
   }
 
+  emailVerification(): Observable<any> {
+    return this.httpService.get('/user/resend/email/verification', {})
+      .pipe(map((value) => value.body as any));
+  }
+
 }
