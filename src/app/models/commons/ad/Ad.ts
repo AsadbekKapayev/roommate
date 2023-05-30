@@ -49,6 +49,7 @@ export class Ad {
   user: User;
   apartment_condition: Item;
   gender_type: Item;
+  status_moderation: Item;
   liked_users: string[];
   model: string;
   isLiked?: boolean;

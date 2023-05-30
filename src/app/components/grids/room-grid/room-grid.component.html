@@ -30,13 +30,25 @@
             <div class="ad-description custom-ellipses-2">{{room.description}}</div>
           </div>
 
-          <div class="ad-additional-info">
-            <div>{{room.created_at | date : 'd MMMM'}}</div>
-            <div class="icon-20">
-              <img src="assets/icon/eye.svg">
-              {{room.views}}
+          <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div class="ad-additional-info">
+              <div>{{room.created_at | date : 'd MMMM'}}</div>
+              <div class="icon-20">
+                <img src="assets/icon/eye.svg">
+                {{room.views}}
+              </div>
+            </div>
+
+            <div
+              class="status-moderation"
+              [class.bg-red]="!room.status_moderation?.title"
+              [class.bg-gray]="room.status_moderation?.title === 'В обработке'"
+              [class.green]="room.status_moderation?.title === 'Принято'"
+            >
+              {{room.status_moderation?.title}}
             </div>
           </div>
+
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import {Ad} from "../models/commons/ad/Ad";
 import {Filter} from "../models/commons/ad/Filter";
 import {AdStore} from "../models/commons/ad/AdStore";
 import {SearchAdStore} from "../models/commons/ad/SearchAdStore";
+import {tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +96,8 @@ export class AdController {
 
   userAds(): Observable<Ads> {
     return this.httpService.get('/user/get_ad', {})
-      .pipe(map((value) => value.body.data[0] as Ads));
+      .pipe(map((value) => value.body.data[0] as Ads),
+        tap((x) => console.log(x)));
   }
 
   userSearchAds(): Observable<Ads> {
