@@ -21,7 +21,8 @@
       </div>
 
       <div class="ad-bottom">
-        <img [src]="roommate?.user?.profile_photo_url ?? 'assets/images/no-image.jpg'" alt="ad-holder" class="image-cover">
+        <img [src]="roommate?.user?.profile_photo_url ?? 'assets/images/no-image.jpg'" alt="ad-holder"
+             class="image-cover">
 
         <div class="ad-content">
           <div class="ad-info">
@@ -29,13 +30,25 @@
             <div class="ad-description custom-ellipses-2">{{roommate.description}}</div>
           </div>
 
-          <div class="ad-additional-info">
-            <div>{{roommate.created_at | date : 'd MMMM'}}</div>
-            <div class="icon-20">
-              <img src="assets/icon/eye.svg">
-              {{roommate.views}}
+          <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div class="ad-additional-info">
+              <div>{{roommate.created_at | date : 'd MMMM'}}</div>
+              <div class="icon-20">
+                <img src="assets/icon/eye.svg">
+                {{roommate.views}}
+              </div>
+            </div>
+
+            <div
+              class="status-moderation"
+              [class.bg-red]="!roommate.status_moderation?.title"
+              [class.bg-gray]="roommate.status_moderation?.title === 'В обработке'"
+              [class.green]="roommate.status_moderation?.title === 'Принято'"
+            >
+              {{roommate.status_moderation?.title}}
             </div>
           </div>
+
         </div>
       </div>
     </div>

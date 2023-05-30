@@ -49,6 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 
 .ad-info {
@@ -76,4 +77,23 @@
 .image-cover {
   object-fit: contain;
   background: var(--custom-background-color-input);
+}
+
+.status-moderation {
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: var(--custom-font-size-7);
+  color: white;
+}
+
+.bg-red {
+  background: red;
+}
+
+.bg-green {
+  background: green;
+}
+
+.bg-gray {
+  background: gray;
 }
