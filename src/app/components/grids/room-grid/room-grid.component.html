@@ -40,6 +40,7 @@
             </div>
 
             <div
+              *ngIf="showStatusModeration"
               class="status-moderation bg-red"
               [class.bg-gray]="room.status_moderation?.title?.includes('В обработке')"
               [class.bg-green]="room.status_moderation?.title?.includes('Принято')"

@@ -18,6 +18,7 @@ export class RoomGridComponent implements OnInit {
   }
 
   @Input() showEditIcon: boolean;
+  @Input() showStatusModeration: boolean;
 
   @Output() likeClicked = new EventEmitter<Ad>();
   @Output() categoryClicked = new EventEmitter<Ad>();

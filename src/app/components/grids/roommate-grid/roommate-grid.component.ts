@@ -16,6 +16,7 @@ export class RoommateGridComponent implements OnInit {
 
   @Input() roommates: Ad[];
   @Input() showEditIcon: boolean;
+  @Input() showStatusModeration: boolean;
 
   @Output() likeClicked = new EventEmitter<Ad>();
   @Output() categoryClicked = new EventEmitter<Ad>();
