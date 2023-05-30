@@ -12,20 +12,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (req.url.endsWith('/resend/email/verification') || req.url.endsWith('/user')) {
-      let headers: HttpHeaders = req.headers;
-      if (this.authService.hasTempSession()) {
-        const token = this.authService.getTempSession();
-        headers = headers.set('Authorization', `Bearer ${token}`);
-        
-        req = req.clone({
-          headers,
-        });
-
-        return next.handle(req);
-      }
-    }
-
     let headers: HttpHeaders = req.headers;
     if (this.authService.hasSession()) {
       const token = this.authService.getSession();

@@ -10,6 +10,8 @@ import {Item} from "../../../../models/commons/Item";
 import {take} from "rxjs";
 import {User} from "../../../../models/commons/user/User";
 import {TokenService} from "../../../../services/common/token.service";
+import {NavController} from "@ionic/angular";
+import {AuthService} from "../../../../services/core/auth.service";
 
 @Component({
   selector: 'app-profile-setting-modal',
@@ -30,15 +32,21 @@ export class ProfileSettingModalComponent implements OnInit, OnDestroy {
 
   profile: User;
 
+  smsSent = false;
+
   constructor(private modalService: ModalService,
               private cityService: CityService,
               private tokenService: TokenService,
               private profileService: ProfileService,
               private toastService: ToastService,
+              private authService: AuthService,
+              private navCtrl: NavController,
               private imageService: ImageService) {
   }
 
   async ngOnInit() {
+    this.profileService.loadNewUser().pipe(take(1)).subscribe(x => console.log(x))
+
     this.loadProfile();
 
     this.profileService.loadGenders().pipe(
@@ -116,6 +124,14 @@ export class ProfileSettingModalComponent implements OnInit, OnDestroy {
         id: this.profile?.gender_id
       };
     });
+  }
+
+  verifyEmail() {
+    this.smsSent = true;
+
+    this.authService.emailVerification().pipe(
+      take(1)
+    ).subscribe();
   }
 
 }

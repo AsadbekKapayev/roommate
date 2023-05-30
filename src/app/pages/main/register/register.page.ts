@@ -70,8 +70,8 @@ export class RegisterPage implements OnInit {
       take(1)
     ).subscribe(
       x => {
-        this.tokenService.setTempToken(x?.token);
-        this.navCtrl.navigateForward(ALL_URL.EMAIL_VERIFICATION + this.email).then();
+        this.tokenService.setToken(x?.token);
+        this.navCtrl.navigateForward(ALL_URL.TAB_HOME).then();
       },
       e => {
         if (e?.status === 422) {

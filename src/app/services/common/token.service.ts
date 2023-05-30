@@ -25,13 +25,4 @@ export class TokenService {
     return localStorage.getItem(LocalStorage.TEMP_TOKEN);
   }
 
-  setTempToken(token: string) {
-    localStorage.setItem(LocalStorage.TEMP_TOKEN, token);
-  }
-
-  resetTempToken() {
-    localStorage.setItem(LocalStorage.TEMP_TOKEN, '');
-  }
-
-
 }

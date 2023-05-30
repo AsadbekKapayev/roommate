@@ -276,7 +276,7 @@ export class CreateAdPage implements OnInit, OnDestroy {
 
   initAdDetail(adId: string) {
 
-    this.adService.loadRoomById(adId).pipe(
+    this.adService.userSearchAdById(adId).pipe(
       take(1)
     ).subscribe(async x => {
       this.loadMap(toArray(x?.coordinates, ','), x?.location).then();

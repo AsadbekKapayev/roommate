@@ -40,6 +40,15 @@
         [value]="email"
       ></app-custom-input>
 
+      <div *ngIf="!profile?.email_verified_at && !smsSent">
+        Вы еще не подтвердили свою почту, чтобы потдвердить нажмите
+        <a (click)="verifyEmail()"> сюда</a>
+      </div>
+
+      <div *ngIf="smsSent">
+        Вам отправлено сообщение на почту
+      </div>
+
       <div>
         <div class="margin-12">Пол</div>
         <div class="categories">

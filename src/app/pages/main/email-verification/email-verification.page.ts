@@ -5,6 +5,7 @@ import {AuthService} from "../../../services/core/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {take} from "rxjs";
 import {ProfileService} from "../../../services/core/profile.service";
+import {ALL_URL} from "../../../shares/url-static";
 
 @Component({
   selector: 'app-email-verification',
@@ -38,9 +39,9 @@ export class EmailVerificationPage implements OnInit, OnDestroy {
     this.profileService.loadNewUser().pipe(
       take(1)
     ).subscribe(x => {
-      console.log(x)
-
+      // todo check email
       this.isUserVerified = !!x?.email_verified_at;
+      this.navCtrl.navigateForward(ALL_URL.TAB_HOME).then();
     })
   }
 

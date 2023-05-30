@@ -56,6 +56,14 @@ export class AdService {
     return this.adController.userSearchAds();
   }
 
+  userAdById(id: string) {
+    return this.adController.userAdById(id);
+  }
+
+  userSearchAdById(id: string) {
+    return this.adController.userSearchAdById(id);
+  }
+
   deleteSearchAd(adId: number) {
     return this.adController.deleteSearchAd(adId);
   }

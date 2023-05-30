@@ -103,6 +103,16 @@ export class AdController {
       .pipe(map((value) => value.body.data[0] as Ads));
   }
 
+  userAdById(id: string): Observable<Ad> {
+    return this.httpService.get('/user/get_ad/' + id + '/edit', {})
+      .pipe(map((value) => value.body.data[0] as Ad));
+  }
+
+  userSearchAdById(id: string): Observable<Ad> {
+    return this.httpService.get('/user/search_ad/' + id + '/edit', {})
+      .pipe(map((value) => value.body.data[0] as Ad));
+  }
+
   getAdUpdate(adStore: AdStore): Observable<any> {
     return this.httpService.postJson('/user/get_ad/' + adStore.adId + '/update', {
       city_id: adStore.city_id,

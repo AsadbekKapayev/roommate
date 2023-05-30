@@ -80,7 +80,7 @@ export class CreateAdRoomPage implements OnInit, OnDestroy {
 
   initAdDetail(adId: string) {
 
-    this.adService.loadRoommateById(adId).pipe(
+    this.adService.userAdById(adId).pipe(
       take(1)
     ).subscribe(async x => {
       this.loadMap(toArray(x?.coordinates, ','), x?.location).then();
