@@ -40,10 +40,9 @@
             </div>
 
             <div
-              class="status-moderation"
-              [class.bg-red]="!room.status_moderation?.title"
-              [class.bg-gray]="room.status_moderation?.title === 'В обработке'"
-              [class.green]="room.status_moderation?.title === 'Принято'"
+              class="status-moderation bg-red"
+              [class.bg-gray]="room.status_moderation?.title?.includes('В обработке')"
+              [class.bg-green]="room.status_moderation?.title?.includes('Принято')"
             >
               {{room.status_moderation?.title}}
             </div>
