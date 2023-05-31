@@ -26,6 +26,7 @@ export class ProfileSettingModalComponent implements OnInit, OnDestroy {
 
   name: string;
   email: string;
+  phoneNumber: number;
   isEmailValid = true;
   genders: Item[];
   selectedGender: Item;
@@ -45,8 +46,6 @@ export class ProfileSettingModalComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.profileService.loadNewUser().pipe(take(1)).subscribe(x => console.log(x))
-
     this.loadProfile();
 
     this.profileService.loadGenders().pipe(
@@ -114,10 +113,11 @@ export class ProfileSettingModalComponent implements OnInit, OnDestroy {
   }
 
   loadProfile() {
-    this.profileService.loadUser().pipe(
+    this.profileService.loadNewUser().pipe(
       take(1)
     ).subscribe(x => {
       this.profile = x;
+      this.phoneNumber = this.profile?.phone_number;
       this.name = this.profile?.name;
       this.email = this.profile?.email;
       this.selectedGender = {

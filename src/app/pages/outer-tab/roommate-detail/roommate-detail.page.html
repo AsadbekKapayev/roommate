@@ -145,7 +145,11 @@
         class="phone-number"
         (click)="onClickPhone()"
       >{{author?.phone_number | mask : '+0 (000) 000 00 00'}}</div>
-      <div class="content-info">{{author?.email}}</div>
+      <a
+        [href]="'https://mail.google.com/mail/?view=cm&fs=1&to=' + author?.email"
+        class="content-info mail-href"
+      >{{author?.email}}
+      </a>
     </div>
   </div>
 </ng-template>
